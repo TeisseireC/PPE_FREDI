@@ -41,12 +41,13 @@
                     <th>Repas</th>
                     <th>Hébergement</th>
                     <th>Total</th>
-                </tr> 
+                </tr>
                 <?php
                     //foreach($rows as $row){
                     //echo "<td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td>";
                     //}
                 ?>
+            </table>
         </div>
     </section>
     <!-- End section -->
