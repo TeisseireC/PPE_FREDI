@@ -12,7 +12,7 @@
     <!-- Start header -->
     <header>
         <?php
-          include "../../assets/include/menu.php";
+          include "../../assets/include/menu2.php";
         ?>
     </header>
     <!-- End header -->
