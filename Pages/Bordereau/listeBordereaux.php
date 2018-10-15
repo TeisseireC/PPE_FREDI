@@ -19,7 +19,7 @@
 
     <!-- Start section -->
     <section>      
-     
+      <!-- foreach liste des bordereaux en fonction de l'id util --> 
     </section>
     <!-- End section --> 
 
