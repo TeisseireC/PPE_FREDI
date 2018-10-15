@@ -4,5 +4,5 @@
     <li class="bouton_gauche"><a href="Pages/Bordereau/bordereau.php" class="a_menu">Bordereau actuel</a></li>
     
     <li class="bouton_droite"><a href="Pages/Connection/login.php" class="a_menu">Se connecter</a></li>
-    <li class="bouton_droite"><a href="Pages/Connection/registerUtil.php" class="a_menu">S'enregister</a></li>
+    <li class="bouton_droite"><a href="Pages/Connection/registerUtil.php" class="a_menu">S'enregistrer</a></li>
 </ul>    
