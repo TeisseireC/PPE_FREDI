@@ -20,7 +20,7 @@
     <!-- Start section -->
     <section>      
         <div id="texte">
-            <p>Je soussigné(e)<br/>.........</p>
+            <p>Je soussigné(e)<br/>........</p>
             <p>demeurant<br/>.........</p>
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
             .........<br/>
