@@ -45,8 +45,8 @@
                 <?php
                     //foreach($rows as $row){
                     //echo "<td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td>";
-                    //echo '<td><a href="edit.php?id=' . $row["id_faq"] . '"><img id="edit" src="ico/edit.png"/></a> '
-                    //    . '<a href="delete.php?id=' . $row["id_faq"] . '"><img id="delete" src="ico/del.png"/></a></tr>';
+                    //echo '<td><a href="edit.php?id=' . $row["id_faq"] . '"><img id="edit" src="../../ico/edit.png"/></a> '
+                    //    . '<a href="delete.php?id=' . $row["id_faq"] . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
                     //}
                 ?>
                 </tr>
