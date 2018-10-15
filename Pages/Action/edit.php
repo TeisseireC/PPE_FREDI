@@ -17,8 +17,8 @@ if($submit == 1){               // au submit faire
     $hebergement = isset($_POST['hebergement']) ? $_POST['hebergement'] : "";
     $id = isset($_POST['id']) ? $_POST['id'] : "";
 
-    $voitureDAO->update($id, $marque, $modele);
-    header("location: index.php");
+    $frediDAO->update($id, $marque, $modele);
+    //header("location: index.php"); // a faire
 } else {        // sinon faire afficher les valeurs dans le formulaire en fopnction de l'id recupere dans l'url
     $voiture = $voitureDAO->find($id);
 }
