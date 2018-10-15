@@ -20,16 +20,14 @@
     <!-- Start section -->
     <section>      
         <div id="texte">
-            <p>Je soussigné(e)</p><br/>
-            <p id='frais'>.........</p><br/>
-            <p>demeurant</p><br/>
-            <p id='frais'>.........</p><br/>
-            <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association</p><br/>
-            <p id='frais'>.........</p><br/>
-            <p>en tant que don.</p>
+            <p>Je soussigné(e)<br/>.........</p>
+            <p>demeurant<br/>.........</p>
+            <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
+            .........<br/>
+            en tant que don.</p>
             <p><b>Frais de déplacement</b></p>
           
-            <table class="tableDon">
+            <table class="tableBordereau">
                 <tr>
                     <th>Association</th>
                     <th>Date</th>
@@ -41,12 +39,17 @@
                     <th>Repas</th>
                     <th>Hébergement</th>
                     <th>Total</th>
+                    <th>&nbsp;</th>
                 </tr>
+                <tr>
                 <?php
                     //foreach($rows as $row){
                     //echo "<td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td>";
+                    //echo '<td><a href="edit.php?id=' . $row["id_faq"] . '"><img id="edit" src="ico/edit.png"/></a> '
+                    //    . '<a href="delete.php?id=' . $row["id_faq"] . '"><img id="delete" src="ico/del.png"/></a></tr>';
                     //}
                 ?>
+                </tr>
             </table>
         </div>
     </section>

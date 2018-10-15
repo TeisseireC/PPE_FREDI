@@ -12,7 +12,7 @@
     <!-- Start header -->
     <header>
         <?php
-          include "../../assets/include/menu.php";
+          include "../../assets/include/menu2.php";
         ?>
     </header>
     <!-- End header -->
@@ -20,7 +20,7 @@
     <!-- Start section -->
     <section>      
       <!-- Start formulaire -->
-      <form name="Formulaire" action="ajouterDon.php"  method="post" class="formDon">
+      <form name="Formulaire" action="ajouter.php"  method="post" class="formAjouter">
             <p>Association<br/><input type="text" name="association"></p>                        
             <p>Date<br/><input type="date" name="date"></p>
             <p>Motif<br/><select name="motif" class="motif">

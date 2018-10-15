@@ -140,7 +140,7 @@ footer
 /* Fin du formulaire (global) */
 
 /* Début du formulaire (bordereau.php) */
-.formDon
+.formAjouter
 {
     position: relative;
     text-align : center;
@@ -148,29 +148,29 @@ footer
     top: 1%;
 }
 
-.formDon input[type="text"], .formDon input[type="password"], .formDon input[type="number"]
+.formAjouter input[type="text"], .formAjouter input[type="password"], .formAjouter input[type="number"]
 {
     height: 20px;
 }
 
-.formDon input[type="date"]
+.formAjouter input[type="date"]
 {
     height: 20px;
     width: 170px;
 }
 
-.formDon select[class="club"]
+.formAjouter select[class="club"]
 {
     height: 25px;
 }
 
-.formDon input[type="submit"], .formDon input[type="reset"]
+.formAjouter input[type="submit"], .formAjouter input[type="reset"]
 {
     height: 40px;
     width: 10%;
 }
 
-.tableDon{
+.tableBordereau{
     width: 100%;
     border: 1px;
     border-style: solid;
