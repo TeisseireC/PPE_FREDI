@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>PPE-G4-FREDI</title>
+    <title>S'inscrire</title>
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css"/> 
   </head>
@@ -28,7 +28,7 @@
 
     <!-- Start footer -->
     <footer>
-
+        <p>Site développé par Clément Bonnefont, Cyril Teisseire, Antoine Vucic et Yann Cecconato</p>
     </footer>
     <!-- End footer -->
 

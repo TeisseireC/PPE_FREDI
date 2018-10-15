@@ -139,6 +139,45 @@ footer
 }
 /* Fin du formulaire (global) */
 
+/* Début du formulaire (bordereau.php) */
+.formDon
+{
+    position: relative;
+    text-align : center;
+    font-size : 16px;
+    top: 1%;
+}
+
+.formDon input[type="text"], .formDon input[type="password"], .formDon input[type="number"]
+{
+    height: 20px;
+}
+
+.formDon input[type="date"]
+{
+    height: 20px;
+    width: 170px;
+}
+
+.formDon select[class="club"]
+{
+    height: 25px;
+}
+
+.formDon input[type="submit"], .formDon input[type="reset"]
+{
+    height: 40px;
+    width: 10%;
+}
+
+.tableDon{
+    width: 100%;
+    border: 1px;
+    border-style: solid;
+    color: black;
+}
+/* Fin du formulaire (bordereau.php)
+
 /* Debut bouton responsable légal */
 .button {
     border: 2px solid black;

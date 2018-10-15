@@ -25,7 +25,7 @@
 
     <!-- Start footer -->
     <footer>
-
+        <p>Site développé par Clément Bonnefont, Cyril Teisseire, Antoine Vucic et Yann Cecconato</p>
     </footer>
     <!-- End footer -->
 

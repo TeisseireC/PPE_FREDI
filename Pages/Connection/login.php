@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>PPE-G4-FREDI</title>
+    <title>Se connecter</title>
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css"/> 
   </head>
@@ -20,13 +20,14 @@
     <!-- Start section -->
     <section>
             
-        <!-- Debut formulaire-->
+        <!-- Debut formulaire -->
         <form method="POST" action="login.php" class="formulaire">
             <p>Mail<br/><input type="text" name="id" id="id" required/></p>
             <p>Mot de passe<br/><input type="password" name="mdp" id="mdp"required/></p>
             <p><input type="submit" name="submit" value="OK" /><input type="reset" value="Réinitialiser"></p>
         </form>
-
+        <!-- Fin formulaire -->
+        
         <?php
             // Saisie des valeurs du formulaire
             $identifiant = isset($_POST['id']) ? $_POST['id'] : " ";
@@ -43,7 +44,7 @@
 
     <!-- Start footer -->
     <footer>
-
+        <p>Site développé par Clément Bonnefont, Cyril Teisseire, Antoine Vucic et Yann Cecconato</p>
     </footer>
     <!-- End footer -->
 </body>
