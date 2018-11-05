@@ -19,10 +19,19 @@
 
     <!-- Start section -->
     <section>      
-      <form action="registerRL1.php" id="registerRL1" method="post">
+      <form action="registerRL1.php" id="registerRL1" method="GET">
         <p>Nombre d'enfants<br/><input type="text" name="enfants" required/></p>
         <p><input type="submit" name="submit" value="OK" /><input type="reset" value="Réinitialiser"></p>
       </form>
+
+      <?php
+        $submit = isset($_GET['submit']) ? $_GET['submit'] : "";
+
+        if($submit){
+          $enfants = $_GET['enfants'];
+          header("Location: registerRL2.php?enfants=".$enfants);
+        }
+      ?>
     </section>
     <!-- End section --> 
 

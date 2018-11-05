@@ -35,10 +35,14 @@
             $submit = isset($_POST['submit']);
 
             if ($submit == 1) {
-                if(connecter){
-                    sessions_start();
-                    $_SESSION['id_session'] = $mail;
+                $connection = new CyrilDAO();
+                
+                if ($connection -> verify_login($mail, $mdp) == true){
+                    $_SESSION['identifiant'] = $mail;
+                }else{
+                    echo "<p>La saisi de votre identifiant / mot de passe est incorecte, veuillez saisir de nouveau vos informations de connection</p>";
                 }
+
             }
         ?>
 
