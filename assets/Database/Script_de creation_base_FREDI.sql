@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 15 oct. 2018 à 16:00
+-- Généré le :  lun. 05 nov. 2018 à 14:01
 -- Version du serveur :  10.1.29-MariaDB
 -- Version de PHP :  7.1.12
 
@@ -19,10 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `freditest3`
+-- Base de données :  `fredi`
 --
 
 -- --------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS fredi  
+DEFAULT charset=utf8
+COLLATE utf8_general_ci;
 
 --
 -- Structure de la table `adherent`
@@ -40,7 +43,8 @@ CREATE TABLE `adherent` (
   `CodePostal` varchar(10) DEFAULT NULL,
   `Ville` varchar(20) DEFAULT NULL,
   `IdClub` int(11) DEFAULT NULL,
-  `IdRespLegal` int(11) DEFAULT NULL
+  `IdRespLegal` int(11) DEFAULT NULL,
+  `MDP` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -131,7 +135,9 @@ CREATE TABLE `responsable_crib` (
   `IdRespCrib` int(11) NOT NULL,
   `NomRespCrib` varchar(25) DEFAULT NULL,
   `PrenomRespCrib` varchar(25) DEFAULT NULL,
-  `IdLigue` int(11) DEFAULT NULL
+  `AdresseMail` varchar(30) DEFAULT NULL,
+  `IdLigue` int(11) DEFAULT NULL,
+  `MDP` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -143,7 +149,9 @@ CREATE TABLE `responsable_crib` (
 CREATE TABLE `responsable_legal` (
   `IdRespLegal` int(11) NOT NULL,
   `NomRespLegal` varchar(20) DEFAULT NULL,
-  `PrenomRespLegal` varchar(20) DEFAULT NULL
+  `PrenomRespLegal` varchar(20) DEFAULT NULL,
+  `AdresseMail` varchar(30) DEFAULT NULL,
+  `MDP` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -156,7 +164,9 @@ CREATE TABLE `tresorier` (
   `IdTresorier` int(11) NOT NULL,
   `NomTresorier` varchar(25) DEFAULT NULL,
   `PrenomTresorier` varchar(25) DEFAULT NULL,
-  `IdClub` int(11) DEFAULT NULL
+  `AdresseMail` varchar(30) DEFAULT NULL,
+  `IdClub` int(11) DEFAULT NULL,
+  `MDP` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
