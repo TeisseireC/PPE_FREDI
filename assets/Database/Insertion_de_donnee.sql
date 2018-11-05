@@ -1,5 +1,5 @@
-Insert into adherent (NumLicence, SexeAdh, NomAdh, PrenomAdh, DateNaissance, Adresse, CodePostal, Ville)
-Values
+INSERT INTO csv (NumeroLicence, SexeAdh, NomAdh, PrenomAdh, DateNaissance, Adresse, CodePostal, Ville)
+VALUES
  ("170540010443",	"M",	"BANDILELLA",	"CLEMENT",		"1998-07-26",	"30, rue Widric 1er",			"54600",	"Villers lès Nancy"),
  ("170540010340",	"F",	"BERBIER",		"LUCILLE",		"1998-03-24",	"12, rue de Marron",			"54600",	"Villers lès Nancy"),
  ("170540010338",	"M",	"BERBIER",		"THEO",			"1998-03-24",	"12, rue de Marron",			"54600",	"Villers lès Nancy"),
@@ -41,10 +41,5 @@ Values
  ("170540010418",	"F",	"ZUEL",			"STEPHANIE",	"1970-09-25",	"8, sentier de Saint-Arriant",	"54520",	"Laxou"),
  ("170540010448",	"M",	"ZUERO",		"THOMAS",		"2000-08-14",	"immeuble Savoie",				"54520",	"Laxou");
 
-Insert into motifs (LibelleMotifs)
+INSERT INTO adherent (NumLicence, SexeAdh, NomAdh, PrenomAdh, DateNaissance, AdresseMail, MDP, Telephone, Adresse, CodePostal, Ville, IdClub, IdRespLegal)
 VALUES
-("Réunion"),
-("Compétition régionale"),
-("Compétition nationale"),
-("Compétition internationnale"),
-("Stage");

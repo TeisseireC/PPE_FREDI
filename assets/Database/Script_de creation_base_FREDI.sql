@@ -31,6 +31,17 @@ COLLATE utf8_general_ci;
 -- Structure de la table `adherent`
 --
 
+CREATE TABLE `csv` (
+  `NumeroLicence` varchar(25) NOT NULL,
+  `SexeAdh` varchar(1) DEFAULT NULL,
+  `NomAdh` varchar(20) DEFAULT NULL,
+  `PrenomAdh` varchar(20) DEFAULT NULL,
+  `DateNaissance` date DEFAULT NULL,
+  `Adresse` varchar(50) DEFAULT NULL,
+  `CodePostal` varchar(10) DEFAULT NULL,
+  `Ville` varchar(20) DEFAULT NULL
+)
+
 CREATE TABLE `adherent` (
   `NumLicence` varchar(25) NOT NULL,
   `SexeAdh` varchar(1) DEFAULT NULL,
