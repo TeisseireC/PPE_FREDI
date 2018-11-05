@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    $numLicence = $_SESSION['numLicence'];
+    include '../../assets/include/global.inc.php';
+    $bordereauDAO = new bordereauDAO();
+    $bordereaux = $bordereauDAO->findBordereaux($numLicence);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -18,8 +26,14 @@
     <!-- End header -->
 
     <!-- Start section -->
-    <section>      
-      <!-- foreach liste des bordereaux en fonction de l'id util --> 
+    <section>
+      <?php  
+        foreach($bordereaux as $bordereau){
+          echo "<table>";
+            
+          echo "</table>";
+            }
+      ?>
     </section>
     <!-- End section --> 
 
