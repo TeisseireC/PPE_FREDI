@@ -30,12 +30,15 @@
         
         <?php
             // Saisie des valeurs du formulaire
-            $identifiant = isset($_POST['id']) ? $_POST['id'] : " ";
+            $mail = isset($_POST['id']) ? $_POST['id'] : " ";
             $mdp = isset($_POST['mdp']) ? $_POST['mdp'] : " ";
             $submit = isset($_POST['submit']);
 
             if ($submit == 1) {
-                // blabla
+                if(connecter){
+                    sessions_start();
+                    $_SESSION['id_session'] = $mail;
+                }
             }
         ?>
 
