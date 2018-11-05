@@ -176,6 +176,17 @@ footer
     border-style: solid;
     color: black;
 }
+
+.thBordereau{
+    border: 1px solid black;
+    width: 9.5%;
+}
+
+.thBordereauIcon{
+    border: 1px solid black;
+    width: 5%;
+}
+
 /* Fin du formulaire (bordereau.php)
 
 /* Debut bouton responsable légal */
@@ -195,3 +206,11 @@ footer
     font-size : 20px;
 }
 /* Fin bouton responsable légal */
+
+/* Début ajout des bordures aux tableaux */
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 9%;
+}
+/* Fin ajout des bordures aux tableaux */

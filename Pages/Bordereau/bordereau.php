@@ -29,17 +29,17 @@
           
             <table class="tableBordereau">
                 <tr>
-                    <th>Association</th>
-                    <th>Date</th>
-                    <th>Motif</th>
-                    <th>Trajet</th>
-                    <th>Kms parcourus</th>
-                    <th>Coût trajet</th>
-                    <th>Péages</th>
-                    <th>Repas</th>
-                    <th>Hébergement</th>
-                    <th>Total</th>
-                    <th>&nbsp;</th>
+                    <th class="thBordereau">Association</th>
+                    <th class="thBordereau">Date</th>
+                    <th class="thBordereau">Motif</th>
+                    <th class="thBordereau">Trajet</th>
+                    <th class="thBordereau">Kms parcourus</th>
+                    <th class="thBordereau">Coût trajet</th>
+                    <th class="thBordereau">Péages</th>
+                    <th class="thBordereau">Repas</th>
+                    <th class="thBordereau">Hébergement</th>
+                    <th class="thBordereau">Total</th>
+                    <th class="thBordereauIcon">&nbsp;</th>
                 </tr>
                 <tr>
                 <?php
