@@ -36,11 +36,12 @@
 
             if ($submit == 1) {
                 $connection = new CyrilDAO();
-                
+                session_start();
+
                 if ($connection -> verify_login($mail, $mdp) == true){
                     $_SESSION['identifiant'] = $mail;
                 }else{
-                    echo "<p>La saisi de votre identifiant / mot de passe est incorecte, veuillez saisir de nouveau vos informations de connection</p>";
+                    echo '<p class="erreur">La saisi de votre identifiant / mot de passe est incorecte, veuillez saisir de nouveau vos informations de connection</p>';
                 }
 
             }

@@ -25,7 +25,7 @@
     <section>      
       <form action="registerRL2.php" class="formulaire" method="post">
           <?php 
-            for($i=0 ; $i < $enfants ; $i++){
+            for($i=0 ; $i < intval($enfants) ; $i++){
               echo '<p>Numéro de licence<br/><input type="text" name="nom" required/>';
               echo '<select name="club" class="club">';
               echo '<select>';
