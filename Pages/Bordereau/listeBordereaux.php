@@ -1,7 +1,5 @@
 <?php
-    session_start();
-    $numLicence = $_SESSION['numLicence'];
-    include '../../assets/include/global.inc.php';
+    include "../../assets/include/global.inc.php";
     $bordereauDAO = new bordereauDAO();
     $bordereaux = $bordereauDAO->findBordereaux($numLicence);
 ?>

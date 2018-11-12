@@ -10,16 +10,22 @@ ini_set('html_errors', '1');
  * Autoload
  * @param string $classe
  */
-function my_autoloader($classe) {
+function my_autoloaderDAO($classe) {
+  include '../../assets/DAO/' . $classe . '.php';
+}
+
+function my_autoloaderClass($classe) {
   include '../../assets/class/' . $classe . '.php';
 }
 
-spl_autoload_register('my_autoloader');
+spl_autoload_register('my_autoloaderDAO');
+spl_autoload_register('my_autoloaderClass');
 
 /**
  * Vide le cache du navigateur
  */
 header("Cache-Control: no-cache, must-revalidate");
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+
 
 ?>
