@@ -32,7 +32,7 @@ COLLATE utf8_general_ci;
 --
 
 CREATE TABLE `csv` (
-  `NumeroLicence` varchar(25) NOT NULL,
+  `NumLicenceCSV` varchar(25) NOT NULL,
   `SexeAdh` varchar(1) DEFAULT NULL,
   `NomAdh` varchar(20) DEFAULT NULL,
   `PrenomAdh` varchar(20) DEFAULT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `csv` (
   `Adresse` varchar(50) DEFAULT NULL,
   `CodePostal` varchar(10) DEFAULT NULL,
   `Ville` varchar(20) DEFAULT NULL
-)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `adherent` (
   `NumLicence` varchar(25) NOT NULL,
