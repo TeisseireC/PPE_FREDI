@@ -57,18 +57,16 @@ class p_kmDAO extends DAO {
     return $p_kms;
   } // function findAll()
   
-  /*
-  function update(p_km $p_km) {
-    $sql = "update p_km set city=:city,phone=:phone where id= :id";
+  function insert($annee, $prixkm) {
+    $sql = "insert into p_km (Année,PrixKM) VALUES (:annee, :prixkm);";
     $params = array(
-      ":id" => $p_km->get_id(),
-      ":city" => $p_km->get_city(),
-      ":phone" => $p_km->get_phone()
+      ":annee" => $annee,
+      ":prixkm" => $prixkm
     );
     $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
     $nb = $sth->rowcount();
     return $nb;  // Retourne le nombre de mise à jour
   } // update()
-  */
+  
 
 } // Class p_kmDAO
