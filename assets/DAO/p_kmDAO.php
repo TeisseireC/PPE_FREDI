@@ -41,7 +41,7 @@ class p_kmDAO extends DAO {
   * @throws Exception
   */
   function findAll() {
-    $sql = "select * from p_kms";
+    $sql = "select * from p_km";
     try {
       $sth = $this->pdo->prepare($sql);
       $sth->execute();

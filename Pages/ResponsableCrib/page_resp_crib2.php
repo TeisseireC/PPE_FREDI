@@ -31,12 +31,13 @@
         echo "</tr>";
         foreach ($p_kms as $p_km) {
           echo "<tr>";
-          echo "<td>".$p_km->get_Année()."</a></td>";
+          echo "<td>".$p_km->get_Année()."</td>";
           echo "<td>".$p_km->get_PrixKM()."</td>";
           /*echo '<td><a href="modifier.php?id='.$p_km->get_Année().'">Modifier</a></td>';*/
           echo "</tr>";
-          echo "</table>";
         }
+          echo "</table>";
+        
         ?>
         <form action="page_resp_crib.php">
             <input type="submit" value="Page précédente"/>

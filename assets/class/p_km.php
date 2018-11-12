@@ -33,7 +33,7 @@ class P_km {
     $this->Année = $Année;
   }
 
-  function set_PrixKM($city) {
+  function set_PrixKM($PrixKM) {
     $this->PrixKM = $PrixKM;
   }
 
