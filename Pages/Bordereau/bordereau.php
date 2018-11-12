@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    $numLicence = $_SESSION['numLicence'];
+    include '../../assets/include/global.inc.php';
+    $bordereauDAO = new bordereauDAO();
+    $bordereaux = $bordereauDAO->findBordereaux($numLicence);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -43,11 +51,20 @@
                 </tr>
                 <tr>
                 <?php
-                    //foreach($rows as $row){
-                    //echo "<td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td> <td>$row</td>";
-                    //echo '<td><a href="edit.php?id=' . $row["id_faq"] . '"><img id="edit" src="../../ico/edit.png"/></a> '
-                    //    . '<a href="delete.php?id=' . $row["id_faq"] . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
-                    //}
+                    foreach($bordereaux as $bordereau){
+                    echo "<td></td>";
+                    echo "<td>".$bordereau->getDateFrais()."</td>";
+                    echo "<td></td>";
+                    echo "<td>".$bordereau->getTrajet()."</td>";
+                    echo "<td>".$bordereau->getKm()."</td>";
+                    echo "<td>".$bordereau->getCoutTrajet()."</td>";
+                    echo "<td>".$bordereau->getCoutPeage()."</td>";
+                    echo "<td>".$bordereau->getCoutRepas()."</td>";
+                    echo "<td>".$bordereau->getCoutHebergement()."</td>";
+                    echo "<td>".$bordereau->getCoutTotal()."</td>";
+                    echo '<td><a href="edit.php?id=' . $row["id_faq"] . '"><img id="edit" src="../../ico/edit.png"/></a> '
+                        . '<a href="delete.php?id=' . $row["id_faq"] . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
+                    }
                 ?>
                 </tr>
             </table>

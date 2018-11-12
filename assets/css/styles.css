@@ -46,6 +46,12 @@ li.bouton_gauche { /* Menu de gauche */
 li.bouton_droite { /* Menu de droite */
     float: right;
 }
+
+p.erreur{
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
 /* Fin du menu horizontal */
 
 /* Début de header */
@@ -136,6 +142,7 @@ footer
 .formulaire input[type="submit"], .formulaire input[type="reset"]{
     height: 40px;
     width: 10%;
+    margin-bottom: 20px;
 }
 /* Fin du formulaire (global) */
 

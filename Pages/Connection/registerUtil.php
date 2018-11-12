@@ -34,16 +34,31 @@
             </form>
             
             <?php
-                /* Saisie des valeurs du formulaire
-                $aroba = stristr($email, "@");
+                // Saisie des valeurs du formulaire
+                
+                $submit = isset($_POST['submit']) ? $_POST['submit'] : "";
 
                 if ($submit) {
-                    preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i", $_POST['email']); //verifier si c'est un mail du type bla@bla.com
-                    $email = $_POST['email'];
+                    
+                    $aroba = stristr($_POST['email'], "@");
+                    $email_valide = preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i", $_POST['email']);
 
-                    $mdp = password_hash($password, PASSWORD_BCRYPT);  // hachage du mot de passe
+                    if ($email_valide){ //verifier si c'est un mail du type bla@bla.com
+
+                        $email = $_POST['email'];   
+                        $password = $_POST['password'];
+                        $password_confirm = $_POST['confirm_pass'];
+
+                        if($password == $password_confirm){ // Verification de la confirmation du mot de passe 
+                            $mdp = password_hash($password, PASSWORD_BCRYPT);  // hachage du mot de passe
+                        }else{
+                            echo '<p class="erreur">Le mot de passe que vous avez saisi est différent de la confirmation</p>';
+                        } 
+                    }else{
+                        echo '<p class="erreur">Adresse email invalide</p>';    
+                    }
                 }
-                */
+                
             ?>
         </section>
         <!-- End section --> 
