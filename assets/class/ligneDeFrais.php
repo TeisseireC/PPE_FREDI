@@ -22,91 +22,91 @@
     } // function construct
 
     // Getter et setter   
-    function getIDFrais() {
+    function get_idFrais() {
         return $this->IDFrais;
     }
 
-    function getDateFrais() {
+    function get_dateFrais() {
         return $this->dateFrais;
     }
 
-    function getTrajet() {
+    function get_trajet() {
         return $this->trajet;
     }
 
-    function getKm() {
+    function get_km() {
         return $this->km;
     }
 
-    function getCoutTrajet() {
+    function get_coutTrajet() {
         return $this->coutTrajet;
     }
 
-    function getCoutPeage() {
+    function get_coutPeage() {
         return $this->coutPeage;
     }
 
-    function getCoutRepas() {
+    function get_coutRepas() {
         return $this->coutRepas;
     }
 
-    function getCoutHebergement() {
+    function get_coutHebergement() {
         return $this->coutTrajet;
     }
 
-    function getCoutTotal() {
+    function get_coutTotal() {
         return $this->coutTotal;
     }
 
-    function getIDBordereau() {
+    function get_idBordereau() {
         return $this->IDbordereau;
     }
 
-    function getIDMotifs() {
+    function get_idMotifs() {
         return $this->IDMotifs;
     }
 
-    function setIDFrais($IDFrais) {
+    function set_idFrais($IDFrais) {
         $this->IDFrais = $IDFrais;
     }
 
-    function setDateFrais($dateFrais) {
+    function set_dateFrais($dateFrais) {
         $this->dateFrais = $dateFrais;
     }
 
-    function setTrajet($trajet) {
+    function settrajet($trajet) {
         $this->trajet = $trajet;
     }
 
-    function setKm($km) {
+    function set_km($km) {
         $this->km = $km;
     }
 
-    function setCoutTrajet($coutTrajet) {
+    function set_coutTrajet($coutTrajet) {
         $this->coutTrajet = $coutTrajet;
     }
 
-    function setcoutPeage($coutPeage) {
+    function set_coutPeage($coutPeage) {
         $this->coutPeage = $coutPeage;
     }
 
-    function setcoutRepas($coutRepas) {
+    function set_coutRepas($coutRepas) {
         $this->coutRepas = $coutRepas;
     }
 
-    function setcoutHebergement($coutHebergement) {
+    function set_coutHebergement($coutHebergement) {
         $this->coutHebergement = $coutHebergement;
     }
 
-    function setcoutTotal($coutTotal) {
+    function set_coutTotal($coutTotal) {
         $this->coutTotal = $coutTotal;
     }
     
-    function setIDBordereau($IDbordereau) {
+    function set_idBordereau($IDbordereau) {
         $this->IDbordereau = $IDbordereau;
     }
 
-    function setIDMotifs($IDMotifs) {
+    function set_idMotifs($IDMotifs) {
         $this->IDMotifs = $IDMotifs;
     }
     // Getter et setter   

@@ -2,15 +2,15 @@
 
 class DAO{
 
-    protected $pdo = null; // Objet de connexion
+    var $pdo = null; // Objet de connexion
 
     function __construct(){
-        $user = DB_USER;
-        $password = DB_PASSWORD;
-        $host = DB_HOST;
-        $name = DB_NAME;
+        $user = "root";
+        $password = "";
+        $host = "localhost";
+        $name = "fredi";
 
-        protected function executer($sql, $params = null) {
+        function executer($sql, $params = null) {
             try {
                 if ($params == null) {
                     $sth = $this->pdo->query($sql); // exécution directe
