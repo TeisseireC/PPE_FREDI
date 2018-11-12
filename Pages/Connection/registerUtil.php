@@ -1,3 +1,7 @@
+<?php
+    include "../../assets/include/global.inc.php";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -46,19 +50,43 @@
                     if ($email_valide){ //verifier si c'est un mail du type bla@bla.com
 
                         $email = $_POST['email'];   
+                        $num_licence = $_POST['licence'];
                         $password = $_POST['password'];
                         $password_confirm = $_POST['confirm_pass'];
 
-                        if($password == $password_confirm){ // Verification de la confirmation du mot de passe 
-                            $mdp = password_hash($password, PASSWORD_BCRYPT);  // hachage du mot de passe
+                        $CSV = new CSVDAO();
+                        $is_numLicence_exist = $CSV -> find($num_licence);
+
+                        if($num_licence == $is_numLicence_exist){
+                            $adherent = new AdherentDAO();
+                            $is_numLicence_already_taken = $adherent -> find($num_licence);
+
+                            if($num_licence != $is_numLicence_already_taken){
+
+                                if($password == $password_confirm){ // Verification de la confirmation du mot de passe 
+                                    $mdp = password_hash($password, PASSWORD_BCRYPT);  // hachage du mot de passe
+                                    
+                                    $adherent -> register_ADH($email,$mdp,$num_licence);
+                                    $adherent -> update_ADH($num_licence);
+                                    
+                                    session_start();
+                                    $_SESSION['email'] = $email;
+                                    header ("Location: ../../index.php");
+                                }else{
+                                    echo '<p class="erreur">Le mot de passe que vous avez saisi est différent de la confirmation</p>';
+                                } 
+                            }else{
+                                echo '<p class="erreur">Un utilisateur possède déjà ce numéro de licence, si ce numéro vous appartient, contactez votre club</p>';  
+                            }
                         }else{
-                            echo '<p class="erreur">Le mot de passe que vous avez saisi est différent de la confirmation</p>';
-                        } 
+                            echo '<p class="erreur">Le numéro de licence saisie ne correspond à aucun numéro de notre registre, si ce numéro vous appartient, contactez votre club</p>'; 
+                            echo '<p>'.$num_licence.'</p>';
+                            echo '<p>'.$CSV -> find($num_licence).'</p>';
+                        }
                     }else{
                         echo '<p class="erreur">Adresse email invalide</p>';    
                     }
                 }
-                
             ?>
         </section>
         <!-- End section --> 

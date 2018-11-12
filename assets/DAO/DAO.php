@@ -10,19 +10,6 @@ class DAO{
         $host = "localhost";
         $name = "fredi";
 
-        function executer($sql, $params = null) {
-            try {
-                if ($params == null) {
-                    $sth = $this->pdo->query($sql); // exécution directe
-                } else {
-                    $sth = $this->pdo->prepare($sql); // requête préparée
-                    $sth->execute($params);
-                }
-            } catch (PDOException $e) {
-                throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage() . "\nSQL : " . $sql);
-            }
-            return $sth; // Renvoie le handler du résultat de la requête SQL
-        }
        
         // On construit le DSN
         $dsn = 'mysql:host=' . $host . ';dbname=' . $name;
