@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -18,7 +22,12 @@
     <!-- End header -->
 
     <!-- Start section -->
-    <section>      
+    <section>   
+      <?php
+        if (isset($_SESSION['email'])){
+          echo '<p>Vous êtes connecté avec l\'adresse suivante : '.$_SESSION['email'].'</p>';
+        }
+      ?>
       Bla bla blabla bla bla bla blabla, bla bla bla bla blalalalala, bla bla bla bla blala blala
     </section>
     <!-- End section --> 
