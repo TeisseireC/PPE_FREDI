@@ -1,3 +1,7 @@
+<?php
+    include "../../assets/include/global.inc.php";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -35,11 +39,13 @@
             $submit = isset($_POST['submit']);
 
             if ($submit == 1) {
-                $connection = new CyrilDAO();
-                session_start();
+                $connection = new AdherentDAO(); // Valable uniquement pour l'adhérent, le responsable légal est en travaux
 
-                if ($connection -> verify_login($mail, $mdp) == true){
-                    $_SESSION['identifiant'] = $mail;
+                if ($connection -> verify_login($mail, $mdp)){  // Valable uniquement pour l'adhérent, le responsable légal est en travaux
+                    session_start();
+                    $_SESSION['email'] = $mail;
+
+                    header ("Location: ../../index.php");
                 }else{
                     echo '<p class="erreur">La saisi de votre identifiant / mot de passe est incorecte, veuillez saisir de nouveau vos informations de connection</p>';
                 }

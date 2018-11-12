@@ -11,11 +11,15 @@ ini_set('html_errors', '1');
  * @param string $classe
  */
 function my_autoloaderDAO($classe) {
-  include '../../assets/DAO/' . $classe . '.php';
+  if (file_exists('../../assets/DAO/' . $classe . '.php')){
+    include '../../assets/DAO/' . $classe . '.php';
+  }
 }
 
 function my_autoloaderClass($classe) {
-  include '../../assets/class/' . $classe . '.php';
+  if (file_exists('../../assets/class/' . $classe . '.php')){
+    include '../../assets/class/' . $classe . '.php';
+  }
 }
 
 spl_autoload_register('my_autoloaderDAO');

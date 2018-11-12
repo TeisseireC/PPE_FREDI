@@ -20,6 +20,9 @@
     <!-- Start section -->
     <section>      
         <p>Bienvenue sur la page de gestion "Motifs de frais"</p>
+        <form action="page_resp_crib.php">
+            <input type="submit" value="Page précédente"/>
+        </form>
           
     </section>
     <!-- End section -->
