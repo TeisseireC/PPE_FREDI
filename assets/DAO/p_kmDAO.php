@@ -21,16 +21,16 @@ class p_kmDAO extends DAO {
   * @throws Exception
   */
   
-  function find($id_p_km) {
-    $sql = "select * from p_kms where p_kmCode= :p_kmCode";
+  function find($annee) {
+    $sql = "select * from p_km where Année=:annee";
     try {
       $sth = $this->pdo->prepare($sql);
-      $sth->execute(array(":p_kmCode" => $id_p_km));
+      $sth->execute(array(":annee" => $annee));
       $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-    $p_km = new p_km($row);
+    $p_km = new P_km($row);
     // Retourne l'objet métier
     return $p_km;
   } // function find()
@@ -63,10 +63,21 @@ class p_kmDAO extends DAO {
       ":annee" => $annee,
       ":prixkm" => $prixkm
     );
-    $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+    /*$sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+    $nb = $sth->rowcount();
+    return $nb;  */ // Retourne le nombre de mise à jour
+  } // update()
+
+  function update($annee,$prixkm) {
+    $sql = "update p_km set prixkm=:prixkm where Année=:annee";
+    $params = array(
+      ":annee" => $annee,
+      ":prixkm" => $prixkm
+    );
+    /*$sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
     $nb = $sth->rowcount();
     return $nb;  // Retourne le nombre de mise à jour
-  } // update()
-  
+    */
+  } // update()  
 
 } // Class p_kmDAO
