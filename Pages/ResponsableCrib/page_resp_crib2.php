@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Prix kilométrique</title>
+    <title>Tarif kilométrique</title>
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css"/>
   </head>
@@ -28,17 +28,21 @@
         echo "<tr>";
         echo "<th>IdMotif</th>";
         echo "<th>Prix Kilométrique</th>";
+        echo "<th>Modification</th>";
         echo "</tr>";
         foreach ($p_kms as $p_km) {
           echo "<tr>";
           echo "<td>".$p_km->get_Année()."</td>";
           echo "<td>".$p_km->get_PrixKM()."</td>";
-          /*echo '<td><a href="modifier.php?id='.$p_km->get_Année().'">Modifier</a></td>';*/
+          echo '<td><a href=modif_resp_crib2.php?annee='.$p_km->get_Année().'>Modifier</a></td>';
           echo "</tr>";
         }
           echo "</table>";
         
         ?>
+        <form action="ajout_resp_crib2.php">
+            <input type="submit" value="Ajouter un tarif kilométrique"/>
+        </form>
         <form action="page_resp_crib.php">
             <input type="submit" value="Page précédente"/>
         </form>
