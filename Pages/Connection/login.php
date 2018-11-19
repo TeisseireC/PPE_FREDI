@@ -39,10 +39,16 @@
             $submit = isset($_POST['submit']);
 
             if ($submit == 1) {
-                $connection = new AdherentDAO(); // Valable uniquement pour l'adhérent, le responsable légal est en travaux
+                $connectionAdh = new AdherentDAO(); 
+                $connectionResp = new RespLegalDAO();
 
-                if ($connection -> verify_login($mail, $mdp)){  // Valable uniquement pour l'adhérent, le responsable légal est en travaux
+                if ($connectionAdh -> verify_login($mail, $mdp)){ 
                     session_start();
+                    $_SESSION['email'] = $mail;
+
+                    header ("Location: ../../index.php");
+                }else if($connectionResp -> verify_login($mail, $mdp)){
+                    session_start();   
                     $_SESSION['email'] = $mail;
 
                     header ("Location: ../../index.php");
