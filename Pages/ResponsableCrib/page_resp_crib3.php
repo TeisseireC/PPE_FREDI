@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Accueil - Trésorier</title>
+    <title>Motifs de frais</title>
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css"/> 
   </head>
