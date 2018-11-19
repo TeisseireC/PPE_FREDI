@@ -50,15 +50,6 @@ class P_km {
       }
     }
   }
-
-  function afficher() {
-    $html = '<ul>';
-    $html .= '<li>Année=' . $this->get_Année() . '</li>';
-    $html .= '<li>city=' . $this->get_PrixKM() . '</li>';
-    $html .= '</ul>';
-    return $html;
-  }
-
 }
 
 // Classe P_km

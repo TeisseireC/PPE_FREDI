@@ -21,6 +21,7 @@ class MotifDAO extends DAO {
   * @throws Exception
   */
   
+  // function find()
   function find($idmotif) {
     $sql = "select * from motifs where IdMotifs= :idMotifs";
     try {
@@ -33,13 +34,15 @@ class MotifDAO extends DAO {
     $motif = new Motif($row);
     // Retourne l'objet métier
     return $motif;
-  } // function find()
+  }
   
   /**
   * Lecture de toutes les motifs
   * @return array
   * @throws Exception
   */
+
+  // function findAll()
   function findAll() {
     $sql = "select * from motifs";
     try {
@@ -55,8 +58,9 @@ class MotifDAO extends DAO {
     }
     // Retourne un tableau d'objets "motif"
     return $motifs;
-  } // function findAll()
+  }
   
+  //function insert(), insere un nouveau motif de frais
   function insert($idmotif, $libellemotif) {
     $sql = "insert into motifs (IdMotifs,LibelleMotifs) VALUES (:idmotif, :libellemotif);";
     try {
@@ -68,8 +72,9 @@ class MotifDAO extends DAO {
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-  } // insert()
+  }
 
+  //fonction update(), modifie un prix kilometrique
   function update($idmotif,$libellemotif) {
     $sql = "update motifs set LibelleMotifs=:libellemotif where IdMotifs=:idmotif";
     try {
@@ -81,8 +86,9 @@ class MotifDAO extends DAO {
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-  } // update()
+  }
 
+  //function delete(), supprime un motif de frais 
   function delete($idmotif) {
     $sql = "delete from motifs where IdMotifs=:idmotif";
     try {
@@ -93,6 +99,5 @@ class MotifDAO extends DAO {
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-  } // update()
-
+  }
 } // Class MotifDAO

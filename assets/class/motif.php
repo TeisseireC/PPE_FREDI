@@ -50,15 +50,6 @@ class Motif {
       }
     }
   }
-
-  function afficher() {
-    $html = '<ul>';
-    $html .= '<li>IdMotifs=' . $this->get_IdMotifs() . '</li>';
-    $html .= '<li>city=' . $this->get_LibelleMotifs() . '</li>';
-    $html .= '</ul>';
-    return $html;
-  }
-
 }
 
 // Classe P_km
