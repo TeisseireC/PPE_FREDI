@@ -26,7 +26,7 @@
         $p_kms = $p_kmDAO->findAll();
         echo "<table>";
         echo "<tr>";
-        echo "<th>IdMotif</th>";
+        echo "<th>Année</th>";
         echo "<th>Prix Kilométrique</th>";
         echo "<th>Modification</th>";
         echo "</tr>";

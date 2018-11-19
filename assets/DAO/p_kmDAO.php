@@ -59,25 +59,28 @@ class p_kmDAO extends DAO {
   
   function insert($annee, $prixkm) {
     $sql = "insert into p_km (Année,PrixKM) VALUES (:annee, :prixkm);";
-    $params = array(
-      ":annee" => $annee,
-      ":prixkm" => $prixkm
-    );
-    /*$sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
-    $nb = $sth->rowcount();
-    return $nb;  */ // Retourne le nombre de mise à jour
-  } // update()
+    try {
+      $sth = $this->pdo->prepare($sql);
+      $sth->execute(array(
+                      ":annee" => $annee,
+                      ":prixkm" => $prixkm)
+                    );
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  } // insert()
 
   function update($annee,$prixkm) {
     $sql = "update p_km set prixkm=:prixkm where Année=:annee";
-    $params = array(
-      ":annee" => $annee,
-      ":prixkm" => $prixkm
-    );
-    /*$sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
-    $nb = $sth->rowcount();
-    return $nb;  // Retourne le nombre de mise à jour
-    */
-  } // update()  
+    try {
+      $sth = $this->pdo->prepare($sql);
+      $sth->execute(array(
+                      ":annee" => $annee,
+                      ":prixkm" => $prixkm)
+                    );
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  } // update()
 
 } // Class p_kmDAO

@@ -2,24 +2,24 @@
 
 include "../../assets/include/global.inc.php";
 
-// Instanciation du DAO des p_km
-$p_kmDAO = new P_kmDAO();
+// Instanciation du DAO des motif
+$motifDAO = new MotifDAO();
 
 $submit = isset($_POST['submit']) ? $_POST['submit'] : '';
 
 if ($submit) {
     // Formulaire soumi
     // Récupère les données du formulaire
-    $annee = isset($_POST['annee']) ? $_POST['annee'] : '';
-    $prixkm = isset($_POST['prixkm']) ? $_POST['prixkm'] : '';
+    $idmotif = isset($_POST['idmotif']) ? $_POST['idmotif'] : '';
+    $libellemotif = isset($_POST['libellemotif']) ? $_POST['libellemotif'] : '';
     
-    $p_km = new p_kmDAO(); // array(
-        /*'annee'=>$annee,
-        'prixkm'=>$prixkm 
+    $motif = new motifDAO(); // array(
+        /*'idmotif'=>$idmotif,
+        'libellemotif'=>$libellemotif 
     ));*/
     // Modifie l'enregistrement dans la BD
-    $p_kmDAO->insert($annee, $prixkm);
-    header('Location: page_resp_crib2.php');
+    $motifDAO->insert($idmotif, $libellemotif);
+    header('Location: page_resp_crib3.php');
 }
 
 ?>
@@ -39,15 +39,13 @@ if ($submit) {
 
 <!-- Start section -->
 <section>
-<h2>Ajouter un tarif kilométrique</h2>
+<h2>Ajouter un motif  de frais</h2>
 <form action="#" method="post">
-<p>Année:<br/><input type="text" name="annee" value=""></p>
-<p>Tarif kilométrique:<br/><input type="text" name="prixkm" value=""></p>
-<br/>
+<p><input type="hidden" name="idmotif" value="NULL"></p>
+<p>Motif de frais:<br/><input type="text" name="libellemotif" value=""></p>
 <p><input type="submit" name="submit" value="Ajouter"></p>
 </form>
-<br/>
-<form action="page_resp_crib2.php">
+<form action="page_resp_crib3.php">
     <input type="submit" value="Retour"/>
 </form>
 </section>
