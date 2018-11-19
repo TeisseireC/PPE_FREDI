@@ -6,7 +6,7 @@ class AdherentDAO extends DAO{
         parent::__construct();
     }
     function find($numLicence){
-        $sql = "SELECT NumLicence FROM adherent WHERE NumLicence= :numLicence";
+        $sql = "SELECT * FROM adherent WHERE NumLicence= :numLicence";
             try {
                 $sth = $this->pdo->prepare($sql);
                 $sth->execute(array(
@@ -16,7 +16,9 @@ class AdherentDAO extends DAO{
             } catch (PDOException $ex) {
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
-        return $row['NumLicence'];    
+
+            $adherent = new adherent($row);
+            return $adherent;  
     }
 
     function register_ADH($email, $mdp, $numLicence){
@@ -34,19 +36,21 @@ class AdherentDAO extends DAO{
             }    
     }
 
-    function update_ADH($numLicence){
+    function update_ADH($numLicence, $respLegal){
         $sql = "UPDATE adherent SET Adresse = (Select adresse from csv where numLicenceCSV = :numLicence), ";
             $sql .= "CodePostal = (Select CodePostal from csv where numLicenceCSV = :numLicence), ";
             $sql .= "DateNaissance = (Select DateNaissance from csv where numLicenceCSV = :numLicence), ";
             $sql .= "NomAdh = (Select NomAdh from csv where numLicenceCSV = :numLicence), ";
             $sql .= "PrenomAdh = (Select PrenomAdh from csv where numLicenceCSV = :numLicence), ";
             $sql .= "SexeAdh = (Select SexeAdh from csv where numLicenceCSV = :numLicence), ";
-            $sql .= "Ville = (Select Ville from csv where numLicenceCSV = :numLicence) ";
+            $sql .= "Ville = (Select Ville from csv where numLicenceCSV = :numLicence), ";
+            $sql .= "IdRespLegal = :idResp ";
         $sql .= "WHERE NumLicence = :numLicence";
             try {
                 $sth = $this->pdo->prepare($sql);
                 $sth->execute(array(
-                    ':numLicence' => $numLicence
+                    ':numLicence' => $numLicence,
+                    ':idResp'   => $respLegal
                 ));
             } catch (PDOException $ex) {
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
@@ -70,6 +74,46 @@ class AdherentDAO extends DAO{
                 return true;
             }else{
                 return false;
+            }
+    }
+
+    function is_mail_exist($mail){
+        $sql  = "SELECT * ";
+        $sql .= "FROM adherent ";
+        $sql .= "WHERE AdresseMail = :mail ";
+            try {
+                $sth = $this->pdo->prepare($sql);
+                $sth->execute(array(
+                    ':mail' => $mail
+                ));
+                $row = $sth->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $ex) {
+                die("Erreur lors de la requête SQL : " . $ex->getMessage());
+            }
+            if (count($row) != 1){
+                return true ;
+            }else{
+                return false ;
+            }
+    }
+
+    function is_licence_exist($numLicence){
+        $sql  = "SELECT * ";
+        $sql .= "FROM adherent ";
+        $sql .= "WHERE NumLicence = :numLicence ";
+            try {
+                $sth = $this->pdo->prepare($sql);
+                $sth->execute(array(
+                    ':numLicence' => $numLicence
+                ));
+                $row = $sth->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $ex) {
+                die("Erreur lors de la requête SQL : " . $ex->getMessage());
+            }
+            if (count($row) != 1 ){
+                return true ;
+            }else{
+                return false ;
             }
     }
 }
