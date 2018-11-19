@@ -40,6 +40,9 @@
           echo "</table>";
         
         ?>
+        <form action="ajout_resp_crib2.php">
+            <input type="submit" value="Ajouter un tarif kilométrique"/>
+        </form>
         <form action="page_resp_crib.php">
             <input type="submit" value="Page précédente"/>
         </form>
