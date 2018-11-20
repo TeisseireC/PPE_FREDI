@@ -5,11 +5,11 @@
  *
  * @author CB
  */
-class P_km {
+class Motif {
 
   // Attributs
-  private $Année=0;
-  private $PrixKM=0;
+  private $IdMotifs=0;
+  private $LibelleMotifs=0;
 
   // Constructeur
 
@@ -21,20 +21,20 @@ class P_km {
 
   // Getter et setter
   
-  function get_Année() {
-    return $this->Année;
+  function get_IdMotifs() {
+    return $this->IdMotifs;
   }
 
-  function get_PrixKM() {
-    return $this->PrixKM;
+  function get_LibelleMotifs() {
+    return $this->LibelleMotifs;
   }
 
-  function set_Année($Année) {
-    $this->Année = $Année;
+  function set_IdMotifs($IdMotifs) {
+    $this->IdMotifs = $IdMotifs;
   }
 
-  function set_PrixKM($PrixKM) {
-    $this->PrixKM = $PrixKM;
+  function set_LibelleMotifs($LibelleMotifs) {
+    $this->LibelleMotifs = $LibelleMotifs;
   }
 
   /**
