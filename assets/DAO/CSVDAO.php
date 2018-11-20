@@ -1,11 +1,13 @@
 <?php
 
 class CSVDAO extends DAO{
-
+    
+    // Constructeur
     function __construct(){
         parent::__construct();
     }
 
+    // Fonction pour savoir si le numéro de licence saisi existe dans le CSV
     function find($numLicence){
         $sql = "SELECT NumLicenceCSV FROM CSV WHERE NumLicenceCSV = :numLicence";
             try {

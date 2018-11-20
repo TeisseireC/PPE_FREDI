@@ -2,9 +2,12 @@
 
 class AdherentDAO extends DAO{
 
+    // Constructeur
     function __construct(){
         parent::__construct();
     }
+
+    // Fonction pour obtenir toutes les infos d'un adhérent
     function find($numLicence){
         $sql = "SELECT * FROM adherent WHERE NumLicence= :numLicence";
             try {
@@ -17,10 +20,11 @@ class AdherentDAO extends DAO{
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
 
-            $adherent = new adherent($row);
-            return $adherent;  
+            $adherent = new adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
+            return $adherent; 
     }
 
+    // Fonction pour inscrire un adhérent
     function register_ADH($email, $mdp, $numLicence){
         $sql = "INSERT into adherent (NumLicence, AdresseMail, MDP) ";
         $sql .= "VALUES (:numLicence , :email, :mdp)";
@@ -36,6 +40,9 @@ class AdherentDAO extends DAO{
             }    
     }
 
+
+    // Fonction pour modifier les informations d'un adhérent
+    // Elle est utilisée pour récupérer les information du CSV et ajouter l'ID du reponsable légal s'il y a
     function update_ADH($numLicence, $respLegal){
         $sql = "UPDATE adherent SET Adresse = (Select adresse from csv where numLicenceCSV = :numLicence), ";
             $sql .= "CodePostal = (Select CodePostal from csv where numLicenceCSV = :numLicence), ";
@@ -57,6 +64,7 @@ class AdherentDAO extends DAO{
             }
     }
 
+    // Fonction pour verifier les informations de connexion
     function verify_login($mail, $mdp){
         $sql  = "SELECT AdresseMail, MDP ";
         $sql .= "FROM adherent ";
@@ -70,13 +78,14 @@ class AdherentDAO extends DAO{
             } catch (PDOException $ex) {
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
-            if (password_verify($mdp, $row['MDP']) && $mail == $row["AdresseMail"]) {       // Verification que le mot de passe est bien le bon
-                return true;
+            if (password_verify($mdp, $row['MDP']) && $mail == $row["AdresseMail"]) {   // Verification que le mot de passe est bien le bon
+                return true;    // Si tout est bon retourne vrai
             }else{
-                return false;
+                return false;   // Si le mot de passe ou le mail est faux, retourne faux
             }
     }
 
+    // Fonction pour qu'un adhérent ne puisse pas avoir le même mail qu'un autre utilisateur
     function is_mail_exist($mail){
         $sql  = "SELECT * ";
         $sql .= "FROM adherent ";
@@ -90,13 +99,14 @@ class AdherentDAO extends DAO{
             } catch (PDOException $ex) {
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
-            if (count($row) != 1){
-                return true ;
+            if (count($row) != 1){  // 1 car count($row) vaut 1 lorsque $row est vide
+                return true ;  // Si $row contient des informations alors retourner vrai
             }else{
-                return false ;
+                return false ; // Si $row est vide alors retourner faux
             }
     }
 
+    // Fonction pour qu'un utilisateur ne puisse pas avoir le même numéro de licence q'un autre utilisateur
     function is_licence_exist($numLicence){
         $sql  = "SELECT * ";
         $sql .= "FROM adherent ";
@@ -110,10 +120,10 @@ class AdherentDAO extends DAO{
             } catch (PDOException $ex) {
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
-            if (count($row) != 1 ){
-                return true ;
+            if (count($row) != 1 ){ // 1 car count($row) vaut 1 lorsque $row est vide
+                return true ;   // Si $row contient des informations alors retourner vrai
             }else{
-                return false ;
+                return false ;  // Si $row est vide alors retourner faux
             }
     }
 }

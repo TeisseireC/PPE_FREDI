@@ -6,6 +6,7 @@
     <title>S'inscrire</title>
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css"/> 
+    <!-- Fin Style -->
   </head>
 
   <body>
@@ -28,8 +29,8 @@
         $submit = isset($_GET['submit']) ? $_GET['submit'] : "";
 
         if($submit){
-          $enfants = $_GET['enfants'];
-          header("Location: registerRL2.php?enfants=".$enfants);
+          $enfants = $_GET['enfants'];  // nombre d'enfants à charge du responsable légal
+          header("Location: registerRL2.php?enfants=".$enfants); // envoi du nombre d'enfants dans l'url pour la page registerRL2
         }
       ?>
     </section>

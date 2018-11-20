@@ -2,6 +2,7 @@
 
  class responsable{
 
+    // Variables
     private $IDResp = 0;
     private $NomResp = "?";
     private $PrenomResp = "?";
@@ -14,8 +15,7 @@
       }
     } // function construct
 
-    // Getter et setter  
-    get_IDResp() 
+    // Getters  
     function get_IdRespLegal() {
         return $this->IDResp;
     }
@@ -32,6 +32,7 @@
         return $this->MailResp;
     }
 
+    // Setters
     function set_IdRespLegal($IDResp) {
         $this->IDResp = $IDResp;
     }

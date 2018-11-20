@@ -2,6 +2,7 @@
 
  class adherent{
 
+    // Variables
     private $IDAdh = 0;
     private $NomAdh = "?";
     private $PrenomAdh = "?";
@@ -14,7 +15,7 @@
       }
     } // function construct
 
-    // Getter et setter  
+    // Getters
     function get_NumLicence() {
         return $this->NumLicence;
     }
@@ -31,6 +32,7 @@
         return $this->MailAdh;
     }
 
+    // Setters
     function set_NumLicence($NumLicence) {
         $this->NumLicence = $NumLicence;
     }
@@ -45,8 +47,7 @@
 
     function set_AdresseMail($MailAdh) {
         $this->MailAdh = $MailAdh;
-    }
-    // Getter et setter   
+    }   
    
     // function hydrater
     function hydrater(array $tableau) {

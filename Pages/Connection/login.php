@@ -10,6 +10,7 @@
     <title>Se connecter</title>
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css"/> 
+    <!-- Fin Style -->
   </head>
 
   <body>
@@ -42,17 +43,19 @@
                 $connectionAdh = new AdherentDAO(); 
                 $connectionResp = new RespLegalDAO();
 
-                if ($connectionAdh -> verify_login($mail, $mdp)){ 
-                    session_start();
-                    $_SESSION['email'] = $mail;
+                if ($connectionAdh -> verify_login($mail, $mdp)){ // Verification des informations du côté des adhérents
+                    session_start();    // Si tout est bon lancement d'une session
+                    $_SESSION['email'] = $mail; // Stockage du mail
 
-                    header ("Location: ../../index.php");
-                }else if($connectionResp -> verify_login($mail, $mdp)){
-                    session_start();   
-                    $_SESSION['email'] = $mail;
+                    header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
 
-                    header ("Location: ../../index.php");
-                }else{
+                }else if($connectionResp -> verify_login($mail, $mdp)){ // Si les informations ne correspondent à aucun adhérent alors vérification du côté des responsables légaux 
+                    session_start();    // Si tout est bon lancement d'une session  
+                    $_SESSION['email'] = $mail; // Stockage du mail
+
+                    header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
+
+                }else{ // Les informations ne correspondent à aucun utilisateur 
                     echo '<p class="erreur">La saisi de votre identifiant / mot de passe est incorecte, veuillez saisir de nouveau vos informations de connection</p>';
                 }
 

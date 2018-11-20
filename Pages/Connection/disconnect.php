@@ -1,10 +1,4 @@
-<?php       // Page de deconnexion
-
-if (isset($_SESSION)) {
-    header('location: index.php'); // Tu es passé par l'url
-} else {
-    // Connexion légitime
-}
+<?php      
 
 session_unset();            // Extinction de la session
 session_destroy();          // Suppression de la session
