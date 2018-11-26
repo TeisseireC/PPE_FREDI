@@ -1,5 +1,6 @@
 <?php
     include "../../assets/include/global.inc.php";
+    $numLicence = '170540010443';
     $bordereauDAO = new bordereauDAO();
     $bordereaux = $bordereauDAO->findBordereaux($numLicence);
 ?>

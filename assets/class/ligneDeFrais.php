@@ -74,7 +74,7 @@
         $this->dateFrais = $dateFrais;
     }
 
-    function settrajet($trajet) {
+    function set_trajet($trajet) {
         $this->trajet = $trajet;
     }
 

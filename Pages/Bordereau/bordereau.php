@@ -1,8 +1,9 @@
 <?php
-    $numLicence = '170540010443';
+    $numLicence = 170540010443;
+
     include '../../assets/include/global.inc.php';
-    $bordereauDAO = new bordereauDAO();
-    $bordereaux = $bordereauDAO->findBordereaux($numLicence);
+    $ligneDeFraisDAO = new ligneDeFraisDAO();
+    $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFrais($numLicence);
 ?>
 
 <!DOCTYPE html>
@@ -50,23 +51,24 @@
                 </tr>
                 <tr>
                 <?php
-                    foreach($bordereaux as $bordereau){
+                    foreach($lignesDeFrais as $ligneDeFrais){
                     echo "<td></td>";
-                    echo "<td>".$bordereau->getDateFrais()."</td>";
+                    echo "<td>".$ligneDeFrais->get_dateFrais()."</td>";
                     echo "<td></td>";
-                    echo "<td>".$bordereau->getTrajet()."</td>";
-                    echo "<td>".$bordereau->getKm()."</td>";
-                    echo "<td>".$bordereau->getCoutTrajet()."</td>";
-                    echo "<td>".$bordereau->getCoutPeage()."</td>";
-                    echo "<td>".$bordereau->getCoutRepas()."</td>";
-                    echo "<td>".$bordereau->getCoutHebergement()."</td>";
-                    echo "<td>".$bordereau->getCoutTotal()."</td>";
-                    echo '<td><a href="edit.php?id=' . $row["id_faq"] . '"><img id="edit" src="../../ico/edit.png"/></a> '
-                        . '<a href="delete.php?id=' . $row["id_faq"] . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
+                    echo "<td>".$ligneDeFrais->get_trajet()."</td>";
+                    echo "<td>".$ligneDeFrais->get_km()."</td>";
+                    echo "<td>".$ligneDeFrais->get_coutTrajet()."</td>";
+                    echo "<td>".$ligneDeFrais->get_coutPeage()."</td>";
+                    echo "<td>".$ligneDeFrais->get_coutRepas()."</td>";
+                    echo "<td>".$ligneDeFrais->get_coutHebergement()."</td>";
+                    echo "<td>".$ligneDeFrais->get_coutTotal()."</td>";
+                    echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
+                        . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
                     }
                 ?>
                 </tr>
             </table>
+            <a href="../Action/ajouter.php"><img id="ajouter" src="../../ico/add.png"/> Ajouter une nouvelle ligne de frais<a>
         </div>
     </section>
     <!-- End section -->

@@ -1,7 +1,7 @@
 <?php
   
-include "DAO.php";      // Inclusion de la page de parametre 
-$frediDAO = new frediDAO();     // Appelle de la classe frediDAO
+include '../../assets/include/global.inc.php';     // Inclusion de la page de parametre 
+$ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle de la classe frediDAO
 $id = NULL;                     //initailisation de $id
 $id = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];    // $îd prend la valeur recuperee dans l'url
 
@@ -12,15 +12,16 @@ if($submit == 1){               // au submit faire
     $date = isset($_POST['date']) ? $_POST['date'] : "";
     $trajet = isset($_POST['trajet']) ? $_POST['trajet'] : "";
     $kmsParcourus = isset($_POST['kmsParcourus']) ? $_POST['kmsParcourus'] : "";
-    $peages = isset($_POST['peages']) ? $_POST['peages'] : "";
-    $repas = isset($_POST['repas']) ? $_POST['repas'] : "";
-    $hebergement = isset($_POST['hebergement']) ? $_POST['hebergement'] : "";
+    $coutTrajet = isset($_POST['coutTrajet']) ? $_POST['coutTrajet'] : "";
+    $coutPeages = isset($_POST['coutPeages']) ? $_POST['coutPeages'] : "";
+    $coutRepas = isset($_POST['coutRepas']) ? $_POST['coutRepas'] : "";
+    $coutHebergement = isset($_POST['coutHebergement']) ? $_POST['coutHebergement'] : "";
     $id = isset($_POST['id']) ? $_POST['id'] : "";
 
-    $frediDAO->update($id, $marque, $modele);
-    //header("location: index.php"); // a faire
+    $ligneDeFraisDAO->updateLigneDeFrais($id, $date, $trajet, $kmsParcourus, $coutTrajet, $coutPeages, $coutRepas, $coutHebergement);
+    header("location: ../Bordereau/bordereau.php");
 } else {        // sinon faire afficher les valeurs dans le formulaire en fopnction de l'id recupere dans l'url
-    $voiture = $voitureDAO->find($id);
+    $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id);
 }
 
 ?>
@@ -47,9 +48,9 @@ if($submit == 1){               // au submit faire
     <!-- Start section -->
     <section>      
       <!-- Start formulaire -->
-      <form name="Formulaire" action="ajouter.php"  method="post" class="formAjouter"> 
-            <p>Association<br/><input type="text" name="association" value="<?php echo $fredi->getAssociation() ?>" disabled="disabled"></p>                        
-            <p>Date<br/><input type="date" name="date" value="<?php echo $fredi->getDate() ?>" disabled="disabled"></p>
+      <form name="Formulaire" action="edit.php"  method="post" class="formAjouter"> 
+            <p>Association<br/><input type="text" name="association" value="<?php echo /*$ligneDeFrais->getAssociation()*/ "nothing" ?>" disabled="disabled"></p>
+            <p>Date<br/><input type="date" name="date" value="<?php echo $ligneDeFrais->get_dateFrais() ?>"></p>
             <p>Motif<br/><select name="motif" class="motif">
                 <?php
                     //foreach($rows as $row){
@@ -57,12 +58,13 @@ if($submit == 1){               // au submit faire
                     //}
                 ?>
             </select></p>
-            <p>Trajets<br/><input type="text" name="trajet" value="<?php echo $fredi->getTrajet() ?>" disabled="disabled"></p>
-            <p>Kilomètres parcourus<br/><input type="number" name="kmsParcourus" value="<?php echo $fredi->getKmsparcourus() ?>" disabled="disabled"></p>
-            <p>Coût des péages<br/><input type="number" name="peages" value="<?php echo $fredi->getPeages() ?>" disabled="disabled"></p>
-            <p>Coût des repas<br/><input type="number" name="repas" value="<?php echo $fredi->getRepas() ?>" disabled="disabled"></p>
-            <p>Coût de l'hébergement<br/><input type="number" name="hebergement"  value="<?php echo $fredi->getHebergement() ?>" disabled="disabled"></p>
-            <p><input type="hidden" name="id" value="<?php echo $fredi->getId() ?>"/></p>
+            <p>Trajets<br/><input type="text" name="trajet" value="<?php echo $ligneDeFrais->get_trajet() ?>"></p>
+            <p>Kilomètres parcourus<br/><input type="number" name="kmsParcourus" value="<?php echo $ligneDeFrais->get_km() ?>"></p>
+            <p>Coût du trajet<br/><input type="number" step="0.01" name="coutTrajet" value="<?php echo $ligneDeFrais->get_coutTrajet() ?>"></p>
+            <p>Coût des péages<br/><input type="number" step="0.01" name="coutPeages" value="<?php echo $ligneDeFrais->get_coutPeage() ?>"></p>
+            <p>Coût des repas<br/><input type="number" step="0.01" name="coutRepas" value="<?php echo $ligneDeFrais->get_coutRepas() ?>"></p>
+            <p>Coût de l'hébergement<br/><input type="number" step="0.01" name="coutHebergement"  value="<?php echo $ligneDeFrais->get_coutHebergement() ?>"></p>
+            <p><input type="hidden" name="id" value="<?php echo $ligneDeFrais->get_idFrais() ?>"/></p>
             <p><input type="submit" name="submit" value="Valider"/><input type="reset" name="reset" value="Réinitialiser"></p>
             
         </form>

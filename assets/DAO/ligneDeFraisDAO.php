@@ -8,11 +8,11 @@ class ligneDeFraisDAO extends DAO {
     }   // function construct
 
     // function findLigneDeFrais()
-    function findLigneDeFrais($IDBordereau) {
-        $sql = "select * from ligne_de_frais, bordereau where ligne_de_frais.IdBordereau = dordereau.IdBordereau AND IdBordereau =:IDBordereau";
+    function findLigneDeFrais($NumLicence) {
+        $sql = "select * from ligne_de_frais ldf, bordereau b where b.IdBordereau = ldf.IdBordereau AND NumLicence= :NumLicence";
         try {
         $sth = $this->pdo->prepare($sql);
-        $sth->execute(array(":IDBordereau" => $IDBordereau));
+        $sth->execute(array(":NumLicence" => $NumLicence));
         $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
         throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -23,6 +23,70 @@ class ligneDeFraisDAO extends DAO {
         }
         // Retourne l'objet métier
         return $lignes;
-    } // function findLigneDeFrais()
-} // class LigneDeFraisDAO
+    }
+
+    // function findLigneDeFraisById()
+    function findLigneDeFraisById($idFrais) {
+        $sql = "select * from ligne_de_frais where idFrais= :idFrais";
+        try {
+        $sth = $this->pdo->prepare($sql);
+        $sth->execute(array(":idFrais" => $idFrais));
+        $row = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+        throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+        $ligne = new ligneDeFrais($row);
+        // Retourne l'objet métier
+        return $ligne;
+    }
+
+    // function updateLigneDeFrais
+    function updateLigneDeFrais($IDFrais, $dateFrais, $trajet, $km, $coutTrajet, $coutPeage, $coutRepas, $coutHebergement){
+        $sql = "update ligne_de_frais set";
+        $sql .=" DateFrais= :dateFrais, Trajet= :trajet, Km= :km, CoutTrajet= :coutTrajet, CoutPeage= :coutPeage, CoutRepas= :coutRepas, CoutHebergement= :coutHebergement";
+        $sql .=" where IdFrais=:idFrais";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(":idFrais" => $IDFrais,
+                                ":dateFrais" => $dateFrais,
+                                ":trajet" => $trajet,
+                                ":km" => $km, 
+                                ":coutTrajet" => $coutTrajet,
+                                ":coutPeage" => $coutPeage, 
+                                ":coutRepas" => $coutRepas, 
+                                ":coutHebergement" => $coutHebergement));
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+    }
+
+    // function insertLigneDeFrais
+    function insertLigneDeFrais($dateFrais, $trajet, $km, $coutTrajet, $coutPeage, $coutRepas, $coutHebergement) {
+        $sql = "Insert into ligne_de_frais(DateFrais, Trajet, Km, CoutTrajet, CoutPeage, CoutRepas, CoutHebergement)";
+        $sql .= "VALUES (:dateFrais, :trajet, :km, :coutTrajet, :coutPeage, :coutRepas, :coutHebergement)";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(":dateFrais" => $dateFrais,
+                                ":trajet" => $trajet,
+                                ":km" => $km, 
+                                ":coutTrajet" => $coutTrajet,
+                                ":coutPeage" => $coutPeage, 
+                                ":coutRepas" => $coutRepas, 
+                                ":coutHebergement" => $coutHebergement));
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+    }
+
+    // function deleteLigneDeFrais
+    function deleteLigneDeFrais($IDFrais) {
+        $sql = "delete FROM ligne_de_frais WHERE IDFrais=:IDFrais";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(":IDFrais" => $IDFrais));
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+    }
+}
 ?>
