@@ -28,7 +28,7 @@ DEFAULT charset=utf8
 COLLATE utf8_general_ci;
 
 --
--- Structure de la table `adherent`
+-- Structure de la table `csv`
 --
 
 CREATE TABLE `csv` (
@@ -41,6 +41,10 @@ CREATE TABLE `csv` (
   `CodePostal` varchar(10) DEFAULT NULL,
   `Ville` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Structure de la table `adherent`
+--
 
 CREATE TABLE `adherent` (
   `NumLicence` varchar(25) NOT NULL,
@@ -67,7 +71,7 @@ CREATE TABLE `adherent` (
 CREATE TABLE `bordereau` (
   `IdBordereau` int(11) NOT NULL,
   `Année` varchar(4) DEFAULT NULL,
-  `NumLicence` varchar(25) NOT NULL,
+  `AdresseMail` varchar(25) NOT NULL,
   `IdTresorier` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -196,8 +200,7 @@ ALTER TABLE `adherent`
 -- Index pour la table `bordereau`
 --
 ALTER TABLE `bordereau`
-  ADD PRIMARY KEY (`IdBordereau`,`NumLicence`),
-  ADD KEY `FK_Bordereau_NumLicence` (`NumLicence`),
+  ADD PRIMARY KEY (`IdBordereau`,`IdTresorier`),
   ADD KEY `FK_Bordereau_IdTresorier` (`IdTresorier`);
 
 --
@@ -326,8 +329,7 @@ ALTER TABLE `adherent`
 -- Contraintes pour la table `bordereau`
 --
 ALTER TABLE `bordereau`
-  ADD CONSTRAINT `FK_Bordereau_IdTresorier` FOREIGN KEY (`IdTresorier`) REFERENCES `tresorier` (`IdTresorier`),
-  ADD CONSTRAINT `FK_Bordereau_NumLicence` FOREIGN KEY (`NumLicence`) REFERENCES `adherent` (`NumLicence`);
+  ADD CONSTRAINT `FK_Bordereau_IdTresorier` FOREIGN KEY (`IdTresorier`) REFERENCES `tresorier` (`IdTresorier`);
 
 --
 -- Contraintes pour la table `club`
