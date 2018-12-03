@@ -1,14 +1,19 @@
 <?php
     include '../../assets/include/global.inc.php';     // Inclusion de la page de parametre 
+
+    session_start();
+
     $ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle du DAO ligneDeFraisDAO
     $bordereauDAO = new bordereauDAO();     // Appelle du DAO bordereauDAO
 
-    $numLicence = 170540010443 ; 
+    $email = $_SESSION["email"]; 
     $annee = date("Y");
-    $bordereau = $bordereauDAO->findBordereaux($numLicence,$annee);
-    if($bordereau == NULL){
-        $bordereauDAO->addBordereaux($numLicence); 
+
+    if($bordereauDAO->findBordereaux($email,$annee) == NULL){
+        $bordereauDAO->addBordereaux($email); 
     }
+
+    $bordereau = $bordereauDAO->findBordereaux($email,$annee);
 
     $submit = isset($_POST['submit']);
     if($submit == 1){               // au submit faire

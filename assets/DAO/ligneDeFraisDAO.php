@@ -8,11 +8,11 @@ class ligneDeFraisDAO extends DAO {
     }   // function construct
 
     // function findLigneDeFrais()
-    function findLigneDeFrais($NumLicence) {
-        $sql = "select * from ligne_de_frais ldf, bordereau b where b.IdBordereau = ldf.IdBordereau AND NumLicence= :NumLicence";
+    function findLigneDeFrais($email) {
+        $sql = "select * from ligne_de_frais ldf, bordereau b where b.IdBordereau = ldf.IdBordereau AND AdresseMail= :email";
         try {
         $sth = $this->pdo->prepare($sql);
-        $sth->execute(array(":NumLicence" => $NumLicence));
+        $sth->execute(array(":email" => $email));
         $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
         throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
