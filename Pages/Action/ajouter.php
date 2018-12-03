@@ -1,6 +1,19 @@
 <?php
     include '../../assets/include/global.inc.php';     // Inclusion de la page de parametre 
-    $ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle de la classe frediDAO
+
+    session_start();
+
+    $ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle du DAO ligneDeFraisDAO
+    $bordereauDAO = new bordereauDAO();     // Appelle du DAO bordereauDAO
+
+    $email = $_SESSION["email"]; 
+    $annee = date("Y");
+
+    if($bordereauDAO->findBordereaux($email,$annee) == NULL){
+        $bordereauDAO->addBordereaux($email); 
+    }
+
+    $bordereau = $bordereauDAO->findBordereaux($email,$annee);
 
     $submit = isset($_POST['submit']);
     if($submit == 1){               // au submit faire
@@ -13,8 +26,8 @@
         $coutRepas = isset($_POST['coutRepas']) ? $_POST['coutRepas'] : "";
         $coutHebergement = isset($_POST['coutHebergement']) ? $_POST['coutHebergement'] : "";
         $id = isset($_POST['id']) ? $_POST['id'] : "";
-    
-        $ligneDeFraisDAO->insertLigneDeFrais($date, $trajet, $kmsParcourus, $coutTrajet, $coutPeages, $coutRepas, $coutHebergement);
+        $idBordereau = $bordereau->get_idBordereau();
+        $ligneDeFraisDAO->insertLigneDeFrais($date, $trajet, $kmsParcourus, $coutTrajet, $coutPeages, $coutRepas, $coutHebergement, $idBordereau);
         header("location: ../Bordereau/bordereau.php");
     }
 ?>

@@ -8,11 +8,11 @@ class ligneDeFraisDAO extends DAO {
     }   // function construct
 
     // function findLigneDeFrais()
-    function findLigneDeFrais($NumLicence) {
-        $sql = "select * from ligne_de_frais ldf, bordereau b where b.IdBordereau = ldf.IdBordereau AND NumLicence= :NumLicence";
+    function findLigneDeFrais($email) {
+        $sql = "select * from ligne_de_frais ldf, bordereau b where b.IdBordereau = ldf.IdBordereau AND AdresseMail= :email";
         try {
         $sth = $this->pdo->prepare($sql);
-        $sth->execute(array(":NumLicence" => $NumLicence));
+        $sth->execute(array(":email" => $email));
         $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
         throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -61,9 +61,9 @@ class ligneDeFraisDAO extends DAO {
     }
 
     // function insertLigneDeFrais
-    function insertLigneDeFrais($dateFrais, $trajet, $km, $coutTrajet, $coutPeage, $coutRepas, $coutHebergement) {
-        $sql = "Insert into ligne_de_frais(DateFrais, Trajet, Km, CoutTrajet, CoutPeage, CoutRepas, CoutHebergement)";
-        $sql .= "VALUES (:dateFrais, :trajet, :km, :coutTrajet, :coutPeage, :coutRepas, :coutHebergement)";
+    function insertLigneDeFrais($dateFrais, $trajet, $km, $coutTrajet, $coutPeage, $coutRepas, $coutHebergement, $idBordereau) {
+        $sql = "Insert into ligne_de_frais(DateFrais, Trajet, Km, CoutTrajet, CoutPeage, CoutRepas, CoutHebergement, idBordereau)";
+        $sql .= "VALUES (:dateFrais, :trajet, :km, :coutTrajet, :coutPeage, :coutRepas, :coutHebergement, :idBordereau)";
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(":dateFrais" => $dateFrais,
@@ -72,7 +72,8 @@ class ligneDeFraisDAO extends DAO {
                                 ":coutTrajet" => $coutTrajet,
                                 ":coutPeage" => $coutPeage, 
                                 ":coutRepas" => $coutRepas, 
-                                ":coutHebergement" => $coutHebergement));
+                                ":coutHebergement" => $coutHebergement,
+                                ":idBordereau" => $idBordereau));
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }

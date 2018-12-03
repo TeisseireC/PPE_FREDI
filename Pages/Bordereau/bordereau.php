@@ -1,9 +1,10 @@
 <?php
-    $numLicence = 170540010443;
+    session_start();
+    $email = $_SESSION['email'];
 
     include '../../assets/include/global.inc.php';
     $ligneDeFraisDAO = new ligneDeFraisDAO();
-    $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFrais($numLicence);
+    $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFrais($email);
 ?>
 
 <!DOCTYPE html>
