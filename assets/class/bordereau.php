@@ -15,35 +15,35 @@
     } // function construct
 
     // Getter et setter   
-    function getIDBordereau() {
+    function get_idBordereau() {
         return $this->IDbordereau;
     }
 
-    function getAnnee() {
+    function get_annee() {
         return $this->annee;
     }
 
-    function getNumLicence() {
+    function get_numLicence() {
         return $this->numLicence;
     }
 
-    function getIDTresorier() {
+    function get_idTresorier() {
         return $this->IDTresorier;
     }
 
-    function setIDBordereau($IDbordereau) {
+    function set_idBordereau($IDbordereau) {
         $this->IDbordereau = $IDbordereau;
     }
 
-    function setAnnee($annee) {
+    function set_annee($annee) {
         $this->annee = $annee;
     }
 
-    function setNumLicence($numLicence) {
+    function set_numLicence($numLicence) {
         $this->numLicence = $numLicence;
     }
 
-    function setIDTresorier($IDTresorier) {
+    function set_idTresorier($IDTresorier) {
         $this->IDTresorier = $IDTresorier;
     }
     // Getter et setter   

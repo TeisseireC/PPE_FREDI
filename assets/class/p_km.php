@@ -21,19 +21,19 @@ class P_km {
 
   // Getter et setter
   
-  function get_Année() {
+  function get_année() {
     return $this->Année;
   }
 
-  function get_PrixKM() {
+  function get_prixKM() {
     return $this->PrixKM;
   }
 
-  function set_Année($Année) {
+  function set_année($Année) {
     $this->Année = $Année;
   }
 
-  function set_PrixKM($PrixKM) {
+  function set_prixKM($PrixKM) {
     $this->PrixKM = $PrixKM;
   }
 

@@ -16,36 +16,36 @@
     } // function construct
 
     // Getters  
-    function get_IdRespLegal() {
+    function get_idRespLegal() {
         return $this->IDResp;
     }
 
-    function get_NomRespLegal() {
+    function get_nomRespLegal() {
         return $this->NomResp;
     }
 
-    function get_PrenomRespLegal() {
+    function get_prenomRespLegal() {
         return $this->PrenomResp;
     }
 
-    function get_AdresseMail() {
+    function get_adresseMail() {
         return $this->MailResp;
     }
 
     // Setters
-    function set_IdRespLegal($IDResp) {
+    function set_idRespLegal($IDResp) {
         $this->IDResp = $IDResp;
     }
 
-    function set_NomRespLegal($NomResp) {
+    function set_nomRespLegal($NomResp) {
         $this->NomResp = $NomResp;
     }
 
-    function set_PrenomRespLegal($PrenomResp) {
+    function set_prenomRespLegal($PrenomResp) {
         $this->PrenomResp = $PrenomResp;
     }
 
-    function set_AdresseMail($MailResp) {
+    function set_adresseMail($MailResp) {
         $this->MailResp = $MailResp;
     }
     // Getter et setter   

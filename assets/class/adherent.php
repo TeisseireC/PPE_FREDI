@@ -16,36 +16,36 @@
     } // function construct
 
     // Getters
-    function get_NumLicence() {
+    function get_numLicence() {
         return $this->NumLicence;
     }
 
-    function get_NomAdh() {
+    function get_nomAdh() {
         return $this->NomAdh;
     }
 
-    function get_PreNomAdh() {
+    function get_preNomAdh() {
         return $this->PreNomAdh;
     }
 
-    function get_AdresseMail() {
+    function get_adresseMail() {
         return $this->MailAdh;
     }
 
     // Setters
-    function set_NumLicence($NumLicence) {
+    function set_numLicence($NumLicence) {
         $this->NumLicence = $NumLicence;
     }
 
-    function set_NomAdh($NomAdh) {
+    function set_nomAdh($NomAdh) {
         $this->NomAdh = $NomAdh;
     }
 
-    function set_PreNomAdh($PreNomAdh) {
+    function set_preNomAdh($PreNomAdh) {
         $this->PreNomAdh = $PreNomAdh;
     }
 
-    function set_AdresseMail($MailAdh) {
+    function set_adresseMail($MailAdh) {
         $this->MailAdh = $MailAdh;
     }   
    

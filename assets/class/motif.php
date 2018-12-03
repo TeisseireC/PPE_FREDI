@@ -21,19 +21,19 @@ class Motif {
 
   // Getter et setter
   
-  function get_IdMotifs() {
+  function get_idMotifs() {
     return $this->IdMotifs;
   }
 
-  function get_LibelleMotifs() {
+  function get_libelleMotifs() {
     return $this->LibelleMotifs;
   }
 
-  function set_IdMotifs($IdMotifs) {
+  function set_idMotifs($IdMotifs) {
     $this->IdMotifs = $IdMotifs;
   }
 
-  function set_LibelleMotifs($LibelleMotifs) {
+  function set_libelleMotifs($LibelleMotifs) {
     $this->LibelleMotifs = $LibelleMotifs;
   }
 
