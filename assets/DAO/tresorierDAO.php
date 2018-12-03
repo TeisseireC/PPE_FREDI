@@ -7,7 +7,7 @@ class TresorierDAO extends DAO{
     }
     
     function insert(Tresorier $tresorier) {
-        $sql = "INSERT INTO trésorier (nomTresorier, prenomTresorier) ";
+        $sql = "INSERT INTO tresorier (nomTresorier, prenomTresorier) ";
         $sql .="VALUES (:marque, :modele)";
         $params = array(
             ":nomTresorier" => $tresorier->get_nomTresorier(),
@@ -19,7 +19,7 @@ class TresorierDAO extends DAO{
     }
     
     function update(Tresorier $tresorier) {
-        $sql = "UPDATE trésorier SET nomTresorier=:nomTresorier, prenomTresorier=:prenomTresorier WHERE idTresorier=:idTresorier";
+        $sql = "UPDATE tresorier SET nomTresorier=:nomTresorier, prenomTresorier=:prenomTresorier WHERE idTresorier=:idTresorier";
         $params = array(
             ":idTresorier" => $tresorier->get_idTresorier(),
             ":nomtresorier" => $tresorier->get_nomTresorier(),
@@ -31,7 +31,7 @@ class TresorierDAO extends DAO{
     }
     
     function delete($tresorier) {
-        $sql = "DELETE FROM trésorier WHERE idTresorier=:idTresorier";
+        $sql = "DELETE FROM tresorier WHERE idTresorier=:idTresorier";
         $params = array(
             ":idTresorier" => $tresorier->get_idTresorier()
         );
@@ -41,7 +41,7 @@ class TresorierDAO extends DAO{
     }
     
     function find($idTresorier) {
-        $sql = "SELECT * FROM trésorier WHERE idTresorier= :idTresorier";
+        $sql = "SELECT * FROM tresorier WHERE idTresorier= :idTresorier";
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(":idTresorier" => $idTresorier));
@@ -53,11 +53,32 @@ class TresorierDAO extends DAO{
         // Retourne l'objet métier
         return $idTresorier;
     } // function find()
+
+    // Fonction pour verifier les informations de connexion
+    function verify_login($mail, $mdp){
+    $sql  = "SELECT AdresseMail, MDP ";
+    $sql .= "FROM tresorier ";
+    $sql .= "WHERE AdresseMail = :mail ";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ':mail' => $mail
+            ));
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            die("Erreur lors de la requête SQL : " . $ex->getMessage());
+        }
+        if (password_verify($mdp, $row['MDP']) && $mail == $row["AdresseMail"]) {   // Verification que le mot de passe est bien le bon
+            return true;    // Si tout est bon retourne vrai
+        }else{
+            return false;   // Si le mot de passe ou le mail est faux, retourne faux
+        }
+    }
     
 }
 
 function findAll() {
-    $sql = "SELECT * FROM trésorier";
+    $sql = "SELECT * FROM tresorier";
     try {
         $sth = $this->pdo->prepare($sql);
         $sth->execute();

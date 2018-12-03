@@ -43,6 +43,7 @@
                 $connectionAdh = new AdherentDAO(); 
                 $connectionResp = new RespLegalDAO();
                 $connectionCrib = new RespCribDAO();
+                $connectionTresor = new TresorierDAO();
 
                 if ($connectionAdh -> verify_login($mail, $mdp)){ // Verification des informations du côté des adhérents
                     session_start();    // Si tout est bon lancement d'une session
@@ -57,6 +58,12 @@
                     header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
 
                 }else if($connectionCrib -> verify_login($mail, $mdp)){ // Si les informations ne correspondent à aucun des responsables légaux alors vérification du côté des responsables crib
+                    session_start();    // Si tout est bon lancement d'une session
+                    $_SESSION['email'] = $mail; // Stockage du mail
+
+                    header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
+                }
+                else if($connectionTresor -> verify_login($mail, $mdp)){ // Si les informations ne correspondent à aucun des responsables crib alors vérification du côté des trésoriers
                     session_start();    // Si tout est bon lancement d'une session
                     $_SESSION['email'] = $mail; // Stockage du mail
 
