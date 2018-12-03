@@ -200,7 +200,7 @@ ALTER TABLE `adherent`
 -- Index pour la table `bordereau`
 --
 ALTER TABLE `bordereau`
-  ADD PRIMARY KEY (`IdBordereau`,`IdTresorier`),
+  ADD PRIMARY KEY (`IdBordereau`),
   ADD KEY `FK_Bordereau_IdTresorier` (`IdTresorier`);
 
 --
