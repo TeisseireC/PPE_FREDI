@@ -4,7 +4,7 @@
 
     private $IDBordereau;
     private $annee = "?";
-    private $numLicence;
+    private $adresseMail;
     private $IDTresorier = "?";
     
     // function construct
@@ -23,8 +23,8 @@
         return $this->annee;
     }
 
-    function get_numLicence() {
-        return $this->numLicence;
+    function get_adresseMail() {
+        return $this->adresseMail;
     }
 
     function get_idTresorier() {
@@ -39,8 +39,8 @@
         $this->annee = $annee;
     }
 
-    function set_numLicence($numLicence) {
-        $this->numLicence = $numLicence;
+    function set_adresseMail($adresseMail) {
+        $this->adresseMail = $adresseMail;
     }
 
     function set_idTresorier($IDTresorier) {
