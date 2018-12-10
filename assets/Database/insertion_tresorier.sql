@@ -9,3 +9,5 @@ VALUES
 (7, "Démalplacé", "Daisy", "daisy.demalplace@gmail.com", 5, "$2a$10$.3P13sNob/ttp83hRn/xNO5kqT2BnEL1.rFWNL1rS0KbyV8sVJ8QW"),
 (8, "Don Marcel", "Eddie", "eddie.donmarcel@wanadoo.fr", 7, "$2a$10$b.HDZl9fatmx4aDbKJ2SS.2UYWnwx65X96IkKljoVBlUeLgMVGo7G"),
 (9, "Provist", "Alain", "alain.provist@outlokk.fr", 9, "$2a$10$AdrFpDaNFVq9uiWq5Em9tuSCtwDWFsHEuEkTupBx0KV6.GiegyW76");
+
+-- mot de passe 1234 --

@@ -70,7 +70,7 @@ CREATE TABLE `adherent` (
 
 CREATE TABLE `bordereau` (
   `IdBordereau` int(11) NOT NULL,
-  `Année` varchar(4) DEFAULT NULL,
+  `Annee` varchar(4) DEFAULT NULL,
   `AdresseMail` varchar(25) NOT NULL,
   `IdTresorier` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -136,7 +136,7 @@ CREATE TABLE `motifs` (
 --
 
 CREATE TABLE `p_km` (
-  `Année` int(11) NOT NULL,
+  `Annee` int(11) NOT NULL,
   `PrixKM` decimal(4,3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -234,7 +234,7 @@ ALTER TABLE `motifs`
 -- Index pour la table `p_km`
 --
 ALTER TABLE `p_km`
-  ADD PRIMARY KEY (`Année`);
+  ADD PRIMARY KEY (`Annee`);
 
 --
 -- Index pour la table `responsable_crib`
@@ -294,7 +294,7 @@ ALTER TABLE `motifs`
 -- AUTO_INCREMENT pour la table `p_km`
 --
 ALTER TABLE `p_km`
-  MODIFY `Année` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Annee` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `responsable_crib`

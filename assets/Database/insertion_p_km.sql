@@ -1,4 +1,4 @@
-INSERT INTO p_km (Année,PrixKM)
+INSERT INTO p_km (Annee,PrixKM)
 VALUES 
 (2014,0.25),
 (2015,0.26),
