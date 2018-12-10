@@ -3,8 +3,11 @@
 ## Installation de l'application
 
 Il vous suffit de cloner le projet et de faire des pull régulier afin d'être mis à jour.
+
 Vous aurez aussi besoin de notre base de donnée, tous les fichiers relatif à sa création se trouvent dans : ./assets/Database.
+
 Un ordre est à respecter pour créer la base de donnée, exécutez les fichiers dans votre solution de base de donnée (nous utilisons PhpMyAdmin) dans cet ordre : 
+
 1. Script_de creation_base_FREDI.sql
 2. insertion CSV.sql
 3. insertion_ligue.sql
