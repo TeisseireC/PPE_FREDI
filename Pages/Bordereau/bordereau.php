@@ -1,8 +1,11 @@
 <?php
     session_start();
     $email = $_SESSION['email'];
+    $annee = date('Y');
 
     include '../../assets/include/global.inc.php';
+    $bordereauDAO = new bordereauDAO();
+    $bordereau = $bordereauDAO->findBordereaux($email, $annee);
     $ligneDeFraisDAO = new ligneDeFraisDAO();
     $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFrais($email);
     $motifDAO = new motifDAO();     // Appelle du DAO motifDAO
@@ -40,7 +43,7 @@
           
             <table class="tableBordereau">
                 <tr>
-                    <th class="thBordereau">Association</th>
+                    <th class="thBordereau">Club</th>
                     <th class="thBordereau">Date</th>
                     <th class="thBordereau">Motif</th>
                     <th class="thBordereau">Trajet</th>
@@ -50,7 +53,11 @@
                     <th class="thBordereau">Repas</th>
                     <th class="thBordereau">Hébergement</th>
                     <th class="thBordereau">Total</th>
-                    <th class="thBordereauIcon">&nbsp;</th>
+                    <?php
+                    if ($bordereau->get_validite() == 0){
+                        echo"<th class='thBordereauIcon'>&nbsp;</th>";
+                    }
+                    ?>
                 </tr>
                 <tr>
                 <?php
@@ -62,8 +69,7 @@
                     foreach($lignesDeFrais as $ligneDeFrais){
                         echo "<td></td>";
                         echo "<td>".$ligneDeFrais->get_dateFrais()."</td>";
-                        echo "<td>".$motif->get_libelleMotifs()."</td>";
-                        //echo "<td>".$ligneDeFrais->get_idMotifs()."</td>";
+                        echo "<td>".$motif->get_LibelleMotifs()."</td>";
                         echo "<td>".$ligneDeFrais->get_trajet()."</td>";
                         echo "<td>".$ligneDeFrais->get_km()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutTrajet()."</td>";
@@ -71,13 +77,31 @@
                         echo "<td>".$ligneDeFrais->get_coutRepas()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutHebergement()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutTotal()."</td>";
-                        echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
-                            . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
+
+                        if ($bordereau->get_validite() == 0){
+                            echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
+                                . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
+                        }
                     }
                 ?>
                 </tr>
             </table>
             <a href="../Action/ajouter.php"><img id="ajouter" src="../../ico/add.png"/> Ajouter une nouvelle ligne de frais<a>
+            
+            <!-- bouton valider pour valider le bordereau -->
+            <div class="valider">
+            <form name="Formulaire" action="bordereau.php"  method="post" class="formvalider">
+                <p><input type="submit" name="submit" value="Valider le bordereau"/></p>
+            </form>
+            </div>
+
+            <?php
+            $submit = isset($_POST['submit']);
+            if($submit == 1){
+                $bordereauDAO->validerBordereau($email);
+            }
+            ?>
+
         </div>
     </section>
     <!-- End section -->

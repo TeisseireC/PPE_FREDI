@@ -72,7 +72,8 @@ CREATE TABLE `bordereau` (
   `IdBordereau` int(11) NOT NULL,
   `Annee` varchar(4) DEFAULT NULL,
   `AdresseMail` varchar(25) NOT NULL,
-  `IdTresorier` int(11) DEFAULT NULL
+  `IdTresorier` int(11) DEFAULT NULL,
+  `validite` boolean DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

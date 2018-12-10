@@ -27,14 +27,14 @@ class motifDAO extends DAO {
     try {
       $sth = $this->pdo->prepare($sql);
       $sth->execute(array(":idMotifs" => $idMotifs));
-      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-    if ($rows == NULL){
+    if ($row == NULL){
       return NULL;
   }else{
-      $motif = new Motif($rows);
+      $motif = new Motif($row);
       // Retourne l'objet métier
       return $motif;
   }
