@@ -166,9 +166,10 @@ footer
     width: 170px;
 }
 
-.formAjouter select[class="club"]
+.formAjouter select[class="association"], .formAjouter select[class="motif"]
 {
     height: 25px;
+    width: 170px;
 }
 
 .formAjouter input[type="submit"], .formAjouter input[type="reset"]

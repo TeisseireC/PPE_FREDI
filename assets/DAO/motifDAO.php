@@ -5,7 +5,7 @@
 * @author CB
 */
 
-class MotifDAO extends DAO {
+class motifDAO extends DAO {
   
   /**
   * Constructeur
@@ -22,19 +22,24 @@ class MotifDAO extends DAO {
   */
   
   // function find()
-  function find($idmotif) {
+  function find($idMotifs) {
     $sql = "select * from motifs where IdMotifs= :idMotifs";
     try {
       $sth = $this->pdo->prepare($sql);
-      $sth->execute(array(":idMotifs" => $idmotif));
-      $row = $sth->fetch(PDO::FETCH_ASSOC);
+      $sth->execute(array(":idMotifs" => $idMotifs));
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-    $motif = new Motif($row);
-    // Retourne l'objet métier
-    return $motif;
+    if ($rows == NULL){
+      return NULL;
+  }else{
+      $motif = new Motif($rows);
+      // Retourne l'objet métier
+      return $motif;
   }
+}
+
   
   /**
   * Lecture de toutes les motifs
@@ -43,7 +48,7 @@ class MotifDAO extends DAO {
   */
 
   // function findAll()
-  function findAll() {
+  function findMotifs() {
     $sql = "select * from motifs";
     try {
       $sth = $this->pdo->prepare($sql);

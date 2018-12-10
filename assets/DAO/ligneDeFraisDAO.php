@@ -61,9 +61,9 @@ class ligneDeFraisDAO extends DAO {
     }
 
     // function insertLigneDeFrais
-    function insertLigneDeFrais($dateFrais, $trajet, $km, $coutTrajet, $coutPeage, $coutRepas, $coutHebergement, $idBordereau) {
-        $sql = "Insert into ligne_de_frais(DateFrais, Trajet, Km, CoutTrajet, CoutPeage, CoutRepas, CoutHebergement, idBordereau)";
-        $sql .= "VALUES (:dateFrais, :trajet, :km, :coutTrajet, :coutPeage, :coutRepas, :coutHebergement, :idBordereau)";
+    function insertLigneDeFrais($dateFrais, $trajet, $km, $coutTrajet, $coutPeage, $coutRepas, $coutHebergement, $idBordereau, $motifFrais) {
+        $sql = "Insert into ligne_de_frais(DateFrais, Trajet, Km, CoutTrajet, CoutPeage, CoutRepas, CoutHebergement, idBordereau, IdMotifs)";
+        $sql .= "VALUES (:dateFrais, :trajet, :km, :coutTrajet, :coutPeage, :coutRepas, :coutHebergement, :idBordereau, :motifFrais)";
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(":dateFrais" => $dateFrais,
@@ -73,7 +73,8 @@ class ligneDeFraisDAO extends DAO {
                                 ":coutPeage" => $coutPeage, 
                                 ":coutRepas" => $coutRepas, 
                                 ":coutHebergement" => $coutHebergement,
-                                ":idBordereau" => $idBordereau));
+                                ":idBordereau" => $idBordereau,
+                                ":motifFrais" => $motifFrais));
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }

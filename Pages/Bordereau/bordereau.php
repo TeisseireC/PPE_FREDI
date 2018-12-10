@@ -5,6 +5,8 @@
     include '../../assets/include/global.inc.php';
     $ligneDeFraisDAO = new ligneDeFraisDAO();
     $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFrais($email);
+    $motifDAO = new motifDAO();     // Appelle du DAO motifDAO
+    
 ?>
 
 <!DOCTYPE html>
@@ -53,18 +55,24 @@
                 <tr>
                 <?php
                     foreach($lignesDeFrais as $ligneDeFrais){
-                    echo "<td></td>";
-                    echo "<td>".$ligneDeFrais->get_dateFrais()."</td>";
-                    echo "<td></td>";
-                    echo "<td>".$ligneDeFrais->get_trajet()."</td>";
-                    echo "<td>".$ligneDeFrais->get_km()."</td>";
-                    echo "<td>".$ligneDeFrais->get_coutTrajet()."</td>";
-                    echo "<td>".$ligneDeFrais->get_coutPeage()."</td>";
-                    echo "<td>".$ligneDeFrais->get_coutRepas()."</td>";
-                    echo "<td>".$ligneDeFrais->get_coutHebergement()."</td>";
-                    echo "<td>".$ligneDeFrais->get_coutTotal()."</td>";
-                    echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
-                        . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
+                        
+                        $idMotifs= $ligneDeFrais->get_idMotifs();
+                    }
+                    $motif = $motifDAO->find($idMotifs);
+                    foreach($lignesDeFrais as $ligneDeFrais){
+                        echo "<td></td>";
+                        echo "<td>".$ligneDeFrais->get_dateFrais()."</td>";
+                        echo "<td>".$motif->get_libelleMotifs()."</td>";
+                        //echo "<td>".$ligneDeFrais->get_idMotifs()."</td>";
+                        echo "<td>".$ligneDeFrais->get_trajet()."</td>";
+                        echo "<td>".$ligneDeFrais->get_km()."</td>";
+                        echo "<td>".$ligneDeFrais->get_coutTrajet()."</td>";
+                        echo "<td>".$ligneDeFrais->get_coutPeage()."</td>";
+                        echo "<td>".$ligneDeFrais->get_coutRepas()."</td>";
+                        echo "<td>".$ligneDeFrais->get_coutHebergement()."</td>";
+                        echo "<td>".$ligneDeFrais->get_coutTotal()."</td>";
+                        echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
+                            . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
                     }
                 ?>
                 </tr>

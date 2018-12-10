@@ -27,7 +27,7 @@ class bordereauDAO extends DAO {
     } // function findBordereaux()
 
     function findBordereaux($email, $annee) {
-        $sql = "select * from bordereau where AdresseMail= :email AND Année= :Annee";
+        $sql = "select * from bordereau where AdresseMail= :email AND Annee= :Annee";
         try {
         $sth = $this->pdo->prepare($sql);
         $sth->execute(array(":email" => $email,
@@ -47,7 +47,7 @@ class bordereauDAO extends DAO {
 
     // function addBordereaux()
     function addBordereaux($email) {
-        $sql = "INSERT INTO bordereau(AdresseMail, Année) VALUES (:email,year(CURRENT_DATE()))";
+        $sql = "INSERT INTO bordereau(AdresseMail, Annee) VALUES (:email,year(CURRENT_DATE()))";
         try {
         $sth = $this->pdo->prepare($sql);
         $sth->execute(array(":email" => $email));
