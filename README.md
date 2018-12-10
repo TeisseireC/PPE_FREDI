@@ -1,7 +1,31 @@
 # PPE_FREDI
-Saisie de bordereau ( lignes de frais ) sur un site web, 4 acteurs, l'adhérent, le responsable légal, le trésorier et le responsable du CRIB
+
+## Installation de l'application
+
+Il vous suffit de cloner le projet et de faire des pull régulier afin d'être mis à jour.
+
+Vous aurez aussi besoin de notre base de donnée, tous les fichiers relatif à sa création se trouvent dans : ./assets/Database.
+
+Un ordre est à respecter pour créer la base de donnée, exécutez les fichiers dans votre solution de base de donnée (nous utilisons PhpMyAdmin) dans cet ordre : 
+
+1. Script_de creation_base_FREDI.sql
+2. insertion CSV.sql
+3. insertion_ligue.sql
+4. insertion_club.sql
+5. insertion_motifs.sql
+6. insertion_p_km.sql
+7. insertion_resp_crib.sql ( le mot de passe des responsables du crib se trouve dans le fichier )
+8. insertion_tresorier.sql ( le mot de passe des trésoriers se trouve dans le fichier )
+9. insertion_adherent.sql ( le mot de passe des adhérents se trouve dans le fichier )
+10. insertion_resp_legal.sql ( le mot de passe des responsables légaux se trouve dans le fichier )
+11. insertion_bordereau.sql
+12. insertion_ligne_de_frais.sql
+
+# Contexte 
 
 ## 1. LE PROJET FREDI WEB
+
+Saisie de bordereau ( lignes de frais ) sur un site web, 4 acteurs, l'adhérent, le responsable légal, le trésorier et le responsable du CRIB
 
 ### 1.1. Rappel du contexte
 
