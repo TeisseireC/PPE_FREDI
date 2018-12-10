@@ -34,7 +34,18 @@
 
             <!-- Début du formulaire -->
             <form action="registerUtil.php" method="post" class="formulaire">
-                <p>N° licence<br/><input type="text" name="licence" required></p>
+                <p>Numéro de licence & Club<br/><input type="text" name="licence" required>
+                    <?php 
+                    $clubDAO = new clubDAO();
+                    $clubs = $clubDAO->findAll();
+
+                    echo '<select name="club" class="club">';
+                    foreach($clubs as $club){
+                        echo '<option id='.$club->get_idclub().'>'.$club->get_nomclub().'</option>';   
+                    }
+                    echo '</select></p>';
+                    ?>
+                </p>
                 <p>Email<br/><input type="text" name="email" required></p>
                 <p>Mot de passe<br/><input type="password" name="password" required></p>
                 <p>Confirmation du mot de passe<br/><input type="password" name="confirm_pass" required></p>      

@@ -1,8 +1,10 @@
 <?php
+    session_start();
+
     include "../../assets/include/global.inc.php";
-    $numLicence = '170540010443';
     $bordereauDAO = new bordereauDAO();
-    $bordereaux = $bordereauDAO->findBordereaux($numLicence);
+    $email = $_SESSION["email"];
+    $bordereaux = $bordereauDAO->findAllBordereaux($email);
 ?>
 
 <!DOCTYPE html>
