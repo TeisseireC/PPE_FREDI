@@ -25,10 +25,13 @@
     <section>   
       <?php
         if (isset($_SESSION['email'])){
-          echo '<p>Vous êtes connecté avec l\'adresse suivante : '.$_SESSION['email'].'</p>';
+          echo '<p>Bienvenue, vous êtes actuellement connecté avec l\'adresse suivante : '.$_SESSION['email'].'</p>';
+          echo '<p>Si vous rencontrez des erreurs n\'hésitez pas à nous signaler un issue en cliquant <a href="https://github.com/TeisseireC/PPE_FREDI/issues" target="_blank" >ici</a></p>'; 
+        }else{
+          echo '<p>Bienvenue sur notre site, veillez vous connecter afin d\'avoir accès aux fonctionnalitées du site.</p>';
+          echo '<p>Si vous rencontrez des erreurs n\'hésitez pas à nous signaler un issue en cliquant <a href="https://github.com/TeisseireC/PPE_FREDI/issues" target="_blank" >ici</a></p>'; 
         }
       ?>
-      Bla bla blabla bla bla bla blabla, bla bla bla bla blalalalala, bla bla bla bla blala blala
     </section>
     <!-- End section --> 
 
