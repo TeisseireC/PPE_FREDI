@@ -40,7 +40,7 @@
         echo '<tr>';
           echo '<td>'.$bordereau->get_annee().'</td>';   
           echo '<td>'.$bordereau->get_adresseMail().'</td>';  
-          echo '<td><a href="bordereau2.php">Selectionner</a></td>';
+          echo '<td><a href="bordereau2.php?annee='.$bordereau->get_annee().'&amp;idBordereau='.$bordereau->get_idBordereau().'">Selectionner</a></td>';
         echo '</tr>'; 
       }
       echo "</table>";

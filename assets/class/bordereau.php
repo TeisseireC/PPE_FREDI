@@ -6,6 +6,7 @@
     private $annee = "?";
     private $adresseMail;
     private $IDTresorier = "?";
+    private $validite = 0;
     
     // function construct
     function __construct(array $tableau = null) {
@@ -31,6 +32,10 @@
         return $this->IDTresorier;
     }
 
+    function get_validite() {
+        return $this->validite;
+    }
+
     function set_idBordereau($IDbordereau) {
         $this->IDbordereau = $IDbordereau;
     }
@@ -45,6 +50,10 @@
 
     function set_idTresorier($IDTresorier) {
         $this->IDTresorier = $IDTresorier;
+    }
+
+    function set_validite($validite) {
+        $this->validite = $validite;
     }
     // Getter et setter   
    

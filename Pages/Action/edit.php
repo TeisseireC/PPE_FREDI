@@ -59,7 +59,7 @@ if($submit == 1){               // au submit faire
                 ?>
             </select></p>
             <p>Trajets<br/><input type="text" name="trajet" value="<?php echo $ligneDeFrais->get_trajet() ?>"></p>
-            <p>Kilomètres parcourus<br/><input type="number" name="kmsParcourus" value="<?php echo $ligneDeFrais->get_km() ?>"></p>
+            <p>Kilomètres parcourus<br/><input type="number" step="0.01" name="kmsParcourus" value="<?php echo $ligneDeFrais->get_km() ?>"></p>
             <p>Coût du trajet<br/><input type="number" step="0.01" name="coutTrajet" value="<?php echo $ligneDeFrais->get_coutTrajet() ?>"></p>
             <p>Coût des péages<br/><input type="number" step="0.01" name="coutPeages" value="<?php echo $ligneDeFrais->get_coutPeage() ?>"></p>
             <p>Coût des repas<br/><input type="number" step="0.01" name="coutRepas" value="<?php echo $ligneDeFrais->get_coutRepas() ?>"></p>

@@ -51,7 +51,7 @@
     }
 
     function get_coutHebergement() {
-        return $this->coutTrajet;
+        return $this->coutHebergement;
     }
 
     function get_coutTotal() {

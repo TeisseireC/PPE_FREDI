@@ -9,7 +9,7 @@ class Motif {
 
   // Attributs
   private $IdMotifs = "?";
-  private $libelleMotifs = "?";
+  private $LibelleMotifs = "?";
 
   // Constructeur
 
@@ -26,15 +26,15 @@ class Motif {
   }
 
   function get_libelleMotifs() {
-    return $this->libelleMotifs;
+    return $this->LibelleMotifs;
   }
 
   function set_idMotifs($IdMotifs) {
     $this->IdMotifs = $IdMotifs;
   }
 
-  function set_libelleMotifs($libelleMotifs) {
-    $this->libelleMotifs = $libelleMotifs;
+  function set_libelleMotifs($LibelleMotifs) {
+    $this->LibelleMotifs = $LibelleMotifs;
   }
 
   /**

@@ -68,7 +68,7 @@
                 ?>
             </select></p>
             <p>Trajets<br/><input type="text" name="trajet"></p>
-            <p>Kilomètres parcourus<br/><input type="number" name="kmsParcourus"></p>
+            <p>Kilomètres parcourus<br/><input type="number" step="0.01" name="kmsParcourus"></p>
             <p>Coût du trajet<br/><input type="number" step="0.01" name="coutTrajet"></p>
             <p>Coût des péages<br/><input type="number" step="0.01" name="coutPeages"></p>
             <p>Coût des repas<br/><input type="number" step="0.01" name="coutRepas"></p>
