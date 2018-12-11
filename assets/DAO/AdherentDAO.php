@@ -24,6 +24,22 @@ class AdherentDAO extends DAO{
             return $adherent; 
     }
 
+    function findAllByMail($adresseMail){
+        $sql = "SELECT * FROM adherent WHERE adresseMail= :adresseMail";
+            try {
+                $sth = $this->pdo->prepare($sql);
+                $sth->execute(array(
+                    ':adresseMail' => $adresseMail
+                ));
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $ex) {
+                die("Erreur lors de la requête SQL : " . $ex->getMessage());
+            }
+
+            $adherent = new adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
+            return $adherent; 
+    }
+
     // Fonction pour inscrire un adhérent
     function register_ADH($email, $mdp, $numLicence){
         $sql = "INSERT into adherent (NumLicence, AdresseMail, MDP) ";

@@ -35,6 +35,20 @@ class ClubDAO extends DAO {
     // Retourne l'objet métier
     return $club;
   }
+
+  function findByIdClubAdh($idclub) {
+    $sql = "select * from adherent where Idclub= :idclub";
+    try {
+      $sth = $this->pdo->prepare($sql);
+      $sth->execute(array(":idclub" => $idclub));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $club = new club($row);
+    // Retourne l'objet métier
+    return $club;
+  }
   
   /**
   * Lecture de toutes les club
@@ -48,6 +62,23 @@ class ClubDAO extends DAO {
     try {
       $sth = $this->pdo->prepare($sql);
       $sth->execute();
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $club = array();
+    foreach ($rows as $row) {
+      $club[] = new club($row);
+    }
+    // Retourne un tableau d'objets "club"
+    return $club;
+  }
+
+  function findAllByIdClubAdh($idclub) {
+    $sql = "select * from adherent where Idclub= :idclub";
+      try {
+      $sth = $this->pdo->prepare($sql);
+      $sth->execute(array(":idclub" => $idclub));
       $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());

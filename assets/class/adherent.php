@@ -7,6 +7,7 @@
     private $NomAdh = "?";
     private $PrenomAdh = "?";
     private $MailAdh = "?";
+    private $idClub = 0;
     
     // function construct
     function __construct(array $tableau = null) {
@@ -32,6 +33,10 @@
         return $this->MailAdh;
     }
 
+    function get_idClub() {
+        return $this->idClub;
+    }
+
     // Setters
     function set_numLicence($NumLicence) {
         $this->NumLicence = $NumLicence;
@@ -47,7 +52,11 @@
 
     function set_adresseMail($MailAdh) {
         $this->MailAdh = $MailAdh;
-    }   
+    }
+
+    function set_idClub($idClub) {
+        $this->idClub = $idClub;
+    }
    
     // function hydrater
     function hydrater(array $tableau) {

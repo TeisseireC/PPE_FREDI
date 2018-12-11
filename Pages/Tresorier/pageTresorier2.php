@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Liste des bordereaux</title>
+    <title>Liste des bordereaux des adhérents</title>
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css"/>
   </head>
@@ -49,7 +49,6 @@
     <footer>
         <p>Site développé par Clément Bonnefont, Cyril Teisseire, Antoine Vucic et Yann Cecconato</p>                  
     </footer>
-    <!-- End footer -->
-                      
+    <!-- End footer -->                      
   </body>
 </html>
