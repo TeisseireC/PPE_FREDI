@@ -8,11 +8,13 @@ class ligneDeFraisDAO extends DAO {
     }   // function construct
 
     // function findLigneDeFrais()
-    function findLigneDeFrais($email) {
-        $sql = "select * from ligne_de_frais ldf, bordereau b where b.IdBordereau = ldf.IdBordereau AND AdresseMail= :email";
+    function findLigneDeFrais($email,$idBordereau) {
+        $sql = "select * from ligne_de_frais ldf, bordereau b where b.IdBordereau = ldf.IdBordereau AND b.IdBordereau = :idBordereau AND AdresseMail= :email";
         try {
         $sth = $this->pdo->prepare($sql);
-        $sth->execute(array(":email" => $email));
+        $sth->execute(array(":email" => $email,
+                            ":idBordereau" => $idBordereau
+                            ));
         $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
         throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -38,6 +40,26 @@ class ligneDeFraisDAO extends DAO {
         $ligne = new ligneDeFrais($row);
         // Retourne l'objet métier
         return $ligne;
+    }
+
+    // function findLigneDeFraisById()
+    function findLigneDeFraisByYear($idBordereau,$annee){
+        $sql = "select LF.* from ligne_de_frais LF , bordereau B where LF.IdBordereau = B.IdBordereau And B.IdBordereau = :idBordereau And B.Annee = :annee";
+        try {
+        $sth = $this->pdo->prepare($sql);
+        $sth->execute(array(":idBordereau" => $idBordereau,
+                            ":annee" => $annee
+                            ));
+        $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+        throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+        $lignes = array();
+        foreach ($rows as $row) {
+        $lignes[] = new ligneDeFrais($row);
+        }
+        // Retourne l'objet métier
+        return $lignes;
     }
 
     // function updateLigneDeFrais
