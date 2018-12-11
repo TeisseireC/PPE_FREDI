@@ -41,7 +41,7 @@
 
                     echo '<select name="club" class="club">';
                     foreach($clubs as $club){
-                        echo '<option id='.$club->get_idclub().'>'.$club->get_nomclub().'</option>';   
+                        echo '<option value='.$club->get_idclub().'>'.$club->get_nomclub().'</option>';   
                     }
                     echo '</select></p>';
                     ?>
@@ -64,6 +64,7 @@
 
                         $email = $_POST['email'];   
                         $num_licence = $_POST['licence'];
+                        $club = $_POST['club'];
                         $password = $_POST['password'];
                         $password_confirm = $_POST['confirm_pass'];
 
@@ -81,11 +82,12 @@
                                     if($password == $password_confirm){ // Verification de la confirmation du mot de passe 
                                         $mdp = password_hash($password, PASSWORD_BCRYPT);  // hachage du mot de passe
 
-                                        $adherent -> register_ADH($email,$mdp,$num_licence);    // Création d'un adhérent
+                                        $adherent -> register_ADH($email,$mdp,$num_licence, $club);    // Création d'un adhérent
                                         $adherent -> update_ADH($num_licence,NULL);     // Récupération et affecte ses données contenues dans le CSV  
 
                                         isset($_SESSION) ? "" : session_start();    // Demarrage d'une session
                                         $_SESSION['email'] = $email;    // Stockage du mail dans une variable de session
+                                        $_SESSION['role'] = "utilisateur";  // Stockage du role
                                         header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
 
                                     }else{  //  Le mot de passe est différent de la confirmation du mot de passe

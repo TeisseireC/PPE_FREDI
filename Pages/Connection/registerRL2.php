@@ -36,13 +36,13 @@ if (isset($_POST['enfants'])){  // Si la valeur à été récupérée dans le ch
             $clubs = $clubDAO->findAll();
 
             for($i=0 ; $i < intval($enfants) ; $i++){   // Nombre de champs pour le numéro de licence et le club = nombre d'enfants
-                echo '<p>Numéro de licence & Club<br/><input type="text" name="licence'.$i.'" required/>';
-                echo '<select name="club" class="club">';
-                    foreach($clubs as $club){
-                        echo '<option id='.$club->get_idclub().'>'.$club->get_nomclub().'</option>';   
-                    }
-                echo '</select></p>';
+                echo '<p>Numéro de licence<br/><input type="text" name="licence'.$i.'" required/></p>';
             }
+            echo '<p>Club<br/><select name="club" class="club">';
+                    foreach($clubs as $club){
+                        echo '<option value='.$club->get_idclub().'>'.$club->get_nomclub().'</option>';   
+                    }
+            echo '</select></p>';
             ?>
 
             <p>Mail<br/><input type="text" name="email" required/></p>
@@ -65,6 +65,7 @@ if (isset($_POST['enfants'])){  // Si la valeur à été récupérée dans le ch
 
                             $email = $_POST['email'];  
                             $nom = $_POST['nom'];
+                            $club = $_POST['club'];
 
                             $licences = array();    // Creation d'un tableau qui contient tout les numéros de licences
                             for ($j=0; $j<$i; $j++){
@@ -116,10 +117,10 @@ if (isset($_POST['enfants'])){  // Si la valeur à été récupérée dans le ch
                                 } 
                             } 
 
-                            if ($valid == true){ // Inscription de tout le monde
+                            if ($valid == true){ // Validité inscription de tout le monde
                                 $i = 0;
                                 foreach ($licences as $licence){ 
-                                    $adherent -> register_ADH(NULL,$tableau_adherent_mdp[$i],$tableau_adherent_licence[$i]);  // Création de l'adhérent mineur
+                                    $adherent -> register_ADH(NULL,$tableau_adherent_mdp[$i],$tableau_adherent_licence[$i],$club);  // Création de l'adhérent mineur
                                     $i++;
                                 }
                                     
@@ -134,6 +135,7 @@ if (isset($_POST['enfants'])){  // Si la valeur à été récupérée dans le ch
 
                                 isset($_SESSION) ? "" : session_start();    // Démarrage d'une session
                                 $_SESSION['email'] = $email;    // Stockage de l'email dans une variable de session
+                                $_SESSION['role'] = "utilisateur";  // Stockage du role
                                 header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
                             }  
                         }else{  // L'email saisi n'est pas valide
