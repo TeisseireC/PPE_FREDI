@@ -11,7 +11,14 @@
     $ligneDeFraisDAO = new ligneDeFraisDAO();
     $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFrais($email,$idBordereau);
 
-    $motifDAO = new motifDAO();     // Appel du DAO motifDAO
+    $motifDAO = new motifDAO();
+
+    $adherentDAO = new AdherentDAO();
+    $adherent = $adherentDAO->find($email);
+
+    $clubDAO = new clubDAO();
+    $idClub = $adherent->get_idClub(); 
+    $club = $clubDAO->find($idClub);
     
 ?>
 
@@ -37,10 +44,10 @@
     <!-- Start section -->
     <section>      
         <div id="texte">
-            <p>Je soussigné(e)<br/>........</p>
-            <p>demeurant<br/>.........</p>
+            <p>Je soussigné(e)<br/><?php echo $adherent->get_prenomAdh()." ".$adherent->get_nomAdh(); ?></p>
+            <p>demeurant au<br/><?php echo $adherent->get_adresse().", ".$adherent->get_codePostal()." ".$adherent->get_ville(); ?></p>
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
-            .........<br/>
+            <?php echo $club->get_nomclub(); ?><br/>
             en tant que don.</p>
             <p><b>Frais de déplacement</b></p>
           
@@ -62,14 +69,12 @@
                     }
                     ?>
                 </tr>
-                <tr>
                 <?php
                     foreach($lignesDeFrais as $ligneDeFrais){
-                        $idMotifs= $ligneDeFrais->get_idMotifs();
-                    }
-                    $motif = $motifDAO->find($idMotifs);
-                    foreach($lignesDeFrais as $ligneDeFrais){
-                        echo "<td></td>";
+                        $idFrais = $ligneDeFrais->get_idFrais();
+                        $motif = $motifDAO->find($idFrais);
+                        echo "<tr>";
+                        echo "<td>".$club->get_nomclub()."</td>";
                         echo "<td>".$ligneDeFrais->get_dateFrais()."</td>";
                         echo "<td>".$motif->get_LibelleMotifs()."</td>";
                         echo "<td>".$ligneDeFrais->get_trajet()."</td>";
@@ -82,22 +87,24 @@
 
                         if ($bordereau->get_validite() == 0){
                             echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
-                                . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></tr>';
+                                . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></td>';
                         }
+                        echo "</tr>";
                     }
                 ?>
-                </tr>
             </table>
-            <a href="../Action/ajouter.php"><img id="ajouter" src="../../ico/add.png"/> Ajouter une nouvelle ligne de frais<a>
-            
-            <!-- bouton valider pour valider le bordereau -->
-            <div class="valider">
-            <form name="Formulaire" action="bordereau.php"  method="post" class="formvalider">
-                <p><input type="submit" name="submit" value="Valider le bordereau"/></p>
-            </form>
-            </div>
-
             <?php
+            if ($bordereau->get_validite() == 0){
+                echo "<a href='../Action/ajouter.php'><img id='ajouter' src='../../ico/add.png'/> Ajouter une nouvelle ligne de frais<a>";
+                
+                //bouton valider pour valider le bordereau
+                echo "<div class='valider'>";
+                echo "<form name='Formulaire' action='bordereau.php' method='post' class='formvalider'>";
+                    echo "<p><input type='submit' name='submit' value='Valider le bordereau'/></p>";
+                echo "</form>";
+                echo "</div>";
+            }
+
             $submit = isset($_POST['submit']);
             if($submit == 1){
                 $bordereauDAO->validerBordereau($email);

@@ -53,9 +53,9 @@ if($submit == 1){               // au submit faire
             <p>Date<br/><input type="date" name="date" value="<?php echo $ligneDeFrais->get_dateFrais() ?>"></p>
             <p>Motif<br/><select name="motif" class="motif">
                 <?php
-                    //foreach($rows as $row){
-                    //    echo "<option>$row</option>"
-                    //}
+                    foreach($motifs as $motif){
+                        echo "<option value=".$motif->get_IDMotifs().">".$motif->get_libelleMotifs()."</option>";
+                    }
                 ?>
             </select></p>
             <p>Trajets<br/><input type="text" name="trajet" value="<?php echo $ligneDeFrais->get_trajet() ?>"></p>

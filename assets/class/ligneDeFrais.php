@@ -99,7 +99,7 @@
     }
 
     function set_coutTotal($coutTotal) {
-        $this->coutTotal = $coutTotal;
+        $this->coutTotal = $this->coutTrajet + $this->coutPeage + $this->coutRepas + $this->coutHebergement;
     }
     
     function set_idBordereau($IDbordereau) {

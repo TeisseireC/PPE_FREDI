@@ -22,11 +22,11 @@ class motifDAO extends DAO {
   */
   
   // function find()
-  function find($idMotifs) {
-    $sql = "select * from motifs where IdMotifs= :idMotifs";
+  function find($idLigneDeFrais) {
+    $sql = "select m.* from motifs m, ligne_de_frais ldf where ldf.IdMotifs = m.IdMotifs and idFrais= :idFrais";
     try {
       $sth = $this->pdo->prepare($sql);
-      $sth->execute(array(":idMotifs" => $idMotifs));
+      $sth->execute(array(":idFrais" => $idLigneDeFrais));
       $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());

@@ -8,12 +8,12 @@ class AdherentDAO extends DAO{
     }
 
     // Fonction pour obtenir toutes les infos d'un adhérent
-    function find($numLicence){
-        $sql = "SELECT * FROM adherent WHERE NumLicence= :numLicence";
+    function find($email){
+        $sql = "SELECT * FROM adherent WHERE AdresseMail= :email";
             try {
                 $sth = $this->pdo->prepare($sql);
                 $sth->execute(array(
-                    ':numLicence' => $numLicence
+                    ':email' => $email
                 ));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $ex) {

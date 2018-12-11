@@ -11,7 +11,14 @@
     $ligneDeFraisDAO = new ligneDeFraisDAO();
     $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFraisByYear($idBordereau,$annee);
 
-    $motifDAO = new motifDAO();     // Appel du DAO motifDAO
+    $motifDAO = new motifDAO();
+
+    $adherentDAO = new AdherentDAO();
+    $adherent = $adherentDAO->find($email);
+
+    $clubDAO = new clubDAO();
+    $idClub = $adherent->get_idClub(); 
+    $club = $clubDAO->find($idClub);
 ?>
 
 <!DOCTYPE html>
@@ -36,10 +43,10 @@
     <!-- Start section -->
     <section>      
         <div id="texte">
-            <p>Je soussigné(e)<br/>........</p>
-            <p>demeurant<br/>.........</p>
+            <p>Je soussigné(e)<br/><?php echo $adherent->get_prenomAdh()." ".$adherent->get_nomAdh(); ?></p>
+            <p>demeurant au<br/><?php echo $adherent->get_adresse().", ".$adherent->get_codePostal()." ".$adherent->get_ville(); ?></p>
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
-            .........<br/>
+            <?php echo $club->get_nomclub(); ?><br/>
             en tant que don.</p>
             <p><b>Frais de déplacement</b></p>
           
@@ -59,11 +66,9 @@
                 <tr>
                 <?php
                     foreach($lignesDeFrais as $ligneDeFrais){
-                        $idMotifs= $ligneDeFrais->get_idMotifs();
-                    }
-                    $motif = $motifDAO->find($idMotifs);
-                    foreach($lignesDeFrais as $ligneDeFrais){
-                        echo "<td></td>";
+                        $idFrais = $ligneDeFrais->get_idFrais();
+                        $motif = $motifDAO->find($idFrais);
+                        echo "<td>".$club->get_nomclub()."</td>";
                         echo "<td>".$ligneDeFrais->get_dateFrais()."</td>";
                         echo "<td>".$motif->get_LibelleMotifs()."</td>";
                         echo "<td>".$ligneDeFrais->get_trajet()."</td>";
