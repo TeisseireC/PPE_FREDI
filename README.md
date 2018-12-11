@@ -16,8 +16,8 @@ Un ordre est à respecter pour créer la base de donnée, exécutez les fichiers
 6. insertion_p_km.sql
 7. insertion_resp_crib.sql ( le mot de passe des responsables du crib se trouve dans le fichier )
 8. insertion_tresorier.sql ( le mot de passe des trésoriers se trouve dans le fichier )
-9. insertion_adherent.sql ( le mot de passe des adhérents se trouve dans le fichier )
-10. insertion_resp_legal.sql ( le mot de passe des responsables légaux se trouve dans le fichier )
+9. insertion_resp_legal.sql ( le mot de passe des responsables légaux se trouve dans le fichier ) 
+10. insertion_adherent.sql ( le mot de passe des adhérents se trouve dans le fichier )
 11. insertion_bordereau.sql
 12. insertion_ligne_de_frais.sql
 

@@ -41,15 +41,16 @@ class AdherentDAO extends DAO{
     }
 
     // Fonction pour inscrire un adhérent
-    function register_ADH($email, $mdp, $numLicence){
-        $sql = "INSERT into adherent (NumLicence, AdresseMail, MDP) ";
-        $sql .= "VALUES (:numLicence , :email, :mdp)";
+    function register_ADH($email, $mdp, $numLicence, $club){
+        $sql = "INSERT into adherent (NumLicence, AdresseMail, MDP, IdClub) ";
+        $sql .= "VALUES (:numLicence , :email, :mdp, :club)";
             try {
                 $sth = $this->pdo->prepare($sql);
                 $sth->execute(array(
                     ':email' => $email,
                     ':mdp' => $mdp,
-                    ':numLicence' => $numLicence
+                    ':numLicence' => $numLicence,
+                    ":club" => $club
                 ));
             } catch (PDOException $ex) {
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());

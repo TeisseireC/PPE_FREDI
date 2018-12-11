@@ -48,25 +48,25 @@
                 if ($connectionAdh -> verify_login($mail, $mdp)){ // Verification des informations du côté des adhérents
                     session_start();    // Si tout est bon lancement d'une session
                     $_SESSION['email'] = $mail; // Stockage du mail
-
+                    $_SESSION['role'] = "utilisateur";  // Stockage du role
                     header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
 
                 }else if($connectionResp -> verify_login($mail, $mdp)){ // Si les informations ne correspondent à aucun adhérent alors vérification du côté des responsables légaux 
                     session_start();    // Si tout est bon lancement d'une session  
                     $_SESSION['email'] = $mail; // Stockage du mail
-
+                    $_SESSION['role'] = "utilisateur";  // Stockage du role
                     header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
 
                 }else if($connectionCrib -> verify_login($mail, $mdp)){ // Si les informations ne correspondent à aucun des responsables légaux alors vérification du côté des responsables crib
                     session_start();    // Si tout est bon lancement d'une session
                     $_SESSION['email'] = $mail; // Stockage du mail
-
+                    $_SESSION['role'] = "resp_crib";    // Stockage du role
                     header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
                 }
                 else if($connectionTresor -> verify_login($mail, $mdp)){ // Si les informations ne correspondent à aucun des responsables crib alors vérification du côté des trésoriers
                     session_start();    // Si tout est bon lancement d'une session
-                    $_SESSION['email'] = $mail; // Stockage du mail
-
+                    $_SESSION['email'] = $mail; // Stockage du mail 
+                    $_SESSION['role'] = "tresorier";    // Stockage du role
                     header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
                 }else{ // Les informations ne correspondent à aucun utilisateur 
                     echo '<p class="erreur">La saisi de votre identifiant / mot de passe est incorecte, veuillez saisir de nouveau vos informations de connection</p>';
