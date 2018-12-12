@@ -4,7 +4,8 @@ session_start();
 $mail = $_SESSION['email'];
 
 include '../../assets/include/global.inc.php';
-$adherent = new adherentDAO();
+$tresorierDAO = new TresorierDAO();
+$adherentDAO = new AdherentDAO();
 ?>
 
 
@@ -33,10 +34,16 @@ $adherent = new adherentDAO();
           Sélectionner "Bordereaux" pour accéder à tous les bordereaux des utilisateurs de la Ligue et 
           vérifier l'état de chacun des bordereaux pour, par la suite, les valider ou les modifier. </p>
           <?php
-            $adherent->findAllbyMail($mail);
+            $tresorier = $tresorierDAO->findAllbyMail($mail);
+            $adherents = $adherentDAO->findAllByIdClub($tresorier->get_idClub());
+          
+          foreach($adherents as $adherent) {
+          echo '<p><a href="../../assets/class/Mon_Pdf.php?mail='. $adherent->get_adresseMail() .'">Générer PDF de '.$adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'</a></p>';
+          echo '<p><a href="../../assets/outfile/cerfa_'.$adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'_'. date('Y') .'.pdf">Visualiser le PDF</a></p>';
+
+          }
+
           ?>
-          <p><a href="../../assets/class/Mon_Pdf.php?mail=<?php echo $mail ?>">PDF</a></p>
-          <p><a href='../../assets/outfile/cerfa_<?php echo $adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'_'. date('Y') ?>.pdf'>Mon PDF</a></p>
 
     </section>
     <!-- End section -->

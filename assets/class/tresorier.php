@@ -11,6 +11,7 @@ class Tresorier {
     private $nomTresorier = "???";
     private $prenomTresorier = "???";
     private $idClub = 0;
+    private $adresseMail = "?";
     
     /* Constructeur */ 
     function __construct(array $tableau = null) {
@@ -35,6 +36,10 @@ class Tresorier {
     function get_idClub() {
         return $this->idClub;
     }
+
+    function get_adresseMail() {
+        return $this->adresseMail;
+    }
     
     function set_idTresorier($idTresorier) {
         $this->idTresorier = $idTresorier;
@@ -50,6 +55,10 @@ class Tresorier {
     
     function set_idClub($idClub) {
         $this->idClub = $idClub;
+    }
+
+    function set_adresseMail($adresseMail) {
+        $this->adresseMail = $adresseMail;
     }
     
     /**
