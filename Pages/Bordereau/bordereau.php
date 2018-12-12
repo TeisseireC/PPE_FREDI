@@ -6,6 +6,11 @@
     include '../../assets/include/global.inc.php';
     $bordereauDAO = new bordereauDAO();
     $bordereau = $bordereauDAO->findBordereaux($email, date('Y'));
+
+    if($bordereau == NULL){
+        $bordereauDAO->addBordereaux($email);
+        $bordereau = $bordereauDAO->findBordereaux($email, date('Y'));    
+    }
     $idBordereau = $bordereau->get_idBordereau();
 
     $ligneDeFraisDAO = new ligneDeFraisDAO();
