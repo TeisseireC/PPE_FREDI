@@ -36,8 +36,27 @@ class AdherentDAO extends DAO{
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
 
-            $adherent = new adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
+            $adherent = new adherent($row);
             return $adherent; 
+    }
+
+    function findAllByIdClub($idClub){
+        $sql = "SELECT * FROM adherent WHERE idClub = :idClub";
+            try {
+                $sth = $this->pdo->prepare($sql);
+                $sth->execute(array(
+                    ':idClub' => $idClub
+                ));
+            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $ex) {
+                die("Erreur lors de la requête SQL : " . $ex->getMessage());
+            }
+
+            $adherents = array();
+            foreach ($rows as $row) {
+                $adherents[]=new Adherent($row);
+            }
+            return $adherents; 
     }
 
     // Fonction pour inscrire un adhérent

@@ -46,8 +46,7 @@ $pdf->Ln();
 
 // Boucle du contenu
 session_start();
-$mail = $_SESSION['email'];
-
+$mail = isset($_GET['mail']) ? $_GET['mail'] : $_POST['mail'] ;
 
 $adherentDAO = new AdherentDAO();
 $clubDAO = new ClubDAO();
@@ -55,9 +54,13 @@ $clubDAO = new ClubDAO();
 $adherent = $adherentDAO->findAllByMail($mail);
 $clubs = $clubDAO->findAllByIdClubAdh($adherent->get_idClub());
 
+    
+
     foreach($clubs as $club){
-        $pdf->Cell(50, 15, utf8_decode($club->get_nomclub()), 0, 0, 'C', false);
+
+        $pdf->Cell(50, 15, utf8_decode($club->get_idligue()), 0, 0, 'C', false);
         $pdf->Ln();
+
         if ($club->get_idligue() == 1) {
 
             $pdf->Cell(50, 15, utf8_decode("Club de Football"), 0, 0, 'C', false);

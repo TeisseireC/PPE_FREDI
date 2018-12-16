@@ -75,7 +75,7 @@ class TresorierDAO extends DAO{
         }
     }
     
-}
+
 
 function findAll() {
     $sql = "SELECT * FROM tresorier";
@@ -94,4 +94,21 @@ function findAll() {
     return $tresorier;
 }
 
+function findAllByMail($adresseMail){
+    $sql = "SELECT * FROM tresorier WHERE adresseMail= :adresseMail";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ':adresseMail' => $adresseMail
+            ));
+        $row = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            die("Erreur lors de la requête SQL : " . $ex->getMessage());
+        }
+
+        $tresorier = new Tresorier($row); // Création d'un nouvel adhérent avec la classe adhérent
+        return $tresorier; 
+}
+
+}
 ?>
