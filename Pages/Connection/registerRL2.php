@@ -136,6 +136,7 @@ if (isset($_POST['enfants'])){  // Si la valeur à été récupérée dans le ch
                                 isset($_SESSION) ? "" : session_start();    // Démarrage d'une session
                                 $_SESSION['email'] = $email;    // Stockage de l'email dans une variable de session
                                 $_SESSION['role'] = "utilisateur";  // Stockage du role
+                                $_SESSION['respLeg'] = true;
                                 header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
                             }  
                         }else{  // L'email saisi n'est pas valide

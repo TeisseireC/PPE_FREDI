@@ -4,6 +4,8 @@ include '../../assets/include/global.inc.php';     // Inclusion de la page de pa
 $ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle de la classe frediDAO
 $id = NULL;                     //initailisation de $id
 $id = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];    // $îd prend la valeur recuperee dans l'url
+$motifDAO = new motifDAO();     
+$motifs = $motifDAO->findMotifs();
 
 $submit = isset($_POST['submit']);      // $submit prend la valeur de submit venant du formulaire   
         

@@ -55,6 +55,7 @@
                     session_start();    // Si tout est bon lancement d'une session  
                     $_SESSION['email'] = $mail; // Stockage du mail
                     $_SESSION['role'] = "utilisateur";  // Stockage du role
+                    $_SESSION['respLeg'] = true;
                     header ("Location: ../../index.php");   // Redirection vers la page d'acceuil
 
                 }else if($connectionCrib -> verify_login($mail, $mdp)){ // Si les informations ne correspondent à aucun des responsables légaux alors vérification du côté des responsables crib

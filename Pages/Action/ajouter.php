@@ -3,9 +3,9 @@
 
     session_start();
 
-    $ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle du DAO ligneDeFraisDAO
-    $bordereauDAO = new bordereauDAO();     // Appelle du DAO bordereauDAO
-    $motifDAO = new motifDAO();     // Appelle du DAO motifDAO
+    $ligneDeFraisDAO = new ligneDeFraisDAO();     
+    $bordereauDAO = new bordereauDAO();     
+    $motifDAO = new motifDAO();     
     $motifs = $motifDAO->findMotifs();
 
     $email = $_SESSION["email"]; 

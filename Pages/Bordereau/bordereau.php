@@ -18,12 +18,19 @@
 
     $motifDAO = new motifDAO();
 
-    $adherentDAO = new AdherentDAO();
-    $adherent = $adherentDAO->find($email);
+    if (isset($_SESSION['respLeg'])){
+        $respLegalDAO = new RespLegalDAO();
+        $respLegal = $respLegalDAO->find($email);
+    } else {
+        $adherentDAO = new AdherentDAO();
+        $adherent = $adherentDAO->find($email);
 
-    $clubDAO = new clubDAO();
-    $idClub = $adherent->get_idClub(); 
-    $club = $clubDAO->find($idClub);
+        $clubDAO = new clubDAO();
+        $idClub = $adherent->get_idClub(); 
+        $club = $clubDAO->find($idClub);
+    }
+
+    
     
 ?>
 
@@ -49,16 +56,26 @@
     <!-- Start section -->
     <section>      
         <div id="texte">
+        <?php if(isset($_SESSION['respLeg'])){ ?>
+            <p>Je soussigné(e)<br/><?php echo $respLegal->get_prenomRespLegal()." ".$respLegal->get_nomRespLegal(); ?></p>
+            <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
+            en tant que don.</p>
+        <?php } else { ?>
             <p>Je soussigné(e)<br/><?php echo $adherent->get_prenomAdh()." ".$adherent->get_nomAdh(); ?></p>
             <p>demeurant au<br/><?php echo $adherent->get_adresse().", ".$adherent->get_codePostal()." ".$adherent->get_ville(); ?></p>
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
             <?php echo $club->get_nomclub(); ?><br/>
-            en tant que don.</p>
+        <?php } ?>
+
             <p><b>Frais de déplacement</b></p>
           
             <table class="tableBordereau">
                 <tr>
-                    <th class="thBordereau">Club</th>
+                    <?php if(isset($_SESSION['respLeg'])){
+
+                    }else{ 
+                        echo "<th class='thBordereau'>Club</th>";
+                    } ?>
                     <th class="thBordereau">Date</th>
                     <th class="thBordereau">Motif</th>
                     <th class="thBordereau">Trajet</th>
@@ -79,7 +96,11 @@
                         $idFrais = $ligneDeFrais->get_idFrais();
                         $motif = $motifDAO->find($idFrais);
                         echo "<tr>";
-                        echo "<td>".$club->get_nomclub()."</td>";
+                        if(isset($_SESSION['respLeg'])){
+                            // rien n'a faire si OK
+                        }else{ 
+                            echo "<td>".$club->get_nomclub()."</td>";
+                        }
                         echo "<td>".$ligneDeFrais->get_dateFrais()."</td>";
                         echo "<td>".$motif->get_LibelleMotifs()."</td>";
                         echo "<td>".$ligneDeFrais->get_trajet()."</td>";
