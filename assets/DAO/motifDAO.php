@@ -40,7 +40,25 @@ class motifDAO extends DAO {
   }
 }
 
-  
+  // function find()
+  function findByIdMotif($idMotif) {
+    $sql = "select * from motifs where IdMotifs = :idMotif";
+    try {
+      $sth = $this->pdo->prepare($sql);
+      $sth->execute(array(":idMotif" => $idMotif));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    if ($row == NULL){
+      return NULL;
+  }else{
+      $motif = new Motif($row);
+      // Retourne l'objet métier
+      return $motif;
+  }
+}
+
   /**
   * Lecture de toutes les motifs
   * @return array

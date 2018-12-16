@@ -30,7 +30,7 @@ class club {
   }
 
   function get_idligue() {
-    return $this->NomClub;
+    return $this->IdLigue;
   }
 
   function set_idclub($Idclub) {

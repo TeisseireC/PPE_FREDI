@@ -23,7 +23,7 @@
         <h2>Bienvenue sur la page de gestion Motif de frais</h2>
         <?php
         $motifDAO = new MotifDAO();
-        $motifs = $motifDAO->findAll();
+        $motifs = $motifDAO->findMotifs();
         echo "<table>";
         echo "<tr>";
         echo "<th>IdMotif</th>";

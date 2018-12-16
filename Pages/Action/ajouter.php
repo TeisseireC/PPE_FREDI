@@ -6,7 +6,8 @@
     $ligneDeFraisDAO = new ligneDeFraisDAO();     
     $bordereauDAO = new bordereauDAO();     
     $motifDAO = new motifDAO();     
-    $motifs = $motifDAO->findMotifs();
+    $adherentDAO = new adherentDAO();
+    $clubDAO = new clubDAO();
 
     $email = $_SESSION["email"]; 
     $annee = date("Y");
@@ -15,7 +16,20 @@
         $bordereauDAO->addBordereaux($email); 
     }
 
+    $motifs = $motifDAO->findMotifs();
+
     $bordereau = $bordereauDAO->findBordereaux($email,$annee);
+    $idBordereau = $bordereau->get_idBordereau();
+
+    if(isset ($_SESSION['respLeg'])){
+        // ne rien faire
+    }else{
+        $adherent = $adherentDAO->find($email);
+        $idclub = $adherent->get_idClub();
+
+        $club = $clubDAO->find($idclub);
+    }
+    
 
     $submit = isset($_POST['submit']);
     if($submit == 1){               // au submit faire
@@ -58,7 +72,7 @@
     <section>      
       <!-- Start formulaire -->
       <form name="Formulaire" action="ajouter.php"  method="post" class="formAjouter">
-      <p>Association<br/><input type="text" name="association" value="<?php echo /*$ligneDeFrais->getAssociation()*/ "nothing" ?>" disabled="disabled"></p>
+<p>Association<br/><input type="text" name="association" value="<?php if(isset ($_SESSION['respLeg'])){echo "nothing";}else{echo $club->get_nomclub();}?>" disabled="disabled"></p>
             <p>Date<br/><input type="date" name="date" value="<?php echo date('Y-m-d'); ?>"></p>
             <p>Motif<br/><select name="motif" class="motif">
                 <?php

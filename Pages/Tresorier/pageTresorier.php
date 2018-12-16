@@ -31,14 +31,14 @@ $adherentDAO = new AdherentDAO();
     <!-- Start section -->
     <section>      
         <p>Bienvenue sur le site de gestion des bordereaux, Trésorier.
-          Sélectionner "Bordereaux" pour accéder à tous les bordereaux des utilisateurs de la Ligue et 
+          Sélectionner "Liste bordereaux" pour accéder à tous les bordereaux des utilisateurs de la Ligue et 
           vérifier l'état de chacun des bordereaux pour, par la suite, les valider ou les modifier. </p>
           <?php
             $tresorier = $tresorierDAO->findAllbyMail($mail);
             $adherents = $adherentDAO->findAllByIdClub($tresorier->get_idClub());
           
           foreach($adherents as $adherent) {
-          echo '<p><a href="../../assets/class/Mon_Pdf.php?mail='. $adherent->get_adresseMail() .'">Générer PDF de '.$adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'</a></p>';
+          echo '<p><a href="../../assets/class/Mon_Pdf.php?licence='. $adherent->get_numLicence() .'">Générer PDF de '.$adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'</a></p>';
           echo '<p><a href="../../assets/outfile/cerfa_'.$adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'_'. date('Y') .'.pdf">Visualiser le PDF</a></p>';
 
           }

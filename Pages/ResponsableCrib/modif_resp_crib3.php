@@ -26,7 +26,7 @@ if ($submit) {
 } else {
     // Formulaire non soumi
     // Récupère le salarié à modifier
-    $motif = $motifDAO->find($idmotif);
+    $motif = $motifDAO->findByIdMotif($idmotif);
 }
 
 ?>
@@ -34,7 +34,7 @@ if ($submit) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tarif km <?php echo $motif->get_IdMotifs() ?> - Modification</title>
+<title>Motif <?php echo $motif->get_IdMotifs() ?> - Modification</title>
 <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css"/>
 </head>
 <body>
@@ -46,13 +46,13 @@ if ($submit) {
 
 <!-- Start section -->
 <section>
-<h2>Modifier le tarif kilométrique de l'année <?php echo $motif->get_IdMotifs() ?></h2>
+<h2>Modifier le motif <?php echo $motif->get_IdMotifs() ?></h2>
 <form action="#" method="post">
-<p>Tarif kilométrique<br/><input type="text" name="libellemotif" value="<?php echo $motif->get_LibelleMotifs(); ?>"></p>
+<p>Motif<br/><input type="text" name="libellemotif" value="<?php echo $motif->get_LibelleMotifs(); ?>"></p>
 <p><input type="hidden" name="idmotif" value="<?php echo $motif->get_IdMotifs(); ?>"></p>
 <p><input type="submit" name="submit" value="Modifier"></p>
 </form>
-<p>Retourner à la page des <a href="page_resp_crib.php" >tarifs kilométrique</a></p>
+<p>Retourner à la page des <a href="page_resp_crib.php" >Motifs</a></p>
 </section>
 <!-- End section -->
 

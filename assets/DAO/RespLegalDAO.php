@@ -23,6 +23,22 @@ class RespLegalDAO extends DAO{
             return $responsable;
     }
 
+    // Fonction pour obtenir toutes les infos d'un responsable légal
+    function findById($idResp){
+        $sql = "SELECT * FROM responsable_legal WHERE IdRespLegal = :Id ";
+            try {
+                $sth = $this->pdo->prepare($sql);
+                $sth->execute(array(
+                    ':Id' => $idResp
+                ));
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $ex) {
+                die("Erreur lors de la requête SQL : " . $ex->getMessage());
+            }
+            $responsable = new responsable($row); // Création d'un nouveau responsable légal avec la classe reponsable
+            return $responsable;
+    }
+
     // Fonction pour inscrire un responsable légla
     function register_RespLegal($email, $mdp, $NomRespLegal, $PrenomRespLegal){
         $sql = "INSERT into responsable_legal (NomRespLegal, PrenomRespLegal, AdresseMail, MDP) ";

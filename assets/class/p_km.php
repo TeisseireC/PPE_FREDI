@@ -8,7 +8,7 @@
 class P_km {
 
   // Attributs
-  private $Année=0;
+  private $Annee=0;
   private $PrixKM=0;
 
   // Constructeur
@@ -21,16 +21,16 @@ class P_km {
 
   // Getter et setter
   
-  function get_année() {
-    return $this->Année;
+  function get_Annee() {
+    return $this->Annee;
   }
 
   function get_prixKM() {
     return $this->PrixKM;
   }
 
-  function set_année($Année) {
-    $this->Année = $Année;
+  function set_Annee($Annee) {
+    $this->Annee = $Annee;
   }
 
   function set_prixKM($PrixKM) {

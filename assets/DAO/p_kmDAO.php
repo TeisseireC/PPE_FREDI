@@ -15,7 +15,7 @@ class p_kmDAO extends DAO {
   }
   
   /**
-  * Lecture d'une p_km par année
+  * Lecture d'une p_km par Annee
   * @param type $id_p_km
   * @return \p_km
   * @throws Exception
@@ -23,7 +23,7 @@ class p_kmDAO extends DAO {
   
   // function find()
   function find($annee) {
-    $sql = "select * from p_km where Année=:annee";
+    $sql = "select * from p_km where Annee=:annee";
     try {
       $sth = $this->pdo->prepare($sql);
       $sth->execute(array(":annee" => $annee));
@@ -62,7 +62,7 @@ class p_kmDAO extends DAO {
   
   //function insert(), insere un nouveau prix kilometrique
   function insert($annee, $prixkm) {
-    $sql = "insert into p_km (Année,PrixKM) VALUES (:annee, :prixkm);";
+    $sql = "insert into p_km (Annee,PrixKM) VALUES (:annee, :prixkm);";
     try {
       $sth = $this->pdo->prepare($sql);
       $sth->execute(array(
@@ -76,7 +76,7 @@ class p_kmDAO extends DAO {
   
   //function update(), modifie un prix kilometrique
   function update($annee,$prixkm) {
-    $sql = "update p_km set prixkm=:prixkm where Année=:annee";
+    $sql = "update p_km set prixkm=:prixkm where Annee=:annee";
     try {
       $sth = $this->pdo->prepare($sql);
       $sth->execute(array(

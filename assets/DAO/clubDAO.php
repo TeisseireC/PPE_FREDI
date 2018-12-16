@@ -35,20 +35,6 @@ class ClubDAO extends DAO {
     // Retourne l'objet métier
     return $club;
   }
-
-  function findByIdClubAdh($idclub) {
-    $sql = "select * from adherent where Idclub= :idclub";
-    try {
-      $sth = $this->pdo->prepare($sql);
-      $sth->execute(array(":idclub" => $idclub));
-      $row = $sth->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
-    }
-    $club = new club($row);
-    // Retourne l'objet métier
-    return $club;
-  }
   
   /**
   * Lecture de toutes les club

@@ -26,15 +26,15 @@
         $p_kms = $p_kmDAO->findAll();
         echo "<table>";
         echo "<tr>";
-        echo "<th>Année</th>";
+        echo "<th>Annee</th>";
         echo "<th>Prix Kilométrique</th>";
         echo "<th>Modification</th>";
         echo "</tr>";
         foreach ($p_kms as $p_km) {
           echo "<tr>";
-          echo "<td>".$p_km->get_Année()."</td>";
+          echo "<td>".$p_km->get_Annee()."</td>";
           echo "<td>".$p_km->get_PrixKM()."</td>";
-          echo '<td><a href=modif_resp_crib2.php?annee='.$p_km->get_Année().'>Modifier</a></td>';
+          echo '<td><a href=modif_resp_crib2.php?annee='.$p_km->get_Annee().'>Modifier</a></td>';
           echo "</tr>";
         }
           echo "</table>";

@@ -46,7 +46,7 @@ if ($submit) {
 
 <!-- Start section -->
 <section>
-<h2>Modifier le tarif kilométrique de l'année <?php echo $motif->get_IdMotifs() ?></h2>
+<h2>Modifier le tarif kilométrique de l'Annee <?php echo $motif->get_IdMotifs() ?></h2>
 <form action="#" method="post">
 <p>Tarif kilométrique<br/><input type="text" name="libellemotif"  value="<?php echo $motif->get_LibelleMotifs(); ?>" disabled></p>
 <p><input type="hidden" name="idmotif" value="<?php echo $motif->get_IdMotifs(); ?>"></p>

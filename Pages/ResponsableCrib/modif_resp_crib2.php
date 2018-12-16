@@ -34,7 +34,7 @@ if ($submit) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tarif km <?php echo $p_km->get_Année() ?> - Modification</title>
+<title>Tarif km <?php echo $p_km->get_Annee() ?> - Modification</title>
 <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css"/>
 </head>
 <body>
@@ -46,10 +46,10 @@ if ($submit) {
 
 <!-- Start section -->
 <section>
-<h2>Modifier le tarif kilométrique de l'année <?php echo $p_km->get_Année() ?></h2>
+<h2>Modifier le tarif kilométrique de l'Annee <?php echo $p_km->get_Annee() ?></h2>
 <form action="#" method="post">
 <p>Tarif kilométrique<br/><input type="text" name="prixkm" value="<?php echo $p_km->get_PrixKM(); ?>"></p>
-<p><input type="hidden" name="annee" value="<?php echo $p_km->get_Année(); ?>"></p>
+<p><input type="hidden" name="annee" value="<?php echo $p_km->get_Annee(); ?>"></p>
 <br/>
 <p><input type="submit" name="submit" value="Modifier"></p>
 </form>

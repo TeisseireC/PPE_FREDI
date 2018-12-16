@@ -65,6 +65,7 @@
             <p>demeurant au<br/><?php echo $adherent->get_adresse().", ".$adherent->get_codePostal()." ".$adherent->get_ville(); ?></p>
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
             <?php echo $club->get_nomclub(); ?><br/>
+            en tant que don</p>
         <?php } ?>
 
             <p><b>Frais de déplacement</b></p>
@@ -72,7 +73,7 @@
             <table class="tableBordereau">
                 <tr>
                     <?php if(isset($_SESSION['respLeg'])){
-
+                        // ne rien faire
                     }else{ 
                         echo "<th class='thBordereau'>Club</th>";
                     } ?>

@@ -46,45 +46,44 @@ $pdf->Ln();
 
 // Boucle du contenu
 session_start();
-$mail = isset($_GET['mail']) ? $_GET['mail'] : $_POST['mail'] ;
+$licence = isset($_GET['licence']) ? $_GET['licence'] : $_POST['licence'] ;
 
 $adherentDAO = new AdherentDAO();
 $clubDAO = new ClubDAO();
 
-$adherent = $adherentDAO->findAllByMail($mail);
-$clubs = $clubDAO->findAllByIdClubAdh($adherent->get_idClub());
+$adherent = $adherentDAO->findByLicence($licence);
+$club = $clubDAO->find($adherent->get_idClub());
 
-    
+$pdf->Cell(0, 15, utf8_decode("Nom du club : ".$club->get_nomclub()), 0, 0, 'L', false);
+$pdf->Ln();
 
-    foreach($clubs as $club){
+if ($club->get_idligue() == 1) {
 
-        $pdf->Cell(50, 15, utf8_decode($club->get_idligue()), 0, 0, 'C', false);
-        $pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Club de Football"), 0, 0, 'L', false);
+    $pdf->Ln(); 
 
-        if ($club->get_idligue() == 1) {
+} else if ($club->get_idligue() == 2) {
 
-            $pdf->Cell(50, 15, utf8_decode("Club de Football"), 0, 0, 'C', false);
-            $pdf->Ln(); 
+    $pdf->Cell(0, 15, utf8_decode("Club de Basketball"), 0, 0, 'L', false);
+    $pdf->Ln(); 
 
-        } else if ($club->get_idligue() == 2) {
+} else if ($club->get_idligue() == 3) {
 
-            $pdf->Cell(50, 15, utf8_decode("Club de Basketball"), 0, 0, 'C', false);
-            $pdf->Ln(); 
-
-        } else if ($club->get_idligue() == 3) {
-
-            $pdf->Cell(50, 15, utf8_decode("Club de Volleyball"), 0, 0, 'C', false);
-            $pdf->Ln();
-
-        }
-    }
-
-    $pdf->Cell(50, 15, utf8_decode($adherent->get_idClub()), 0, 0, 'C', false);
+    $pdf->Cell(0, 15, utf8_decode("Club de Volleyball"), 0, 0, 'L', false);
     $pdf->Ln();
-    $pdf->Cell(50, 15, utf8_decode($adherent->get_nomAdh()), 0, 0, 'C', false);
-    $pdf->Ln();
-    $pdf->Cell(50, 15, utf8_decode($adherent->get_prenomAdh()), 0, 0, 'C', false);
-    $pdf->Ln();
+
+}
+
+$pdf->Cell(0, 15, utf8_decode("Nom de l'adherent : ".$adherent->get_nomAdh()), 0, 0, 'L', false);
+$pdf->Ln();
+$pdf->Cell(0, 15, utf8_decode("Prenom de l'adherent : ".$adherent->get_prenomAdh()), 0, 0, 'L', false);
+$pdf->Ln();
+$pdf->Cell(0, 15, utf8_decode("Adresse de l'adherent : ".$adherent->get_adresse()), 0, 0, 'L', false);
+$pdf->Ln();
+$pdf->Cell(0, 15, utf8_decode("Code Postal de l'adherent : ".$adherent->get_codePostal()), 0, 0, 'L', false);
+$pdf->Ln();
+$pdf->Cell(0, 15, utf8_decode("Ville de l'adherent : ".$adherent->get_ville()), 0, 0, 'L', false);
+$pdf->Ln();
 
 // Génération du document PDF
 $pdf->Output('../outfile/cerfa_'. $adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'_'. date('Y') .'.pdf', 'f');

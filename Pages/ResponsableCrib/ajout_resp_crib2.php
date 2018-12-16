@@ -41,7 +41,7 @@ if ($submit) {
 <section>
 <h2>Ajouter un tarif kilométrique</h2>
 <form action="#" method="post">
-<p>Année:<br/><input type="text" name="annee" value=""></p>
+<p>Annee:<br/><input type="text" name="annee" value=""></p>
 <p>Tarif kilométrique:<br/><input type="text" name="prixkm" value=""></p>
 <br/>
 <p><input type="submit" name="submit" value="Ajouter"></p>
