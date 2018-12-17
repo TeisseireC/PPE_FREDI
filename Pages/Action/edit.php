@@ -1,11 +1,24 @@
 <?php
-  
+session_start();
 include '../../assets/include/global.inc.php';     // Inclusion de la page de parametre 
 $ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle de la classe frediDAO
 $id = NULL;                     //initailisation de $id
 $id = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];    // $îd prend la valeur recuperee dans l'url
 $motifDAO = new motifDAO();     
-$motifs = $motifDAO->findMotifs();
+$motifs = $motifDAO->findMotifs();    
+$bordereauDAO = new bordereauDAO();     
+$adherentDAO = new adherentDAO();
+$clubDAO = new clubDAO();
+$email = $_SESSION['email'];
+
+if(isset ($_SESSION['respLeg'])){
+    // ne rien faire
+}else{
+    $adherent = $adherentDAO->find($email);
+    $idclub = $adherent->get_idClub();
+
+    $club = $clubDAO->find($idclub);
+}
 
 $submit = isset($_POST['submit']);      // $submit prend la valeur de submit venant du formulaire   
         
@@ -50,8 +63,9 @@ if($submit == 1){               // au submit faire
     <!-- Start section -->
     <section>      
       <!-- Start formulaire -->
+      <h3><center><p>Vous êtes sur le point de modifier la ligne de frais ci dessous, cliquez sur valider une fois la modification effectuée.</p></center></h3>
       <form name="Formulaire" action="edit.php"  method="post" class="formAjouter"> 
-            <p>Association<br/><input type="text" name="association" value="<?php echo /*$ligneDeFrais->getAssociation()*/ "nothing" ?>" disabled="disabled"></p>
+            <p>Association<br/><input type="text" name="association" value="<?php if(isset ($_SESSION['respLeg'])){echo "nothing";}else{echo $club->get_nomclub();}?>" disabled="disabled"></p>
             <p>Date<br/><input type="date" name="date" value="<?php echo $ligneDeFrais->get_dateFrais() ?>"></p>
             <p>Motif<br/><select name="motif" class="motif">
                 <?php
