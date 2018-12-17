@@ -9,7 +9,7 @@
     $adherentDAO = new adherentDAO();
     $clubDAO = new clubDAO();
 
-    $email = $_SESSION["email"]; 
+    $email = $_SESSION['email']; 
     $annee = date("Y");
 
     if($bordereauDAO->findBordereaux($email,$annee) == NULL){       // si le bordereau actuel n'est pas créé alors le crée
@@ -71,6 +71,7 @@
     <!-- Start section -->
     <section>      
       <!-- Start formulaire -->
+      <h3><center><p>Veuillez remplir ce formulaire afin de rajouter une ligne de frais à votre bordereau :</p></center></h3>
       <form name="Formulaire" action="ajouter.php"  method="post" class="formAjouter">
 <p>Association<br/><input type="text" name="association" value="<?php if(isset ($_SESSION['respLeg'])){echo "nothing";}else{echo $club->get_nomclub();}?>" disabled="disabled"></p>
             <p>Date<br/><input type="date" name="date" value="<?php echo date('Y-m-d'); ?>"></p>
