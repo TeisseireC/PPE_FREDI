@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -19,7 +22,7 @@
 
     <!-- Start section -->
     <section>      
-        <p>Bienvenue sur le site de parametrage des bordereaux, Responsable Crib.
+        <p>Bienvenue sur la page de parametrage des bordereaux, Responsable Crib.
           Sélectionner "Tarif kilometrique" pour accéder a tous les tarifs classés par Annee 
           et éventuellement en ajouter, modifier ou supprimer 
           et sur "Motif de frais" pour en ajouter, modifier ou supprimer.</p>

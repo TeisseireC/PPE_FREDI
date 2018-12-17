@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include "../../assets/include/global.inc.php";
 
 // Instanciation du DAO des motif
