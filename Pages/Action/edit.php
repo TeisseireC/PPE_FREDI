@@ -25,6 +25,7 @@ $submit = isset($_POST['submit']);      // $submit prend la valeur de submit ven
 if($submit == 1){               // au submit faire
     $association = isset($_POST['association']) ? $_POST['association'] : "";
     $date = isset($_POST['date']) ? $_POST['date'] : "";
+    $motifFrais = isset($_POST['motif']) ? $_POST['motif'] : "";
     $trajet = isset($_POST['trajet']) ? $_POST['trajet'] : "";
     $kmsParcourus = isset($_POST['kmsParcourus']) ? $_POST['kmsParcourus'] : "";
     $coutTrajet = isset($_POST['coutTrajet']) ? $_POST['coutTrajet'] : "";
@@ -33,7 +34,7 @@ if($submit == 1){               // au submit faire
     $coutHebergement = isset($_POST['coutHebergement']) ? $_POST['coutHebergement'] : "";
     $id = isset($_POST['id']) ? $_POST['id'] : "";
 
-    $ligneDeFraisDAO->updateLigneDeFrais($id, $date, $trajet, $kmsParcourus, $coutTrajet, $coutPeages, $coutRepas, $coutHebergement);
+    $ligneDeFraisDAO->updateLigneDeFrais($id, $date, $trajet, $kmsParcourus, $coutTrajet, $coutPeages, $coutRepas, $coutHebergement, $motifFrais);
     header("location: ../Bordereau/bordereau.php");
 } else {        // sinon faire afficher les valeurs dans le formulaire en fopnction de l'id recupere dans l'url
     $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id);

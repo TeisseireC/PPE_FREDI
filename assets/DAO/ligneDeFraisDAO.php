@@ -63,9 +63,9 @@ class ligneDeFraisDAO extends DAO {
     }
 
     // function updateLigneDeFrais
-    function updateLigneDeFrais($IDFrais, $dateFrais, $trajet, $km, $coutTrajet, $coutPeage, $coutRepas, $coutHebergement){
+    function updateLigneDeFrais($IDFrais, $dateFrais, $trajet, $km, $coutTrajet, $coutPeage, $coutRepas, $coutHebergement , $motif){
         $sql = "update ligne_de_frais set";
-        $sql .=" DateFrais= :dateFrais, Trajet= :trajet, Km= :km, CoutTrajet= :coutTrajet, CoutPeage= :coutPeage, CoutRepas= :coutRepas, CoutHebergement= :coutHebergement";
+        $sql .=" DateFrais= :dateFrais, Trajet= :trajet, Km= :km, CoutTrajet= :coutTrajet, CoutPeage= :coutPeage, CoutRepas= :coutRepas, CoutHebergement= :coutHebergement , idMotifs = :motif";
         $sql .=" where IdFrais=:idFrais";
         try {
             $sth = $this->pdo->prepare($sql);
@@ -76,7 +76,8 @@ class ligneDeFraisDAO extends DAO {
                                 ":coutTrajet" => $coutTrajet,
                                 ":coutPeage" => $coutPeage, 
                                 ":coutRepas" => $coutRepas, 
-                                ":coutHebergement" => $coutHebergement));
+                                ":coutHebergement" => $coutHebergement,
+                                ":motif" => $motif));
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
