@@ -26,6 +26,21 @@ class bordereauDAO extends DAO {
         return $bordereaux;
     } // function findBordereaux()
 
+    // function findBordereaux()
+    function findById($id) {
+        $sql = "select * from bordereau where idBordereau = :id";
+        try {
+        $sth = $this->pdo->prepare($sql);
+        $sth->execute(array(":id" => $id));
+        $row = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+        throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+        $bordereaux = new Bordereau($row);
+        // Retourne l'objet métier
+        return $bordereaux;
+    } // function findBordereaux()
+
     function findBordereaux($email, $annee) {
         $sql = "select * from bordereau where AdresseMail= :email AND Annee= :Annee";
         try {

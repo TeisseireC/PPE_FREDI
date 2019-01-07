@@ -1,6 +1,13 @@
 <?php
 
     session_start();
+    if (isset($_GET['email'])){
+        $email = $_GET['email'];
+    }else{
+        $email = $_SESSION['email'];
+    }    
+
+    
     $id = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];
     include '../../assets/include/global.inc.php';     // Inclusion de la page de parametre 
     $ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle de la classe frediDAO   
@@ -24,18 +31,27 @@
         $id = isset($_POST['id']) ? $_POST['id'] : "";
     
         $ligneDeFraisDAO->deleteLigneDeFrais($id);
-        header("location: ../Bordereau/bordereau.php");
+        if($_SESSION['role'] != "tresorier"){
+          header("location: ../Bordereau/bordereau.php");
+        }else{
+          $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id);
+          $bordereau = $bordereauDAO->findById($ligneDeFrais->get_idBordereau());
+          header("location: ../Bordereau/listeBordereaux.php");
+        }
     } else {        // sinon faire afficher les valeurs dans le formulaire en fopnction de l'id recupere dans l'url
       $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id);
     }
 
-    if(isset ($_SESSION['respLeg'])){
-      // ne rien faire
-    }else{
-      $adherent = $adherentDAO->find($email);
-      $idclub = $adherent->get_idClub();
-
-      $club = $clubDAO->find($idclub);
+    $respLegalDAO = new RespLegalDAO();
+    if($respLegalDAO->is_mail_exist($email) != false){
+        $respLegal = $respLegalDAO->find($email);
+    }
+    $adherentDAO = new AdherentDAO();
+    if($adherentDAO->is_mail_exist($email) != false){
+        $adherent = $adherentDAO->find($email);
+        $clubDAO = new clubDAO();
+        $idClub = $adherent->get_idClub(); 
+        $club = $clubDAO->find($idClub);
     }
 ?>
 

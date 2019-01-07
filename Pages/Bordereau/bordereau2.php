@@ -109,8 +109,8 @@
                         echo "<td>".$ligneDeFrais->get_coutHebergement()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutTotal()."</td>";
                         if($_SESSION['role'] == "tresorier"){
-                            echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
-                                . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></td>';
+                            echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() .'&amp;email='.$email.'"><img id="edit" src="../../ico/edit.png"/></a> '
+                                . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() .'&amp;email='.$email.'"><img id="delete" src="../../ico/del.png"/></a></td>';
                         }
                         echo '</tr>';
                     }
