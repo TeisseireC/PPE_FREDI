@@ -56,17 +56,51 @@
         }
       }else{
         foreach($adherents as $adherent){
-          $mail = $adherent->get_adresseMail();
-          $bordereaux = $bordereauDAO->findAllBordereaux($mail);
-          foreach($bordereaux as $bordereau){
-            echo '<tr>';
-              echo '<td>'.$bordereau->get_annee().'</td>';   
-              echo '<td>'.$bordereau->get_adresseMail().'</td>';  
-              echo '<td><a href="bordereau2.php?annee='.$bordereau->get_annee().'&amp;idBordereau='.$bordereau->get_idBordereau().'&amp;email='.$bordereau->get_adresseMail().'">Selectionner</a></td>';
-            echo '</tr>'; 
+          if($adherent->get_idRespLegal() == NULL){
+            $mail = $adherent->get_adresseMail();
+            $bordereaux = $bordereauDAO->findAllBordereaux($mail);
+
+            foreach($bordereaux as $bordereau){
+              echo '<tr>';
+                echo '<td>'.$bordereau->get_annee().'</td>';   
+                echo '<td>'.$bordereau->get_adresseMail().'</td>';  
+                echo '<td><a href="bordereau2.php?annee='.$bordereau->get_annee().'&amp;idBordereau='.$bordereau->get_idBordereau().'&amp;email='.$bordereau->get_adresseMail().'">Selectionner</a></td>';
+              echo '</tr>';
+            }
+          }else{
+            if(isset($_SESSION['idResp'])){
+              $valid = 1;
+              foreach($_SESSION['idResp'] as $idResp){
+                if($idResp == $adherent->get_idRespLegal()){
+                  $valid = 0;
+                }
+              }
+              if($valid == 1){
+                $_SESSION['idResp'][] = $adherent->get_idRespLegal();
+              }
+            }else{
+              $_SESSION['idResp'][] = $adherent->get_idRespLegal();
+            }
           }
         }
-      }
+        if(isset($_SESSION['idResp'])){
+          foreach($_SESSION['idResp'] as $idResp){
+            $responsableDAO = new RespLegalDAO();
+            $responsable = $responsableDAO->findById($idResp);
+  
+            $mail = $responsable->get_adresseMail();
+            $bordereaux = $bordereauDAO->findAllBordereaux($mail);
+  
+            foreach($bordereaux as $bordereau){
+              echo '<tr>';
+                echo '<td>'.$bordereau->get_annee().'</td>';   
+                echo '<td>'.$bordereau->get_adresseMail().'</td>';  
+                echo '<td><a href="bordereau2.php?annee='.$bordereau->get_annee().'&amp;idBordereau='.$bordereau->get_idBordereau().'&amp;email='.$bordereau->get_adresseMail().'">Selectionner</a></td>';
+              echo '</tr>';
+            }
+          }
+        }
+      }       
       echo "</table>";
       
       ?>

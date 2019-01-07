@@ -106,7 +106,7 @@ function findAllByMail($adresseMail){
             die("Erreur lors de la requête SQL : " . $ex->getMessage());
         }
 
-        $tresorier = new Tresorier($row); // Création d'un nouvel adhérent avec la classe adhérent
+        $tresorier = new Tresorier($row); // Renvoi les informations du trésorier dans la classe Trésorier.php
         return $tresorier; 
 }
 

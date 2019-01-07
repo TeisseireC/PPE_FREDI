@@ -18,13 +18,13 @@
 
     $motifDAO = new motifDAO();
 
-    if (isset($_SESSION['respLeg'])){
-        $respLegalDAO = new RespLegalDAO();
+    $respLegalDAO = new RespLegalDAO();
+    if($respLegalDAO->is_mail_exist($email) != false){
         $respLegal = $respLegalDAO->find($email);
-    } else {
-        $adherentDAO = new AdherentDAO();
+    }
+    $adherentDAO = new AdherentDAO();
+    if($adherentDAO->is_mail_exist($email) != false){
         $adherent = $adherentDAO->find($email);
-
         $clubDAO = new clubDAO();
         $idClub = $adherent->get_idClub(); 
         $club = $clubDAO->find($idClub);
@@ -53,11 +53,11 @@
     <!-- Start section -->
     <section>      
         <div id="texte">
-        <?php if(isset($_SESSION['respLeg'])){ ?>
+        <?php if($respLegalDAO->is_mail_exist($email) != false){ ?>
             <p>Je soussigné(e)<br/><?php echo $respLegal->get_prenomRespLegal()." ".$respLegal->get_nomRespLegal(); ?></p>
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
             en tant que don.</p>
-        <?php } else { ?>
+        <?php } else if($adherentDAO->is_mail_exist($email) != false){ ?>
             <p>Je soussigné(e)<br/><?php echo $adherent->get_prenomAdh()." ".$adherent->get_nomAdh(); ?></p>
             <p>demeurant au<br/><?php echo $adherent->get_adresse().", ".$adherent->get_codePostal()." ".$adherent->get_ville(); ?></p>
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
@@ -68,7 +68,7 @@
           
             <table class="tableBordereau">
                 <tr>
-                    <?php if(isset($_SESSION['respLeg'])){
+                    <?php if($respLegalDAO->is_mail_exist($email) != false){
                         // ne rien faire
                     }else{ 
                         echo "<th class='thBordereau'>Club</th>";
@@ -82,6 +82,11 @@
                     <th class="thBordereau">Repas</th>
                     <th class="thBordereau">Hébergement</th>
                     <th class="thBordereau">Total</th>
+                    <?php 
+                    if($_SESSION['role'] == "tresorier"){
+                        echo '<th class="thBordereauIcon">Action</th>';
+                    }
+                    ?>
                 </tr>
                 <tr>
                 <?php
@@ -89,7 +94,7 @@
                         $idFrais = $ligneDeFrais->get_idFrais();
                         $motif = $motifDAO->find($idFrais);
                         echo "<tr>";
-                        if(isset($_SESSION['respLeg'])){
+                        if($respLegalDAO->is_mail_exist($email) != false){
                             // rien n'a faire si OK
                         }else{ 
                             echo "<td>".$club->get_nomclub()."</td>";
@@ -103,6 +108,10 @@
                         echo "<td>".$ligneDeFrais->get_coutRepas()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutHebergement()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutTotal()."</td>";
+                        if($_SESSION['role'] == "tresorier"){
+                            echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
+                                . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></td>';
+                        }
                         echo '</tr>';
                     }
                 ?>
