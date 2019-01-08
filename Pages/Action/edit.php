@@ -2,6 +2,9 @@
     session_start();
     if (isset($_GET['email'])){
         $email = $_GET['email'];
+        if($_SESSION['role'] == "tresorier"){
+          $_SESSION['emailUtilisateur'] = $email;
+        }
     }else{
         $email = $_SESSION['email'];
     }
@@ -45,7 +48,7 @@ if($submit == 1){               // au submit faire
     }else{
         $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id);
         $bordereau = $bordereauDAO->findById($ligneDeFrais->get_idBordereau());
-        header("location: ../Bordereau/listeBordereaux.php");
+        header("location: ../Bordereau/bordereau2.php?annee=".$bordereau->get_annee()."&idBordereau=".$bordereau->get_idBordereau()."&email=".$_SESSION['emailUtilisateur']);
     }
 } else {        // sinon faire afficher les valeurs dans le formulaire en fopnction de l'id recupere dans l'url
     $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id);
@@ -65,11 +68,9 @@ if($submit == 1){               // au submit faire
 
   <body>
     <!-- Start  -->
-    <>
-        <?php
-          include "../../assets/include/menu2.php";
-        ?>
-    </>
+    <?php
+        include "../../assets/include/menu2.php";
+    ?>
     <!-- End  -->
 
     <!-- Start section -->
