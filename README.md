@@ -9,17 +9,7 @@ Vous aurez aussi besoin de notre base de donnée, tous les fichiers relatif à s
 Un ordre est à respecter pour créer la base de donnée, exécutez les fichiers dans votre solution de base de donnée (nous utilisons PhpMyAdmin) dans cet ordre : 
 
 1. Script_de creation_base_FREDI.sql
-2. insertion CSV.sql
-3. insertion_ligue.sql
-4. insertion_club.sql
-5. insertion_motifs.sql
-6. insertion_p_km.sql
-7. insertion_resp_crib.sql ( le mot de passe des responsables du crib se trouve dans le fichier )
-8. insertion_tresorier.sql ( le mot de passe des trésoriers se trouve dans le fichier )
-9. insertion_resp_legal.sql ( le mot de passe des responsables légaux se trouve dans le fichier ) 
-10. insertion_adherent.sql ( le mot de passe des adhérents se trouve dans le fichier )
-11. insertion_bordereau.sql
-12. insertion_ligne_de_frais.sql
+2. Insertion_donnee.sql
 
 # Contexte 
 
