@@ -1,9 +1,9 @@
 -- Ces données sont des jeux de tests --
 -- Information de connexions : --
--- o Adhérent : ligne ... --
--- o Responsable Légal : ligne ... --
--- o Resposable du Crib : ligne ... --
--- o Trésorier : ligne ... --
+-- o Adhérent : ligne 133 --
+-- o Responsable Légal : ligne 124 --
+-- o Resposable du Crib : ligne 102 --
+-- o Trésorier : ligne 117 --
 
 USE fredi;
 -- Début données CSV --
