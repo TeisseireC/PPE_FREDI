@@ -1,4 +1,7 @@
 # PPE_FREDI
+## Lien vers le rendu google drive
+
+https://drive.google.com/drive/folders/1sl8Dfab1cyZif-BiL7XzUyMkfQILzPds?usp=sharing
 
 ## Installation de l'application
 
