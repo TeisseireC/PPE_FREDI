@@ -13,6 +13,9 @@
     }
 
     include '../../assets/include/global.inc.php';
+    $bordereauDAO = new bordereauDAO();
+    $bordereau = $bordereauDAO->findBordereaux($email, date('Y'));
+
     $ligneDeFraisDAO = new ligneDeFraisDAO();
     $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFraisByYear($idBordereau,$annee);
 
@@ -113,6 +116,20 @@
                                 . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() .'&amp;email='.$email.'"><img id="delete" src="../../ico/del.png"/></a></td>';
                         }
                         echo '</tr>';
+                    }
+                    if ($bordereau->get_validiteTresorier() == 0){
+                        if($_SESSION['role'] == "tresorier"){
+                            echo "<div class='valider'>";
+                            echo "<form name='Formulaire' action='bordereau2.php?annee=".$bordereau->get_annee()."&amp;idBordereau=".$bordereau->get_idBordereau()."&amp;email=".$bordereau->get_adresseMail()."' method='post' class='formvalider'>";
+                                echo "<p><input type='submit' name='submit' value='Valider le bordereau'/></p>";
+                            echo "</form>";
+                            echo "</div>";
+
+                            $submit = isset($_POST['submit']);
+                            if($submit == 1){
+                                $bordereauDAO->validerBordereauTresorier($email);
+                            }
+                        }
                     }
                 ?>
                 </tr>

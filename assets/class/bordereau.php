@@ -36,6 +36,10 @@
         return $this->validite;
     }
 
+    function get_validiteTresorier() {
+        return $this->validite;
+    }
+
     function set_idBordereau($IDbordereau) {
         $this->IDbordereau = $IDbordereau;
     }
@@ -53,6 +57,10 @@
     }
 
     function set_validite($validite) {
+        $this->validite = $validite;
+    }
+
+    function set_validiteTresorier($validite) {
         $this->validite = $validite;
     }
     // Getter et setter   
