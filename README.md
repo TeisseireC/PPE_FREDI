@@ -11,6 +11,10 @@ Un ordre est à respecter pour créer la base de donnée, exécutez les fichiers
 1. Script_de creation_base_FREDI.sql
 2. Insertion_donnee.sql
 
+Pour l'inscription, la licence utilisateur doit impérativement se trouver dans la BDD, que ce soit une inscription utilisateur ou responsable légal, de plus, si la licence est déjà utilisée, l'inscription est impossible.
+
+Pour la connection, les comptes déjà existants ont leurs mot de passe fournie dans le script d'insertion de données pour la BDD, il faut saisir mail et mot de passe pour la connection, une adresse mail est unique et ne peux pas être utilisée par un autre utilisateur.
+
 # Contexte 
 
 ## 1. LE PROJET FREDI WEB
