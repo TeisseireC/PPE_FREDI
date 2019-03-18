@@ -97,5 +97,21 @@ class RespLegalDAO extends DAO{
                 return false ; // Si $row est vide alors retourner faux
             }
     }
+
+    function find_infosSup($IdResp){
+        $sql = "SELECT idRespLegal, Adresse, CodePostal, Ville, IdClub FROM adherent WHERE IdRespLegal = :Id ";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ':Id' => $IdResp
+            ));
+        $row = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            die("Erreur lors de la requête SQL : " . $ex->getMessage());
+        }
+       
+        $responsable2 = new responsable2($row); // Création d'un nouveau responsable légal avec la classe reponsable
+        return $responsable2;
+    }
 }
 ?>

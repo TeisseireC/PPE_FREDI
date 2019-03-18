@@ -163,5 +163,21 @@ class AdherentDAO extends DAO{
                 return false ;  // Si $row est vide alors retourner faux
             }
     }
+
+    // Fonction pour obtenir toutes les infos d'un adhérent
+    function findByRespLegal($IdResp){
+        $sql = "SELECT * FROM adherent WHERE IdRespLegal= :IdResp";
+            try {
+                $sth = $this->pdo->prepare($sql);
+                $sth->execute(array(
+                    ':IdResp' => $IdResp
+                ));
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $ex) {
+                die("Erreur lors de la requête SQL : " . $ex->getMessage());
+            }
+            $adherent = new adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
+            return $adherent; 
+    }
 }
 ?>

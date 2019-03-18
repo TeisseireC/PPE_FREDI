@@ -24,6 +24,10 @@
     $respLegalDAO = new RespLegalDAO();
     if($respLegalDAO->is_mail_exist($email) != false){
         $respLegal = $respLegalDAO->find($email);
+        $infosSup = $respLegalDAO->find_infosSup($respLegal->get_idRespLegal());
+        $clubDAO = new clubDAO();
+        $idClub = $infosSup->get_idClub();
+        $club = $clubDAO->find($idClub);
     }
     $adherentDAO = new AdherentDAO();
     if($adherentDAO->is_mail_exist($email) != false){
@@ -58,8 +62,11 @@
         <div id="texte">
         <?php if($respLegalDAO->is_mail_exist($email) != false){ ?>
             <p>Je soussigné(e)<br/><?php echo $respLegal->get_prenomRespLegal()." ".$respLegal->get_nomRespLegal(); ?></p>
+            <p>demeurant au<br/><?php echo $infosSup->get_adresse().", ".$infosSup->get_codePostal()." ".$infosSup->get_ville(); ?></p>
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
-            en tant que don.</p>
+            <?php echo $club->get_nomclub(); ?><br/>
+            en tant que don</p>
+
         <?php } else if($adherentDAO->is_mail_exist($email) != false){ ?>
             <p>Je soussigné(e)<br/><?php echo $adherent->get_prenomAdh()." ".$adherent->get_nomAdh(); ?></p>
             <p>demeurant au<br/><?php echo $adherent->get_adresse().", ".$adherent->get_codePostal()." ".$adherent->get_ville(); ?></p>
