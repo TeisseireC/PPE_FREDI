@@ -22,7 +22,12 @@
     $idBordereau = $bordereau->get_idBordereau();
 
     if(isset ($_SESSION['respLeg'])){
-        // ne rien faire
+        $respLegalDAO = new RespLegalDAO();
+        $respLegal = $respLegalDAO->find($email);
+        $infosSup = $respLegalDAO->find_infosSup($respLegal->get_idRespLegal());
+        $clubDAO = new clubDAO();
+        $idClub = $infosSup->get_idClub();
+        $club = $clubDAO->find($idClub);
     }else{
         $adherent = $adherentDAO->find($email);
         $idclub = $adherent->get_idClub();
@@ -73,7 +78,7 @@
       <!-- Start formulaire -->
       <h3><center><p>Veuillez remplir ce formulaire afin de rajouter une ligne de frais à votre bordereau :</p></center></h3>
       <form name="Formulaire" action="ajouter.php"  method="post" class="formAjouter">
-<p>Association<br/><input type="text" name="association" value="<?php if(isset ($_SESSION['respLeg'])){echo "nothing";}else{echo $club->get_nomclub();}?>" disabled="disabled"></p>
+            <p>Association<br/><input type="text" name="association" value="<?php echo $club->get_nomclub();?>" disabled="disabled"></p>
             <p>Date<br/><input type="date" name="date" value="<?php echo date('Y-m-d'); ?>"></p>
             <p>Motif<br/><select name="motif" class="motif">
                 <?php

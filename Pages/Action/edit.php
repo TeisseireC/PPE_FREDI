@@ -16,9 +16,13 @@
     $motifs = $motifDAO->findMotifs();    
     $bordereauDAO = new bordereauDAO();   
     
-    $respLegalDAO = new RespLegalDAO();
     if($respLegalDAO->is_mail_exist($email) != false){
+        $respLegalDAO = new RespLegalDAO();
         $respLegal = $respLegalDAO->find($email);
+        $infosSup = $respLegalDAO->find_infosSup($respLegal->get_idRespLegal());
+        $clubDAO = new clubDAO();
+        $idClub = $infosSup->get_idClub();
+        $club = $clubDAO->find($idClub);
     }
     $adherentDAO = new AdherentDAO();
     if($adherentDAO->is_mail_exist($email) != false){
@@ -78,7 +82,7 @@ if($submit == 1){               // au submit faire
       <!-- Start formulaire -->
       <h3><center><p>Vous êtes sur le point de modifier la ligne de frais ci dessous, cliquez sur valider une fois la modification effectuée.</p></center></h3>
       <form name="Formulaire" action="edit.php"  method="post" class="formAjouter"> 
-            <p>Association<br/><input type="text" name="association" value="<?php if($respLegalDAO->is_mail_exist($email) != false){echo "nothing";}else{echo $club->get_nomclub();}?>" disabled="disabled"></p>
+            <p>Association<br/><input type="text" name="association" value="<?php echo $club->get_nomclub();?>" disabled="disabled"></p>
             <p>Date<br/><input type="date" name="date" value="<?php echo $ligneDeFrais->get_dateFrais() ?>"></p>
             <p>Motif<br/><select name="motif" class="motif">
                 <?php
