@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe P_km
+ * Classe Motif
  *
  * @author CB
  */
@@ -52,4 +52,4 @@ class Motif {
   }
 }
 
-// Classe P_km
+// Classe Motif
