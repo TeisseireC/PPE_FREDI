@@ -13,6 +13,9 @@
     }
 
     include '../../assets/include/global.inc.php';
+    $bordereauDAO = new bordereauDAO();
+    $bordereau = $bordereauDAO->findBordereaux($email, date('Y'));
+
     $ligneDeFraisDAO = new ligneDeFraisDAO();
     $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFraisByYear($idBordereau,$annee);
 
@@ -21,6 +24,10 @@
     $respLegalDAO = new RespLegalDAO();
     if($respLegalDAO->is_mail_exist($email) != false){
         $respLegal = $respLegalDAO->find($email);
+        $infosSup = $respLegalDAO->find_infosSup($respLegal->get_idRespLegal());
+        $clubDAO = new clubDAO();
+        $idClub = $infosSup->get_idClub();
+        $club = $clubDAO->find($idClub);
     }
     $adherentDAO = new AdherentDAO();
     if($adherentDAO->is_mail_exist($email) != false){
@@ -55,8 +62,11 @@
         <div id="texte">
         <?php if($respLegalDAO->is_mail_exist($email) != false){ ?>
             <p>Je soussigné(e)<br/><?php echo $respLegal->get_prenomRespLegal()." ".$respLegal->get_nomRespLegal(); ?></p>
+            <p>demeurant au<br/><?php echo $infosSup->get_adresse().", ".$infosSup->get_codePostal()." ".$infosSup->get_ville(); ?></p>
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
-            en tant que don.</p>
+            <?php echo $club->get_nomclub(); ?><br/>
+            en tant que don</p>
+
         <?php } else if($adherentDAO->is_mail_exist($email) != false){ ?>
             <p>Je soussigné(e)<br/><?php echo $adherent->get_prenomAdh()." ".$adherent->get_nomAdh(); ?></p>
             <p>demeurant au<br/><?php echo $adherent->get_adresse().", ".$adherent->get_codePostal()." ".$adherent->get_ville(); ?></p>
@@ -109,10 +119,24 @@
                         echo "<td>".$ligneDeFrais->get_coutHebergement()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutTotal()."</td>";
                         if($_SESSION['role'] == "tresorier"){
-                            echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
-                                . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></td>';
+                            echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() .'&amp;email='.$email.'"><img id="edit" src="../../ico/edit.png"/></a> '
+                                . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() .'&amp;email='.$email.'"><img id="delete" src="../../ico/del.png"/></a></td>';
                         }
                         echo '</tr>';
+                    }
+                    if ($bordereau->get_validiteTresorier() == 0){
+                        if($_SESSION['role'] == "tresorier"){
+                            echo "<div class='valider'>";
+                            echo "<form name='Formulaire' action='bordereau2.php?annee=".$bordereau->get_annee()."&amp;idBordereau=".$bordereau->get_idBordereau()."&amp;email=".$bordereau->get_adresseMail()."' method='post' class='formvalider'>";
+                                echo "<p><input type='submit' name='submit' value='Valider le bordereau'/></p>";
+                            echo "</form>";
+                            echo "</div>";
+
+                            $submit = isset($_POST['submit']);
+                            if($submit == 1){
+                                $bordereauDAO->validerBordereauTresorier($email);
+                            }
+                        }
                     }
                 ?>
                 </tr>

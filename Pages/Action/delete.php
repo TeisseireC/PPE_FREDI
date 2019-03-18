@@ -1,15 +1,34 @@
 <?php
 
     session_start();
-    $id = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];
-    include '../../assets/include/global.inc.php';     // Inclusion de la page de parametre 
-    $ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle de la classe frediDAO   
-    $bordereauDAO = new bordereauDAO();     
-    $motifDAO = new motifDAO();     
-    $adherentDAO = new adherentDAO();
-    $clubDAO = new clubDAO();
+    if (isset($_GET['email'])){
+        $email = $_GET['email'];
+        if($_SESSION['role'] == "tresorier"){
+          $_SESSION['emailUtilisateur'] = $email;
+        }
+    }else{
+        $email = $_SESSION['email'];
+    }    
 
-    $email = $_SESSION['email'];
+    
+    include '../../assets/include/global.inc.php';     // Inclusion de la page de parametre 
+    $ligneDeFraisDAO = new ligneDeFraisDAO();     // Appelle de la classe frediDAO
+    $id = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];    // $îd prend la valeur recuperee dans l'url
+    $motifDAO = new motifDAO();     
+    $motifs = $motifDAO->findMotifs();    
+    $bordereauDAO = new bordereauDAO();   
+    
+    $respLegalDAO = new RespLegalDAO();
+    if($respLegalDAO->is_mail_exist($email) != false){
+        $respLegal = $respLegalDAO->find($email);
+    }
+    $adherentDAO = new AdherentDAO();
+    if($adherentDAO->is_mail_exist($email) != false){
+        $adherent = $adherentDAO->find($email);
+        $clubDAO = new clubDAO();
+        $idClub = $adherent->get_idClub(); 
+        $club = $clubDAO->find($idClub);
+    }
 
     $submit = isset($_POST['submit']);
     if($submit == 1){               // au submit faire
@@ -22,20 +41,29 @@
         $coutRepas = isset($_POST['coutRepas']) ? $_POST['coutRepas'] : "";
         $coutHebergement = isset($_POST['coutHebergement']) ? $_POST['coutHebergement'] : "";
         $id = isset($_POST['id']) ? $_POST['id'] : "";
-    
+        
+        if($_SESSION['role'] != "tresorier"){
+          header("location: ../Bordereau/bordereau.php");
+        }else{
+          $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id);
+          $bordereau = $bordereauDAO->findById($ligneDeFrais->get_idBordereau());
+          header("location: ../Bordereau/bordereau2.php?annee=".$bordereau->get_annee()."&idBordereau=".$bordereau->get_idBordereau()."&email=".$_SESSION['emailUtilisateur']);
+        }
         $ligneDeFraisDAO->deleteLigneDeFrais($id);
-        header("location: ../Bordereau/bordereau.php");
     } else {        // sinon faire afficher les valeurs dans le formulaire en fopnction de l'id recupere dans l'url
       $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id);
     }
 
-    if(isset ($_SESSION['respLeg'])){
-      // ne rien faire
-    }else{
-      $adherent = $adherentDAO->find($email);
-      $idclub = $adherent->get_idClub();
-
-      $club = $clubDAO->find($idclub);
+    $respLegalDAO = new RespLegalDAO();
+    if($respLegalDAO->is_mail_exist($email) != false){
+        $respLegal = $respLegalDAO->find($email);
+    }
+    $adherentDAO = new AdherentDAO();
+    if($adherentDAO->is_mail_exist($email) != false){
+        $adherent = $adherentDAO->find($email);
+        $clubDAO = new clubDAO();
+        $idClub = $adherent->get_idClub(); 
+        $club = $clubDAO->find($idClub);
     }
 ?>
 
@@ -64,7 +92,7 @@
     <section>        
       <h3><center><p>Vous êtes sur le point de supprimer la ligne de frais ci dessous, cliquez sur valider pour continuer.</p></center></h3>
       <form name="Formulaire" action="delete.php"  method="post" class="formAjouter">
-        <p>Association<br/><input type="text" name="association" value="<?php if(isset ($_SESSION['respLeg'])){echo "nothing";}else{echo $club->get_nomclub();}?>" disabled="disabled"></p>
+        <p>Association<br/><input type="text" name="association" value="<?php if($respLegalDAO->is_mail_exist($email) != false){echo "nothing";}else{echo $club->get_nomclub();}?>" disabled="disabled"></p>
         <p>Date<br/><input type="date" name="date" value="<?php echo $ligneDeFrais->get_dateFrais() ?>" disabled="disabled"></p>
         <p>Motif<br/><input type="text" name="motif" value="<?php echo $motif->get_libelleMotifs() ?>" disabled="disabled"></p>
         <p>Trajets<br/><input type="text" name="trajet" value="<?php echo $ligneDeFrais->get_trajet() ?>" disabled="disabled"></p>

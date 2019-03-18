@@ -31,11 +31,15 @@ class p_kmDAO extends DAO {
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-    $p_km = new P_km($row);
-    // Retourne l'objet métier
-    return $p_km;
+    if ($row == NULL){
+      return NULL;
+    }else{
+      $p_km = new P_km($row);
+      // Retourne l'objet métier
+      return $p_km;
   }
-  
+}
+
   /**
   * Lecture de toutes les p_kms
   * @return array
