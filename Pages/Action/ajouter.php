@@ -8,6 +8,7 @@
     $motifDAO = new motifDAO();     
     $adherentDAO = new adherentDAO();
     $clubDAO = new clubDAO();
+    $p_kmDAO = new p_kmDAO();
 
     $email = $_SESSION['email']; 
     $annee = date("Y");
@@ -15,6 +16,8 @@
     if($bordereauDAO->findBordereaux($email,$annee) == NULL){       // si le bordereau actuel n'est pas créé alors le crée
         $bordereauDAO->addBordereaux($email); 
     }
+
+    $p_km = $p_kmDAO->find($annee);
 
     $motifs = $motifDAO->findMotifs();
 
@@ -43,13 +46,14 @@
         $motifFrais = isset($_POST['motif']) ? $_POST['motif'] : "";
         $trajet = isset($_POST['trajet']) ? $_POST['trajet'] : "";
         $kmsParcourus = isset($_POST['kmsParcourus']) ? $_POST['kmsParcourus'] : "";
-        $coutTrajet = isset($_POST['coutTrajet']) ? $_POST['coutTrajet'] : "";
+        $coutTrajet = $kmsParcourus * $p_km->get_prixKM();
         $coutPeages = isset($_POST['coutPeages']) ? $_POST['coutPeages'] : "";
         $coutRepas = isset($_POST['coutRepas']) ? $_POST['coutRepas'] : "";
         $coutHebergement = isset($_POST['coutHebergement']) ? $_POST['coutHebergement'] : "";
+        $coutTotal = $coutTrajet + $coutPeages + $coutRepas + $coutHebergement;
         $id = isset($_POST['id']) ? $_POST['id'] : "";
         $idBordereau = $bordereau->get_idBordereau();
-        $ligneDeFraisDAO->insertLigneDeFrais($date, $trajet, $kmsParcourus, $coutTrajet, $coutPeages, $coutRepas, $coutHebergement, $idBordereau, $motifFrais);
+        $ligneDeFraisDAO->insertLigneDeFrais($date, $trajet, $kmsParcourus, $coutTrajet, $coutPeages, $coutRepas, $coutHebergement, $idBordereau, $motifFrais, $coutTotal);
         header("location: ../Bordereau/bordereau.php");
     }
 ?>
@@ -89,7 +93,6 @@
             </select></p>
             <p>Trajets<br/><input type="text" name="trajet"></p>
             <p>Kilomètres parcourus<br/><input type="number" step="0.01" name="kmsParcourus"></p>
-            <p>Coût du trajet<br/><input type="number" step="0.01" name="coutTrajet"></p>
             <p>Coût des péages<br/><input type="number" step="0.01" name="coutPeages"></p>
             <p>Coût des repas<br/><input type="number" step="0.01" name="coutRepas"></p>
             <p>Coût de l'hébergement<br/><input type="number" step="0.01" name="coutHebergement"></p>

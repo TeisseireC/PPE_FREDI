@@ -14,8 +14,13 @@
     $id = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];    // $îd prend la valeur recuperee dans l'url
     $motifDAO = new motifDAO();     
     $motifs = $motifDAO->findMotifs();    
-    $bordereauDAO = new bordereauDAO();   
-    
+    $bordereauDAO = new bordereauDAO();
+    $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id); 
+    $bordereau = $bordereauDAO->findById($ligneDeFrais->get_idBordereau()); 
+     
+    $p_kmDAO = new p_kmDAO();
+    $p_km = $p_kmDAO->find($bordereau->get_annee());
+
     $respLegalDAO = new RespLegalDAO();
     if($respLegalDAO->is_mail_exist($email) != false){
         $respLegal = $respLegalDAO->find($email);
@@ -40,18 +45,17 @@ if($submit == 1){               // au submit faire
     $motifFrais = isset($_POST['motif']) ? $_POST['motif'] : "";
     $trajet = isset($_POST['trajet']) ? $_POST['trajet'] : "";
     $kmsParcourus = isset($_POST['kmsParcourus']) ? $_POST['kmsParcourus'] : "";
-    $coutTrajet = isset($_POST['coutTrajet']) ? $_POST['coutTrajet'] : "";
+    $coutTrajet = $kmsParcourus * $p_km->get_prixKM();
     $coutPeages = isset($_POST['coutPeages']) ? $_POST['coutPeages'] : "";
     $coutRepas = isset($_POST['coutRepas']) ? $_POST['coutRepas'] : "";
     $coutHebergement = isset($_POST['coutHebergement']) ? $_POST['coutHebergement'] : "";
+    $coutTotal = $coutTrajet + $coutPeages + $coutRepas + $coutHebergement;
     $id = isset($_POST['id']) ? $_POST['id'] : "";
 
-    $ligneDeFraisDAO->updateLigneDeFrais($id, $date, $trajet, $kmsParcourus, $coutTrajet, $coutPeages, $coutRepas, $coutHebergement, $motifFrais);
+    $ligneDeFraisDAO->updateLigneDeFrais($id, $date, $trajet, $kmsParcourus, $coutTrajet, $coutPeages, $coutRepas, $coutHebergement, $motifFrais, $coutTotal);
     if($_SESSION['role'] != "tresorier"){
         header("location: ../Bordereau/bordereau.php");
     }else{
-        $ligneDeFrais = $ligneDeFraisDAO->findLigneDeFraisById($id);
-        $bordereau = $bordereauDAO->findById($ligneDeFrais->get_idBordereau());
         header("location: ../Bordereau/bordereau2.php?annee=".$bordereau->get_annee()."&idBordereau=".$bordereau->get_idBordereau()."&email=".$_SESSION['emailUtilisateur']);
     }
 } else {        // sinon faire afficher les valeurs dans le formulaire en fopnction de l'id recupere dans l'url
@@ -93,7 +97,6 @@ if($submit == 1){               // au submit faire
             </select></p>
             <p>Trajets<br/><input type="text" name="trajet" value="<?php echo $ligneDeFrais->get_trajet() ?>"></p>
             <p>Kilomètres parcourus<br/><input type="number" step="0.01" name="kmsParcourus" value="<?php echo $ligneDeFrais->get_km() ?>"></p>
-            <p>Coût du trajet<br/><input type="number" step="0.01" name="coutTrajet" value="<?php echo $ligneDeFrais->get_coutTrajet() ?>"></p>
             <p>Coût des péages<br/><input type="number" step="0.01" name="coutPeages" value="<?php echo $ligneDeFrais->get_coutPeage() ?>"></p>
             <p>Coût des repas<br/><input type="number" step="0.01" name="coutRepas" value="<?php echo $ligneDeFrais->get_coutRepas() ?>"></p>
             <p>Coût de l'hébergement<br/><input type="number" step="0.01" name="coutHebergement"  value="<?php echo $ligneDeFrais->get_coutHebergement() ?>"></p>

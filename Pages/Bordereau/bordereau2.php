@@ -6,20 +6,19 @@
         $email = $_SESSION['email'];
     }
     
-
     if (isset($_GET['annee']) && isset($_GET['idBordereau'])){
         $idBordereau = $_GET['idBordereau'];
         $annee = $_GET['annee'];
     }
-
+    
     include '../../assets/include/global.inc.php';
     $bordereauDAO = new bordereauDAO();
     $bordereau = $bordereauDAO->findBordereaux($email, date('Y'));
 
-    $ligneDeFraisDAO = new ligneDeFraisDAO();
-    $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFraisByYear($idBordereau,$annee);
-
     $motifDAO = new motifDAO();
+
+    $ligneDeFraisDAO = new ligneDeFraisDAO();
+    $lignesDeFrais = $ligneDeFraisDAO->findLigneDeFrais($email,$idBordereau);
 
     $respLegalDAO = new RespLegalDAO();
     if($respLegalDAO->is_mail_exist($email) != false){
@@ -66,7 +65,8 @@
             <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
             <?php echo $club->get_nomclub(); ?><br/>
             en tant que don</p>
-
+            <p>certifie renoncer au remboursement des frais ci-dessous et les laisser à l'association<br/>
+            en tant que don.</p>
         <?php } else if($adherentDAO->is_mail_exist($email) != false){ ?>
             <p>Je soussigné(e)<br/><?php echo $adherent->get_prenomAdh()." ".$adherent->get_nomAdh(); ?></p>
             <p>demeurant au<br/><?php echo $adherent->get_adresse().", ".$adherent->get_codePostal()." ".$adherent->get_ville(); ?></p>

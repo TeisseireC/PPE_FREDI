@@ -18,9 +18,6 @@
 
     $motifDAO = new motifDAO();
 
-    $p_kmDAO = new p_kmDAO();
-
-
     if (isset($_SESSION['respLeg'])){
         $respLegalDAO = new RespLegalDAO();
         $respLegal = $respLegalDAO->find($email);
@@ -36,9 +33,6 @@
         $idClub = $adherent->get_idClub(); 
         $club = $clubDAO->find($idClub);
     }
-
-    
-    
 ?>
 
 <!DOCTYPE html>
@@ -112,18 +106,16 @@
                         }else{ 
                             echo "<td>".$club->get_nomclub()."</td>";
                         }
-                        $coutTrajet = $ligneDeFrais->get_km() * $p_km->get_prixKM();
-                        $coutTotal = $coutTrajet + $ligneDeFrais->get_coutPeage() + $ligneDeFrais->get_coutRepas() + $ligneDeFrais->get_coutHebergement();
-
+                        
                         echo "<td>".$ligneDeFrais->get_dateFrais()."</td>";
                         echo "<td>".$motif->get_LibelleMotifs()."</td>";
                         echo "<td>".$ligneDeFrais->get_trajet()."</td>";
                         echo "<td>".$ligneDeFrais->get_km()."</td>";
-                        echo "<td>".$coutTrajet."</td>";
+                        echo "<td>".$ligneDeFrais->get_coutTrajet()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutPeage()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutRepas()."</td>";
                         echo "<td>".$ligneDeFrais->get_coutHebergement()."</td>";
-                        echo "<td>".$coutTotal."</td>";
+                        echo "<td>".$ligneDeFrais->get_coutTotal()."</td>";
 
                         if ($bordereau->get_validite() == 0){
                             echo '<td><a href="..\Action\edit.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="edit" src="../../ico/edit.png"/></a> '
