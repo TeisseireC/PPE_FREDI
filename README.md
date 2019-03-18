@@ -1,4 +1,7 @@
 # PPE_FREDI
+## Lien vers le rendu google drive
+
+https://drive.google.com/drive/folders/1sl8Dfab1cyZif-BiL7XzUyMkfQILzPds?usp=sharing
 
 ## Installation de l'application
 
@@ -14,6 +17,28 @@ Un ordre est à respecter pour créer la base de donnée, exécutez les fichiers
 Pour l'inscription, la licence utilisateur doit impérativement se trouver dans la BDD, que ce soit une inscription utilisateur ou responsable légal, de plus, si la licence est déjà utilisée, l'inscription est impossible.
 
 Pour la connection, les comptes déjà existants ont leurs mot de passe fournie dans le script d'insertion de données pour la BDD, il faut saisir mail et mot de passe pour la connection, une adresse mail est unique et ne peux pas être utilisée par un autre utilisateur.
+
+## Manuel d'utilisation de l'application
+
+### 1.Création d'un adhérent majeur
+
+Pour créer un adhérent majeur il vous suffit de cliquer sur "s'enregistrer" et saisir un numéro de licence existant déjà dans la table CSV de notre base de donnée (un numéro de licence qui n'est pas déjà utilisé par un adhérent)
+
+### 2.Création d'adhérent(s) mineur et d'un responsable légal
+
+Pour créer un/des adhérent(s) mineur(s) il vous suffit de cliquer sur "s'enregistrer", puis de cliquer sur "Vous êtes responsable légal ? Cliquez ici", renseignez le nombre d'adhérents que le responsable légal a à charge, renseignez autant de numéro de licence que d'adhérents à charge (numéro de licence existant déjà dans la table CSV de notre base de donnée, ainsi que non utilisé par un autre adhérent)
+
+### 3.Se connecter
+
+Lors de la création d'adhérents ou de responsables vous serez automatiquement connecter, si vous vous deconnectez, il vous suffit de cliquer sur "Se connecter", renseigner son adresse mail ainsi que son mot de passe et valider.
+
+### 4.Créer un bordereau / ligne de frais
+
+Pour créer un bordereau vous devez impérativement vous connecter, cliquez sur "Bordereau actuel", celui-ci sera créer automatiquement à l'année courante, pour saisir des lignes de frais il suffit de cliquer sur "ajouter une ligne de frais", de renseigner les champs à l'écran et de valider.
+
+### 5.Validation du bordereau
+
+Une fois que vous avez saisi toutes vos lignes de frais et finaliser votre bordereau, cliquez sur "Valider le bordereau", le bouton de validation peut être capricieux, il suffit soit de cliquer 2 fois dessus, soit de rafraichir la page après le premier clic.
 
 # Contexte 
 
