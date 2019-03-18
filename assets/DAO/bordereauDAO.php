@@ -91,6 +91,6 @@ class bordereauDAO extends DAO {
         } catch (PDOException $e) {
         throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
-    } // function validerBordereauxTresorier()
+    } // function validerBordereauxTresorier() 
 } // class bordereauDAO
 ?>

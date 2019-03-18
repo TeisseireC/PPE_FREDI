@@ -10,7 +10,7 @@
     private $coutPeage = "?";
     private $coutRepas = "?";
     private $coutHebergement = "?";
-    private $coutTotal = "?";
+    // private $coutTotal = "?";
     private $IDBordereau;
     private $IDMotifs = "?";
     

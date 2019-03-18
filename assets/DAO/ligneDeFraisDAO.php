@@ -113,5 +113,16 @@ class ligneDeFraisDAO extends DAO {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
     }
+
+    // function validerBordereauxTresorier()
+    function updateCoutTotal($email) {
+        $sql = "UPDATE bordereau set validite = 1, validiteTresorier = 1 where AdresseMail = :email";
+        try {
+        $sth = $this->pdo->prepare($sql);
+        $sth->execute(array(":email" => $email));
+        } catch (PDOException $e) {
+        throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+    } // function validerBordereauxTresorier()
 }
 ?>
