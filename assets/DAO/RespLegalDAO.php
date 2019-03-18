@@ -91,7 +91,7 @@ class RespLegalDAO extends DAO{
             } catch (PDOException $ex) {
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
-            if (count($row) != 1){  // 1 car count($row) vaut 1 lorsque $row est vide
+            if ($row){  // 1 car count($row) vaut 1 lorsque $row est vide
                 return true ;  // Si $row contient des informations alors retourner vrai
             }else{
                 return false ; // Si $row est vide alors retourner faux
