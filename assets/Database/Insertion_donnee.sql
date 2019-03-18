@@ -91,6 +91,7 @@ VALUES
 (2016,0.28),
 (2017,0.28),
 (2018,0.30);
+(2019,0.30);
 -- Fin données p_km --
 
 -- Début données reponsable du crib --

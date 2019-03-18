@@ -16,8 +16,8 @@
     $motifs = $motifDAO->findMotifs();    
     $bordereauDAO = new bordereauDAO();   
     
+    $respLegalDAO = new RespLegalDAO();
     if($respLegalDAO->is_mail_exist($email) != false){
-        $respLegalDAO = new RespLegalDAO();
         $respLegal = $respLegalDAO->find($email);
         $infosSup = $respLegalDAO->find_infosSup($respLegal->get_idRespLegal());
         $clubDAO = new clubDAO();

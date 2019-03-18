@@ -21,8 +21,8 @@
     $bordereau = $bordereauDAO->findBordereaux($email,$annee);
     $idBordereau = $bordereau->get_idBordereau();
 
+    $respLegalDAO = new RespLegalDAO();
     if(isset ($_SESSION['respLeg'])){
-        $respLegalDAO = new RespLegalDAO();
         $respLegal = $respLegalDAO->find($email);
         $infosSup = $respLegalDAO->find_infosSup($respLegal->get_idRespLegal());
         $clubDAO = new clubDAO();
