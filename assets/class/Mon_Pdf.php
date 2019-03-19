@@ -103,7 +103,7 @@ $pdf->Ln();
 
 $pdf->Cell(25,6,utf8_decode("Date"),1);
 //$pdf->Cell(40,6,$motif->get_LibelleMotifs(),1);
-$pdf->Cell(28,6,utf8_decode("Trajet"),1);
+$pdf->Cell(40,6,utf8_decode("Trajet"),1);
 $pdf->Cell(20,6,utf8_decode("Km"),1);
 $pdf->Cell(20,6,utf8_decode("Prix/Km"),1);
 $pdf->Cell(20,6,utf8_decode("Peage"),1);
@@ -115,7 +115,7 @@ $pdf->Ln();
 foreach($ligneDeFrais as $ligne){
         $pdf->Cell(25,6,utf8_decode($ligne->get_dateFrais()),1);
         //$pdf->Cell(40,6,$motif->get_LibelleMotifs(),1);
-        $pdf->Cell(28,6,$ligne->get_trajet(),1);
+        $pdf->Cell(40,6,$ligne->get_trajet(),1);
         $pdf->Cell(20,6,$ligne->get_km(),1);
         $pdf->Cell(20,6,$ligne->get_coutTrajet(),1);
         $pdf->Cell(20,6,$ligne->get_coutPeage(),1);

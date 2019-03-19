@@ -99,7 +99,6 @@
                     foreach($lignesDeFrais as $ligneDeFrais){
                         $idFrais = $ligneDeFrais->get_idFrais();
                         $motif = $motifDAO->find($idFrais);
-                        $p_km = $p_kmDAO->find($annee);
                         echo "<tr>";
                         if(isset($_SESSION['respLeg'])){
                             // rien n'a faire si OK
