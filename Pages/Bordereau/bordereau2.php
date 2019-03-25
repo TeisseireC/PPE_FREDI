@@ -34,6 +34,7 @@
         $clubDAO = new clubDAO();
         $idClub = $adherent->get_idClub(); 
         $club = $clubDAO->find($idClub);
+        $coutTotaux = 0;
     }
 ?>
 
@@ -127,7 +128,15 @@
                             }
                         }
                         echo '</tr>';
+                        $coutTotaux = $coutTotaux + $ligneDeFrais->get_coutTotal();
                     }
+                    ?>
+                    <tr>
+                    <td colspan='9'>&nbsp;</td>
+                    <?php
+                    echo "<td>".$coutTotaux."</td>";
+                    echo '</tr>';
+
                     if ($bordereau->get_validiteTresorier() == 0){
                         if($_SESSION['role'] == "tresorier"){
                             echo "<div class='valider'>";

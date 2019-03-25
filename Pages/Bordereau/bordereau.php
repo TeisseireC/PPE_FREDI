@@ -32,6 +32,7 @@
         $clubDAO = new clubDAO();
         $idClub = $adherent->get_idClub(); 
         $club = $clubDAO->find($idClub);
+        $coutTotaux = 0;
     }
 ?>
 
@@ -121,7 +122,15 @@
                                 . '<a href="..\Action\delete.php?id=' . $ligneDeFrais->get_idFrais() . '"><img id="delete" src="../../ico/del.png"/></a></td>';
                         }
                         echo "</tr>";
+                        echo '</tr>';
+                        $coutTotaux = $coutTotaux + $ligneDeFrais->get_coutTotal();
                     }
+                    ?>
+                    <tr>
+                    <td colspan='9'>&nbsp;</td>
+                    <?php
+                    echo "<td>".$coutTotaux."</td>";
+                    echo '</tr>';
                 ?>
             </table>
             <?php
