@@ -6,6 +6,7 @@ $mail = $_SESSION['email'];
 include '../../assets/include/global.inc.php';
 $tresorierDAO = new TresorierDAO();
 $adherentDAO = new AdherentDAO();
+$respLegalDAO = new RespLegalDAO();
 ?>
 
 
@@ -38,9 +39,16 @@ $adherentDAO = new AdherentDAO();
             $adherents = $adherentDAO->findAllByIdClub($tresorier->get_idClub());
           
           foreach($adherents as $adherent) {
-          echo '<p><a href="../../assets/class/Mon_Pdf.php?licence='. $adherent->get_numLicence() .'">Générer PDF de '.$adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'</a></p>';
-          echo '<p><a href="../../assets/outfile/cerfa_'.$adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'_'. date('Y') .'.pdf">Visualiser le PDF</a></p>';
-
+            if($adherent -> get_adresseMail() == NULL) {
+              $respLegal = $respLegalDAO->findById($adherent->get_idRespLegal());
+              echo '<p><a href="../../assets/class/Mon_Pdf.php?mail='. $respLegal->get_adresseMail() .'">Générer PDF de '.$respLegal->get_prenomRespLegal() . '_'. $respLegal->get_nomRespLegal() .'</a></p>';
+              echo '<p><a href="../../assets/outfile/cerfa_'.$respLegal->get_prenomRespLegal() . '_'. $respLegal->get_nomRespLegal() .'_'. date('Y') .'.pdf">Visualiser le PDF</a></p>';
+              
+            }
+            else{
+              echo '<p><a href="../../assets/class/Mon_Pdf.php?licence='. $adherent->get_numLicence() .'">Générer PDF de '.$adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'</a></p>';
+              echo '<p><a href="../../assets/outfile/cerfa_'.$adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'_'. date('Y') .'.pdf">Visualiser le PDF</a></p>';
+            }
           }
 
           ?>
