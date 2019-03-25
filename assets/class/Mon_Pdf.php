@@ -46,17 +46,36 @@ $pdf->Ln();
 
 // Boucle du contenu
 session_start();
-$licence = isset($_GET['licence']) ? $_GET['licence'] : $_POST['licence'] ;
+
+if (isset($_GET['licence'])) {
+
+    $licence = isset($_GET['licence']) ? $_GET['licence'] : $_POST['licence'] ;
+
+} else if (isset($_GET['mail'])) {
+
+    $licence = NULL;
+    $mail = isset($_GET['mail']) ? $_GET['mail'] : $_POST['mail'] ;
+
+}
 
 $adherentDAO = new AdherentDAO();
+$respLegalDAO = new RespLegalDAO();
 $clubDAO = new ClubDAO();
 $bordereauDAO = new BordereauDAO();
 $ligneDeFraisDAO = new ligneDeFraisDAO();
 
-$adherent = $adherentDAO->findByLicence($licence);
-$mail = $adherent->get_adresseMail();
 
-$club = $clubDAO->find($adherent->get_idClub());
+if($licence != NULL){
+    $adherent = $adherentDAO->findByLicence($licence);
+    $mail = $adherent->get_adresseMail();
+    $club = $clubDAO->find($adherent->get_idClub());
+}
+
+if($licence == NULL){
+    $respLegal = $respLegalDAO->find($mail);
+    $respLegal2 = $respLegalDAO->find_infosSup($respLegal->get_idRespLegal());
+    $club = $clubDAO->find($respLegal2->get_idClub());
+}
 
 $date1 = date('Y');
 
@@ -85,17 +104,33 @@ if ($club->get_idligue() == 1) {
     $pdf->Ln();
 
 }
+if ($licence != NULL) {
 
-$pdf->Cell(0, 15, utf8_decode("Nom de l'adherent : ".$adherent->get_nomAdh()), 0, 0, 'L', false);
-$pdf->Ln();
-$pdf->Cell(0, 15, utf8_decode("Prenom de l'adherent : ".$adherent->get_prenomAdh()), 0, 0, 'L', false);
-$pdf->Ln();
-$pdf->Cell(0, 15, utf8_decode("Adresse de l'adherent : ".$adherent->get_adresse()), 0, 0, 'L', false);
-$pdf->Ln();
-$pdf->Cell(0, 15, utf8_decode("Code Postal de l'adherent : ".$adherent->get_codePostal()), 0, 0, 'L', false);
-$pdf->Ln();
-$pdf->Cell(0, 15, utf8_decode("Ville de l'adherent : ".$adherent->get_ville()), 0, 0, 'L', false);
-$pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Nom de l'adherent : ".$adherent->get_nomAdh()), 0, 0, 'L', false);
+    $pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Prenom de l'adherent : ".$adherent->get_prenomAdh()), 0, 0, 'L', false);
+    $pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Adresse de l'adherent : ".$adherent->get_adresse()), 0, 0, 'L', false);
+    $pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Code Postal de l'adherent : ".$adherent->get_codePostal()), 0, 0, 'L', false);
+    $pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Ville de l'adherent : ".$adherent->get_ville()), 0, 0, 'L', false);
+    $pdf->Ln();
+    
+} else {
+
+    $pdf->Cell(0, 15, utf8_decode("Nom du responsable légal : ".$respLegal->get_nomRespLegal()), 0, 0, 'L', false);
+    $pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Prenom du responsable légal : ".$respLegal->get_prenomRespLegal()), 0, 0, 'L', false);
+    $pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Adresse du responsable légal : ".$respLegal2->get_adresse()), 0, 0, 'L', false);
+    $pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Code Postal du responsable légal : ".$respLegal2->get_codePostal()), 0, 0, 'L', false);
+    $pdf->Ln();
+    $pdf->Cell(0, 15, utf8_decode("Ville du responsable légal : ".$respLegal2->get_ville()), 0, 0, 'L', false);
+    $pdf->Ln();
+    
+}
 
 //cell(w,h,txt,border,ln,align,fill,link)
 $pdf->Cell(53,6,utf8_decode("Nom du club : ".$club->get_nomclub()), 1, 0, 'L', false);
@@ -124,15 +159,26 @@ foreach($ligneDeFrais as $ligne){
         $pdf->Cell(20,6,$ligne->get_coutTotal(),1);
     $pdf->Ln();
 }
+
+$Totaux = 0;
+
 foreach($ligneDeFrais as $ligne){
-    $TotalTotal = $TotalTotal + $ligne->get_coutTotal();
+    $Totaux = $Totaux + $ligne->get_coutTotal();
 }
-$pdf -> SetX(143);    // set the cursor at Y position 5
-$pdf->Cell(28,6,utf8_decode("TotalTotal"),1);
-$pdf->Cell(20,6,$TotalTotal,1);
+$pdf -> SetX(155);    // set the cursor at Y position 5
+$pdf->Cell(28,6,utf8_decode("Totaux"),1);
+$pdf->Cell(20,6,$Totaux,1);
 $pdf->Ln();
 $pdf -> SetX(0);    // set the cursor at Y position 5
 
-// Génération du document PDF
-$pdf->Output('../outfile/cerfa_'. $adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'_'. date('Y') .'.pdf', 'f');
-header('Location: ../../Pages/Tresorier/pageTresorier.php');
+if ($licence != NULL) {
+    // Génération du document PDF
+    $pdf->Output('../outfile/cerfa_'. $adherent->get_prenomAdh() . '_'. $adherent->get_nomAdh() .'_'. date('Y') .'.pdf', 'f');
+    header('Location: ../../Pages/Tresorier/pageTresorier.php');
+} else {
+    // Génération du document PDF
+    $pdf->Output('../outfile/cerfa_'. $respLegal->get_prenomRespLegal() . '_'. $respLegal->get_nomRespLegal() .'_'. date('Y') .'.pdf', 'f');
+    header('Location: ../../Pages/Tresorier/pageTresorier.php');
+}
+
+
