@@ -18,6 +18,8 @@ Pour l'inscription, la licence utilisateur doit impérativement se trouver dans 
 
 Pour la connection, les comptes déjà existants ont leurs mot de passe fournie dans le script d'insertion de données pour la BDD, il faut saisir mail et mot de passe pour la connection, une adresse mail est unique et ne peux pas être utilisée par un autre utilisateur.
 
+Nous possèdons 2 branches pour ce projet, la master qui est la branche pour le PPE fredi en local, puis la Android, pour le PPE fredi sur serveur et pour tablette Android.
+
 ## Manuel d'utilisation de l'application
 
 ### 1.Création d'un adhérent majeur
