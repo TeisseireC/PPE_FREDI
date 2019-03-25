@@ -34,7 +34,8 @@
 
             <!-- Début du formulaire -->
             <form action="registerUtil.php" method="post" class="formulaire">
-                <p>Numéro de licence & Club<br/><input type="text" name="licence" required>
+                <p>Numéro de licence<br/><input type="text" name="licence" required></p>
+                <p>Club<br/>
                     <?php 
                     $clubDAO = new clubDAO();
                     $clubs = $clubDAO->findAll();
@@ -43,7 +44,7 @@
                     foreach($clubs as $club){
                         echo '<option value='.$club->get_idclub().'>'.$club->get_nomclub().'</option>';   
                     }
-                    echo '</select></p>';
+                    echo '</select>';
                     ?>
                 </p>
                 <p>Email<br/><input type="text" name="email" required></p>
