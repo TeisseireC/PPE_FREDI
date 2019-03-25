@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class AdherentDAO extends DAO{
 
@@ -20,7 +20,7 @@ class AdherentDAO extends DAO{
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
 
-            $adherent = new adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
+            $adherent = new Adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
             return $adherent; 
     }
     
@@ -37,7 +37,7 @@ class AdherentDAO extends DAO{
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
 
-            $adherent = new adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
+            $adherent = new Adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
             return $adherent; 
     }
 
@@ -176,7 +176,7 @@ class AdherentDAO extends DAO{
             } catch (PDOException $ex) {
                 die("Erreur lors de la requête SQL : " . $ex->getMessage());
             }
-            $adherent = new adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
+            $adherent = new Adherent($row); // Création d'un nouvel adhérent avec la classe adhérent
             return $adherent; 
     }
 }

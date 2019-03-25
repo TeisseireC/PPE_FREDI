@@ -9,7 +9,7 @@ class CSVDAO extends DAO{
 
     // Fonction pour savoir si le numéro de licence saisi existe dans le CSV
     function find($numLicence){
-        $sql = "SELECT NumLicenceCSV FROM CSV WHERE NumLicenceCSV = :numLicence";
+        $sql = "SELECT NumLicenceCSV FROM csv WHERE NumLicenceCSV = :numLicence";
             try {
                 $sth = $this->pdo->prepare($sql);
                 $sth->execute(array(

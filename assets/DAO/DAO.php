@@ -1,12 +1,12 @@
-<?php
+﻿<?php
 
 class DAO{
 
     var $pdo = null; // Objet de connexion
 
     function __construct(){
-        $user = "root";
-        $password = "";
+        $user = "Serveur";
+        $password = "slam4";
         $host = "localhost";
         $name = "fredi";
 
