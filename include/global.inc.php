@@ -11,14 +11,14 @@ ini_set('html_errors', '1');
  * @param string $classe
  */
 function my_autoloaderDAO($classe) {
-  if (file_exists('assets/DAO/' . $classe . '.php')){
-    include 'assets/DAO/' . $classe . '.php';
+  if (file_exists('DAO/' . $classe . '.php')){
+    include 'DAO/' . $classe . '.php';
   }
 }
 
 function my_autoloaderClass($classe) {
-  if (file_exists('assets/class/' . $classe . '.php')){
-    include 'assets/class/' . $classe . '.php';
+  if (file_exists('class/' . $classe . '.php')){
+    include 'class/' . $classe . '.php';
   }
 }
 

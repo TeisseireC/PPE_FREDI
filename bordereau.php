@@ -1,5 +1,5 @@
 <?php
-include "assets/include/global.inc.php";
+include "include/global.inc.php";
 
 // Récupère le token s'il existe
 $token = isset($_GET['token']) ? $_GET['token'] : NULL;
