@@ -31,6 +31,5 @@ if ($connectionAdh -> verify_login($mail, $mdp)){ // Verification des informatio
 }
   
 // Construit le format JSON
-$json = build_json($message, $token, NULL);
-// Envoie la réponse 
-send_json($json);
+$json=json_encode($message);
+echo $json;
